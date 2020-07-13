@@ -1,0 +1,594 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E26056B624BCD49900B24D05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26056B524BCD49900B24D05 /* AppDelegate.swift */; };
+		E26056B824BCD49900B24D05 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26056B724BCD49900B24D05 /* ContentView.swift */; };
+		E26056BA24BCD49A00B24D05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E26056B924BCD49A00B24D05 /* Assets.xcassets */; };
+		E26056BD24BCD49A00B24D05 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E26056BC24BCD49A00B24D05 /* Preview Assets.xcassets */; };
+		E26056C024BCD49A00B24D05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E26056BE24BCD49A00B24D05 /* Main.storyboard */; };
+		E26056CC24BCD49B00B24D05 /* text_popover_macOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26056CB24BCD49B00B24D05 /* text_popover_macOSTests.swift */; };
+		E26056D724BCD49B00B24D05 /* text_popover_macOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26056D624BCD49B00B24D05 /* text_popover_macOSUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E26056C824BCD49B00B24D05 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E26056AA24BCD49900B24D05 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E26056B124BCD49900B24D05;
+			remoteInfo = "text-popover-macOS";
+		};
+		E26056D324BCD49B00B24D05 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E26056AA24BCD49900B24D05 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E26056B124BCD49900B24D05;
+			remoteInfo = "text-popover-macOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E26056B224BCD49900B24D05 /* text-popover-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "text-popover-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E26056B524BCD49900B24D05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E26056B724BCD49900B24D05 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E26056B924BCD49A00B24D05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E26056BC24BCD49A00B24D05 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E26056BF24BCD49A00B24D05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E26056C124BCD49A00B24D05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E26056C224BCD49A00B24D05 /* text_popover_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = text_popover_macOS.entitlements; sourceTree = "<group>"; };
+		E26056C724BCD49B00B24D05 /* text-popover-macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "text-popover-macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E26056CB24BCD49B00B24D05 /* text_popover_macOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = text_popover_macOSTests.swift; sourceTree = "<group>"; };
+		E26056CD24BCD49B00B24D05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E26056D224BCD49B00B24D05 /* text-popover-macOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "text-popover-macOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E26056D624BCD49B00B24D05 /* text_popover_macOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = text_popover_macOSUITests.swift; sourceTree = "<group>"; };
+		E26056D824BCD49B00B24D05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E26056AF24BCD49900B24D05 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E26056C424BCD49B00B24D05 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E26056CF24BCD49B00B24D05 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E26056A924BCD49900B24D05 = {
+			isa = PBXGroup;
+			children = (
+				E26056B424BCD49900B24D05 /* text-popover-macOS */,
+				E26056CA24BCD49B00B24D05 /* text-popover-macOSTests */,
+				E26056D524BCD49B00B24D05 /* text-popover-macOSUITests */,
+				E26056B324BCD49900B24D05 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E26056B324BCD49900B24D05 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E26056B224BCD49900B24D05 /* text-popover-macOS.app */,
+				E26056C724BCD49B00B24D05 /* text-popover-macOSTests.xctest */,
+				E26056D224BCD49B00B24D05 /* text-popover-macOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E26056B424BCD49900B24D05 /* text-popover-macOS */ = {
+			isa = PBXGroup;
+			children = (
+				E26056B524BCD49900B24D05 /* AppDelegate.swift */,
+				E26056B724BCD49900B24D05 /* ContentView.swift */,
+				E26056B924BCD49A00B24D05 /* Assets.xcassets */,
+				E26056BE24BCD49A00B24D05 /* Main.storyboard */,
+				E26056C124BCD49A00B24D05 /* Info.plist */,
+				E26056C224BCD49A00B24D05 /* text_popover_macOS.entitlements */,
+				E26056BB24BCD49A00B24D05 /* Preview Content */,
+			);
+			path = "text-popover-macOS";
+			sourceTree = "<group>";
+		};
+		E26056BB24BCD49A00B24D05 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				E26056BC24BCD49A00B24D05 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E26056CA24BCD49B00B24D05 /* text-popover-macOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				E26056CB24BCD49B00B24D05 /* text_popover_macOSTests.swift */,
+				E26056CD24BCD49B00B24D05 /* Info.plist */,
+			);
+			path = "text-popover-macOSTests";
+			sourceTree = "<group>";
+		};
+		E26056D524BCD49B00B24D05 /* text-popover-macOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E26056D624BCD49B00B24D05 /* text_popover_macOSUITests.swift */,
+				E26056D824BCD49B00B24D05 /* Info.plist */,
+			);
+			path = "text-popover-macOSUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E26056B124BCD49900B24D05 /* text-popover-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E26056DB24BCD49B00B24D05 /* Build configuration list for PBXNativeTarget "text-popover-macOS" */;
+			buildPhases = (
+				E26056AE24BCD49900B24D05 /* Sources */,
+				E26056AF24BCD49900B24D05 /* Frameworks */,
+				E26056B024BCD49900B24D05 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "text-popover-macOS";
+			productName = "text-popover-macOS";
+			productReference = E26056B224BCD49900B24D05 /* text-popover-macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E26056C624BCD49B00B24D05 /* text-popover-macOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E26056DE24BCD49B00B24D05 /* Build configuration list for PBXNativeTarget "text-popover-macOSTests" */;
+			buildPhases = (
+				E26056C324BCD49B00B24D05 /* Sources */,
+				E26056C424BCD49B00B24D05 /* Frameworks */,
+				E26056C524BCD49B00B24D05 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E26056C924BCD49B00B24D05 /* PBXTargetDependency */,
+			);
+			name = "text-popover-macOSTests";
+			productName = "text-popover-macOSTests";
+			productReference = E26056C724BCD49B00B24D05 /* text-popover-macOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E26056D124BCD49B00B24D05 /* text-popover-macOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E26056E124BCD49B00B24D05 /* Build configuration list for PBXNativeTarget "text-popover-macOSUITests" */;
+			buildPhases = (
+				E26056CE24BCD49B00B24D05 /* Sources */,
+				E26056CF24BCD49B00B24D05 /* Frameworks */,
+				E26056D024BCD49B00B24D05 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E26056D424BCD49B00B24D05 /* PBXTargetDependency */,
+			);
+			name = "text-popover-macOSUITests";
+			productName = "text-popover-macOSUITests";
+			productReference = E26056D224BCD49B00B24D05 /* text-popover-macOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E26056AA24BCD49900B24D05 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "Li-Wei Yap";
+				TargetAttributes = {
+					E26056B124BCD49900B24D05 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					E26056C624BCD49B00B24D05 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = E26056B124BCD49900B24D05;
+					};
+					E26056D124BCD49B00B24D05 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = E26056B124BCD49900B24D05;
+					};
+				};
+			};
+			buildConfigurationList = E26056AD24BCD49900B24D05 /* Build configuration list for PBXProject "text-popover-macOS" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E26056A924BCD49900B24D05;
+			productRefGroup = E26056B324BCD49900B24D05 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E26056B124BCD49900B24D05 /* text-popover-macOS */,
+				E26056C624BCD49B00B24D05 /* text-popover-macOSTests */,
+				E26056D124BCD49B00B24D05 /* text-popover-macOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E26056B024BCD49900B24D05 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E26056C024BCD49A00B24D05 /* Main.storyboard in Resources */,
+				E26056BD24BCD49A00B24D05 /* Preview Assets.xcassets in Resources */,
+				E26056BA24BCD49A00B24D05 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E26056C524BCD49B00B24D05 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E26056D024BCD49B00B24D05 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E26056AE24BCD49900B24D05 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E26056B824BCD49900B24D05 /* ContentView.swift in Sources */,
+				E26056B624BCD49900B24D05 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E26056C324BCD49B00B24D05 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E26056CC24BCD49B00B24D05 /* text_popover_macOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E26056CE24BCD49B00B24D05 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E26056D724BCD49B00B24D05 /* text_popover_macOSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E26056C924BCD49B00B24D05 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E26056B124BCD49900B24D05 /* text-popover-macOS */;
+			targetProxy = E26056C824BCD49B00B24D05 /* PBXContainerItemProxy */;
+		};
+		E26056D424BCD49B00B24D05 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E26056B124BCD49900B24D05 /* text-popover-macOS */;
+			targetProxy = E26056D324BCD49B00B24D05 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E26056BE24BCD49A00B24D05 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E26056BF24BCD49A00B24D05 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E26056D924BCD49B00B24D05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E26056DA24BCD49B00B24D05 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		E26056DC24BCD49B00B24D05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "text-popover-macOS/text_popover_macOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"text-popover-macOS/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "text-popover-macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.liweiyap.text-popover-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E26056DD24BCD49B00B24D05 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "text-popover-macOS/text_popover_macOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"text-popover-macOS/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "text-popover-macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.liweiyap.text-popover-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		E26056DF24BCD49B00B24D05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "text-popover-macOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.liweiyap.text-popover-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/text-popover-macOS.app/Contents/MacOS/text-popover-macOS";
+			};
+			name = Debug;
+		};
+		E26056E024BCD49B00B24D05 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "text-popover-macOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.liweiyap.text-popover-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/text-popover-macOS.app/Contents/MacOS/text-popover-macOS";
+			};
+			name = Release;
+		};
+		E26056E224BCD49B00B24D05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "text-popover-macOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.liweiyap.text-popover-macOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "text-popover-macOS";
+			};
+			name = Debug;
+		};
+		E26056E324BCD49B00B24D05 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "text-popover-macOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.liweiyap.text-popover-macOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "text-popover-macOS";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E26056AD24BCD49900B24D05 /* Build configuration list for PBXProject "text-popover-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E26056D924BCD49B00B24D05 /* Debug */,
+				E26056DA24BCD49B00B24D05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E26056DB24BCD49B00B24D05 /* Build configuration list for PBXNativeTarget "text-popover-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E26056DC24BCD49B00B24D05 /* Debug */,
+				E26056DD24BCD49B00B24D05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E26056DE24BCD49B00B24D05 /* Build configuration list for PBXNativeTarget "text-popover-macOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E26056DF24BCD49B00B24D05 /* Debug */,
+				E26056E024BCD49B00B24D05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E26056E124BCD49B00B24D05 /* Build configuration list for PBXNativeTarget "text-popover-macOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E26056E224BCD49B00B24D05 /* Debug */,
+				E26056E324BCD49B00B24D05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E26056AA24BCD49900B24D05 /* Project object */;
+}
