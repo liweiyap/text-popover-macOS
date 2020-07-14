@@ -10,30 +10,42 @@ import Cocoa
 import SwiftUI
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate
+{
+    let statusItem = NSStatusBar.system.statusItem(withLength: CGFloat(NSStatusItem.variableLength))
+    let popover = NSPopover()
 
-    var window: NSWindow!
-
-
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Create the SwiftUI view that provides the window contents.
+    func applicationDidFinishLaunching(_ aNotification: Notification)
+    {
         let contentView = ContentView()
-
-        // Create the window and set the content view. 
-        window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
-            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
-            backing: .buffered, defer: false)
-        window.center()
-        window.setFrameAutosaveName("Main Window")
-        window.contentView = NSHostingView(rootView: contentView)
-        window.makeKeyAndOrderFront(nil)
+        
+        popover.contentSize = NSSize(width: 400, height: 400)
+        popover.behavior = .transient
+        popover.contentViewController = NSHostingController(rootView: contentView)
+        
+        statusItem.button?.title = "Text-PopOver"
+        statusItem.button?.target = self
+        statusItem.button?.action = #selector(togglePopover(_:))
     }
 
-    func applicationWillTerminate(_ aNotification: Notification) {
+    func applicationWillTerminate(_ aNotification: Notification)
+    {
         // Insert code here to tear down your application
     }
 
-
+    @objc func togglePopover(_ sender: AnyObject?)
+    {
+        if let button = statusItem.button
+        {
+            if popover.isShown
+            {
+                popover.performClose(sender)
+            }
+            else
+            {
+                popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
+            }
+        }
+    }
 }
 
