@@ -14,18 +14,32 @@ class AppDelegate: NSObject, NSApplicationDelegate
 {
     let statusItem = NSStatusBar.system.statusItem(withLength: CGFloat(NSStatusItem.variableLength))
     let popover = NSPopover()
+    var eventMonitor: EventMonitor?
 
     func applicationDidFinishLaunching(_ aNotification: Notification)
     {
         let contentView = ContentView()
         
         popover.contentSize = NSSize(width: 400, height: 400)
-        popover.behavior = .transient
         popover.contentViewController = NSHostingController(rootView: contentView)
         
         statusItem.button?.title = "Text-PopOver"
         statusItem.button?.target = self
         statusItem.button?.action = #selector(togglePopover(_:))
+        
+        eventMonitor = EventMonitor(
+        mask: [NSEvent.EventTypeMask.leftMouseDown, NSEvent.EventTypeMask.rightMouseDown])
+        {[weak self] event in
+            if let popover = self?.popover
+            {
+                if popover.isShown
+                {
+                    popover.performClose(event)
+                    self?.eventMonitor?.stop()
+                }
+            }
+        }
+        eventMonitor?.start()
     }
 
     func applicationWillTerminate(_ aNotification: Notification)
@@ -35,15 +49,17 @@ class AppDelegate: NSObject, NSApplicationDelegate
 
     @objc func togglePopover(_ sender: AnyObject?)
     {
-        if let button = statusItem.button
+        if popover.isShown
         {
-            if popover.isShown
-            {
-                popover.performClose(sender)
-            }
-            else
+            popover.performClose(sender)
+            eventMonitor?.stop()
+        }
+        else
+        {
+            if let button = statusItem.button
             {
                 popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
+                eventMonitor?.start()
             }
         }
     }
