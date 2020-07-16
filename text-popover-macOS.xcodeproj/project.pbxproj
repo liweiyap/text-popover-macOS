@@ -15,6 +15,10 @@
 		E26056CC24BCD49B00B24D05 /* text_popover_macOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26056CB24BCD49B00B24D05 /* text_popover_macOSTests.swift */; };
 		E26056D724BCD49B00B24D05 /* text_popover_macOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26056D624BCD49B00B24D05 /* text_popover_macOSUITests.swift */; };
 		E26056ED24BF2F2A00B24D05 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26056EC24BF2F2A00B24D05 /* EventMonitor.swift */; };
+		E26056F124BF372A00B24D05 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26056F024BF372A00B24D05 /* DatabaseManager.swift */; };
+		E26056F424BF5C2200B24D05 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E26056F324BF5C2200B24D05 /* SQLite.framework */; };
+		E26056F524BF5C2200B24D05 /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E26056F324BF5C2200B24D05 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E26056F924C07B6C00B24D05 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26056F824C07B6C00B24D05 /* Package.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +38,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E26056F624BF5C2200B24D05 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E26056F524BF5C2200B24D05 /* SQLite.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		E26056B224BCD49900B24D05 /* text-popover-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "text-popover-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E26056B524BCD49900B24D05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +68,10 @@
 		E26056D624BCD49B00B24D05 /* text_popover_macOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = text_popover_macOSUITests.swift; sourceTree = "<group>"; };
 		E26056D824BCD49B00B24D05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E26056EC24BF2F2A00B24D05 /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
+		E26056F024BF372A00B24D05 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		E26056F324BF5C2200B24D05 /* SQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SQLite.framework; path = Carthage/Build/Mac/SQLite.framework; sourceTree = "<group>"; };
+		E26056F824C07B6C00B24D05 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		E26056FA24C0907600B24D05 /* text-popover-macOSRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "text-popover-macOSRelease.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E26056F424BF5C2200B24D05 /* SQLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +107,7 @@
 				E26056CA24BCD49B00B24D05 /* text-popover-macOSTests */,
 				E26056D524BCD49B00B24D05 /* text-popover-macOSUITests */,
 				E26056B324BCD49900B24D05 /* Products */,
+				E26056F224BF5C2100B24D05 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,8 +124,11 @@
 		E26056B424BCD49900B24D05 /* text-popover-macOS */ = {
 			isa = PBXGroup;
 			children = (
+				E26056FA24C0907600B24D05 /* text-popover-macOSRelease.entitlements */,
 				E26056B524BCD49900B24D05 /* AppDelegate.swift */,
 				E26056B724BCD49900B24D05 /* ContentView.swift */,
+				E26056F024BF372A00B24D05 /* DatabaseManager.swift */,
+				E26056F824C07B6C00B24D05 /* Package.swift */,
 				E26056B924BCD49A00B24D05 /* Assets.xcassets */,
 				E26056BE24BCD49A00B24D05 /* Main.storyboard */,
 				E26056C124BCD49A00B24D05 /* Info.plist */,
@@ -138,6 +165,14 @@
 			path = "text-popover-macOSUITests";
 			sourceTree = "<group>";
 		};
+		E26056F224BF5C2100B24D05 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E26056F324BF5C2200B24D05 /* SQLite.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -148,6 +183,8 @@
 				E26056AE24BCD49900B24D05 /* Sources */,
 				E26056AF24BCD49900B24D05 /* Frameworks */,
 				E26056B024BCD49900B24D05 /* Resources */,
+				E26056F624BF5C2200B24D05 /* Embed Frameworks */,
+				E26056F724BF5C6700B24D05 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -264,11 +301,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		E26056F724BF5C6700B24D05 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/Mac/SQLite.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E26056AE24BCD49900B24D05 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E26056F124BF372A00B24D05 /* DatabaseManager.swift in Sources */,
+				E26056F924C07B6C00B24D05 /* Package.swift in Sources */,
 				E26056ED24BF2F2A00B24D05 /* EventMonitor.swift in Sources */,
 				E26056B824BCD49900B24D05 /* ContentView.swift in Sources */,
 				E26056B624BCD49900B24D05 /* AppDelegate.swift in Sources */,
@@ -439,7 +499,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"text-popover-macOS/Preview Content\"";
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = "text-popover-macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -456,11 +521,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "text-popover-macOS/text_popover_macOS.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "text-popover-macOS/text-popover-macOSRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"text-popover-macOS/Preview Content\"";
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = "text-popover-macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -1,5 +1,10 @@
 .DS_Store
 
+# vim
+*~
+*.swp
+*.swo
+
 # Created by https://www.toptal.com/developers/gitignore/api/xcode,swift,objective-c
 # Edit at https://www.toptal.com/developers/gitignore?templates=xcode,swift,objective-c
 
@@ -46,7 +51,7 @@ DerivedData/
 
 # Carthage
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
-# Carthage/Checkouts
+Carthage/Checkouts
 
 Carthage/Build/
 

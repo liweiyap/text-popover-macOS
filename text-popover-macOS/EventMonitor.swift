@@ -10,7 +10,6 @@ import Cocoa
 
 open class EventMonitor
 {
-    
     fileprivate var monitor: AnyObject?
     fileprivate let mask: NSEvent.EventTypeMask
     fileprivate let handler: (NSEvent?) -> ()

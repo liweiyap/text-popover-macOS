@@ -7,22 +7,28 @@
 //
 
 import SwiftUI
-import SQLite3
 
 struct ContentView: View
 {
+    @State var name: String = ""
+    @State var email: String = ""
     
+    let myData = DatabaseManager("redewendungen.db")
     
     var body: some View
     {
-        Text("Hello, World!")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        VStack
+        {
+            TextField("Enter Name", text: self.$name)
+            TextField("Enter email", text: self.$email)
+        }
     }
 }
 
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
+struct ContentView_Previews: PreviewProvider
+{
+    static var previews: some View
+    {
         ContentView()
     }
 }
