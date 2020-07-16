@@ -8,7 +8,6 @@
 
 import Foundation
 import SQLite
-//import PythonKit
 
 class DatabaseManager
 {
@@ -18,17 +17,11 @@ class DatabaseManager
     {
         do
         {
-//            shell("python3 \(database_script)")
-            print(shell())
+            shell()
             
             let database_connection = try Connection(database_path)
             self.database_connection = database_connection
             print("Database initialized at path \(database_path)")
-            
-//            let sys = try Python.import("sys")
-//            print("Python \(sys.version_info.major).\(sys.version_info.minor)")
-//            print("Python Version: \(sys.version)")
-//            print("Python Encoding: \(sys.getdefaultencoding().upper())")
         }
         catch
         {
@@ -41,8 +34,6 @@ class DatabaseManager
         let task = Process()
 
         task.arguments = ["/Users/leewayleaf/Documents/Repositories/text-popover-macOS/create_database.py"]
-//        task.launchPath = "/Users/leewayleaf/opt/anaconda3/bin/python3"
-//        task.launch()
         task.executableURL = URL(fileURLWithPath: "/Users/leewayleaf/opt/anaconda3/bin/python3")
         do
         {
@@ -50,7 +41,7 @@ class DatabaseManager
         }
         catch
         {
-            print("hey")
+            print(error)
         }
     }
 }

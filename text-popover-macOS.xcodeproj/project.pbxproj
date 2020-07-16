@@ -18,7 +18,6 @@
 		E26056F124BF372A00B24D05 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26056F024BF372A00B24D05 /* DatabaseManager.swift */; };
 		E26056F424BF5C2200B24D05 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E26056F324BF5C2200B24D05 /* SQLite.framework */; };
 		E26056F524BF5C2200B24D05 /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E26056F324BF5C2200B24D05 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E26056F924C07B6C00B24D05 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26056F824C07B6C00B24D05 /* Package.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,8 +69,6 @@
 		E26056EC24BF2F2A00B24D05 /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		E26056F024BF372A00B24D05 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		E26056F324BF5C2200B24D05 /* SQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SQLite.framework; path = Carthage/Build/Mac/SQLite.framework; sourceTree = "<group>"; };
-		E26056F824C07B6C00B24D05 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		E26056FA24C0907600B24D05 /* text-popover-macOSRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "text-popover-macOSRelease.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,11 +121,9 @@
 		E26056B424BCD49900B24D05 /* text-popover-macOS */ = {
 			isa = PBXGroup;
 			children = (
-				E26056FA24C0907600B24D05 /* text-popover-macOSRelease.entitlements */,
 				E26056B524BCD49900B24D05 /* AppDelegate.swift */,
 				E26056B724BCD49900B24D05 /* ContentView.swift */,
 				E26056F024BF372A00B24D05 /* DatabaseManager.swift */,
-				E26056F824C07B6C00B24D05 /* Package.swift */,
 				E26056B924BCD49A00B24D05 /* Assets.xcassets */,
 				E26056BE24BCD49A00B24D05 /* Main.storyboard */,
 				E26056C124BCD49A00B24D05 /* Info.plist */,
@@ -328,7 +323,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E26056F124BF372A00B24D05 /* DatabaseManager.swift in Sources */,
-				E26056F924C07B6C00B24D05 /* Package.swift in Sources */,
 				E26056ED24BF2F2A00B24D05 /* EventMonitor.swift in Sources */,
 				E26056B824BCD49900B24D05 /* ContentView.swift in Sources */,
 				E26056B624BCD49900B24D05 /* AppDelegate.swift in Sources */,
