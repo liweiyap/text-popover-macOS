@@ -7,9 +7,14 @@
 //
 
 import SwiftUI
+import SQLite3
 
-struct ContentView: View {
-    var body: some View {
+struct ContentView: View
+{
+    
+    
+    var body: some View
+    {
         Text("Hello, World!")
             .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
