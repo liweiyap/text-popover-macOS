@@ -17,11 +17,10 @@ class DatabaseManager
     {
         do
         {
-            shell()
+            createDatabase()
             
             let database_connection = try Connection(database_path)
             self.database_connection = database_connection
-            print("Database initialized at path \(database_path)")
         }
         catch
         {
@@ -29,19 +28,30 @@ class DatabaseManager
         }
     }
 
-    func shell() -> Void
+    func createDatabase() -> Void
     {
-        let task = Process()
-
-        task.arguments = ["/Users/leewayleaf/Documents/Repositories/text-popover-macOS/create_database.py"]
-        task.executableURL = URL(fileURLWithPath: "/Users/leewayleaf/opt/anaconda3/bin/python3")
+        let fileUrl = URL(fileURLWithPath: #file)
+        let dirUrl = fileUrl.deletingLastPathComponent()
+        let python_script_path = dirUrl.path + "/../text-popover-macOSUtils/create_table.py"
+        
+        /*
+         * Using Process() to find `which python3` returns only:
+         * `/Applications/Xcode.app/Contents/Developer/usr/bin/python3`
+         * But modules like Beautiful Soup might be installed in other versions of Python located elsewhere
+         */
+        let python_env_launch_path = "/Users/leewayleaf/opt/anaconda3/bin/python3"
+        
+        let process = Process()
+        process.arguments = [python_script_path]
+        process.executableURL = URL(fileURLWithPath: python_env_launch_path)
+        
         do
         {
-            try task.run()
+            try process.run()
         }
         catch
         {
-            print(error)
+            print("createDatabase():\n", error)
         }
     }
 }

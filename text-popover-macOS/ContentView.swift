@@ -13,7 +13,7 @@ struct ContentView: View
     @State var name: String = ""
     @State var email: String = ""
     
-    let myData = DatabaseManager("redewendungen.db")
+    let myData = DatabaseManager(URL(fileURLWithPath: #file).deletingLastPathComponent().path + "/../text-popover-macOSUtils/redewendungen.db")
     
     var body: some View
     {
