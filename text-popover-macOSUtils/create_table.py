@@ -3,7 +3,7 @@ from urllib.request import urlopen as uReq
 import re
 import sqlite3
 from typing import Tuple
-import os
+import sys
 
 
 PATTERN_SQUARE_PARENTHESES = r'\[.*?\]'
@@ -73,7 +73,7 @@ def check_for_trailing_punctuation(explanation: str, elaboration: str, opening: 
     return explanation, elaboration
 
 def main() -> None:
-    db_connection = sqlite3.connect('/Users/leewayleaf/Documents/Repositories/text-popover-macOS/text-popover-macOSUtils/redewendungen.db')
+    db_connection = sqlite3.connect(sys.argv[1])
     cursor = db_connection.cursor()
     cursor.execute("DROP TABLE IF EXISTS Redewendungen")
     cursor.execute("""CREATE TABLE Redewendungen (
@@ -196,4 +196,12 @@ def main() -> None:
 #--------------------------#
 
 if __name__ == "__main__":
-    main()
+    try:
+        if (len(sys.argv) < 1):
+            raise IndexError
+        elif (len(sys.argv) > 2):
+            print("WARNING: Only one arguments needed: path of new database to be created, e.g. <database.db>.")
+
+        main()
+    except IndexError:
+        print("ERROR: To run: `python3 create_table.py <database.db>")

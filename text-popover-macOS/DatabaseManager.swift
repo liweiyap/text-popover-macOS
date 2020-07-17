@@ -12,23 +12,26 @@ import SQLite
 class DatabaseManager
 {
     var database_connection: Connection!
+    let database_table = Table("Redewendungen")
+    let expression = Expression<String>("Expression")
+    let explanation = Expression<String>("Explanation")
+    let elaboration = Expression<String>("Elaboration")
+    var database_entries: AnySequence<Row>!
+    
+    struct DataModel: Hashable
+    {
+        let Expression: String
+        let Explanation: String
+        let Elaboration: String
+    }
 
     init(_ database_path: String)
     {
-        do
-        {
-            createDatabase()
-            
-            let database_connection = try Connection(database_path)
-            self.database_connection = database_connection
-        }
-        catch
-        {
-            print(error)
-        }
+        createDatabase(database_path)
+        connectDatabase(database_path)
     }
-
-    func createDatabase() -> Void
+    
+    func createDatabase(_ database_path: String) -> Void
     {
         let fileUrl = URL(fileURLWithPath: #file)
         let dirUrl = fileUrl.deletingLastPathComponent()
@@ -42,7 +45,7 @@ class DatabaseManager
         let python_env_launch_path = "/Users/leewayleaf/opt/anaconda3/bin/python3"
         
         let process = Process()
-        process.arguments = [python_script_path]
+        process.arguments = [python_script_path, database_path]
         process.executableURL = URL(fileURLWithPath: python_env_launch_path)
         
         do
@@ -53,5 +56,36 @@ class DatabaseManager
         {
             print("createDatabase():\n", error)
         }
+    }
+    
+    func connectDatabase(_ database_path: String) -> Void
+    {
+        do
+        {
+            let database_connection = try Connection(database_path)
+            self.database_connection = database_connection
+            
+            let database_entries = try self.database_connection.prepare(self.database_table)
+            self.database_entries = database_entries
+        }
+        catch
+        {
+            print("connectDatabase():\n", error)
+        }
+    }
+    
+    func getDatabaseEntries() -> [DataModel]
+    {
+        var DatabaseEntryArray = [DataModel]()
+        
+        for entry in database_entries
+        {
+            DatabaseEntryArray.append(DataModel(
+                Expression: entry[self.expression],
+                Explanation: entry[self.explanation],
+                Elaboration: entry[self.elaboration]))
+        }
+        
+        return DatabaseEntryArray
     }
 }
