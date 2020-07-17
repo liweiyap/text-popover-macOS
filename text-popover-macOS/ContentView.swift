@@ -10,19 +10,24 @@ import SwiftUI
 
 struct ContentView: View
 {
-    @State var name: String = ""
-    @State var email: String = ""
-    
-    let myData = DatabaseManager(
+    let databaseManager = DatabaseManager(
         URL(fileURLWithPath: #file).deletingLastPathComponent().path +
         "/../text-popover-macOSUtils/redewendungen.db")
+    
+    var randomDatabaseEntry: DatabaseManager.DataModel
+    
+    init()
+    {
+        randomDatabaseEntry = databaseManager.getRandomDatabaseEntry()
+    }
     
     var body: some View
     {
         VStack
         {
-            TextField("Enter Name", text: self.$name)
-            TextField("Enter email", text: self.$email)
+            Text(randomDatabaseEntry.Expression)
+            Text(randomDatabaseEntry.Explanation)
+            Text(randomDatabaseEntry.Elaboration)
         }
     }
 }

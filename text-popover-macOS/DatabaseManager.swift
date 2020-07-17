@@ -16,7 +16,6 @@ class DatabaseManager
     let expression = Expression<String>("Expression")
     let explanation = Expression<String>("Explanation")
     let elaboration = Expression<String>("Elaboration")
-    var database_entries: AnySequence<Row>!
     
     struct DataModel: Hashable
     {
@@ -24,11 +23,14 @@ class DatabaseManager
         let Explanation: String
         let Elaboration: String
     }
+    
+    var DatabaseEntryArray = [DataModel]()
 
     init(_ database_path: String)
     {
         createDatabase(database_path)
         connectDatabase(database_path)
+        readDatabase()
     }
     
     func createDatabase(_ database_path: String) -> Void
@@ -64,9 +66,6 @@ class DatabaseManager
         {
             let database_connection = try Connection(database_path)
             self.database_connection = database_connection
-            
-            let database_entries = try self.database_connection.prepare(self.database_table)
-            self.database_entries = database_entries
         }
         catch
         {
@@ -74,18 +73,37 @@ class DatabaseManager
         }
     }
     
-    func getDatabaseEntries() -> [DataModel]
+    func readDatabase() -> Void
     {
-        var DatabaseEntryArray = [DataModel]()
-        
-        for entry in database_entries
+        do
         {
-            DatabaseEntryArray.append(DataModel(
-                Expression: entry[self.expression],
-                Explanation: entry[self.explanation],
-                Elaboration: entry[self.elaboration]))
+            let database_entries = try database_connection.prepare(database_table)
+            
+            for entry in database_entries
+            {
+                DatabaseEntryArray.append(DataModel(
+                    Expression: entry[self.expression],
+                    Explanation: entry[self.explanation],
+                    Elaboration: entry[self.elaboration]))
+            }
+        }
+        catch
+        {
+            print("readDatabase():\n", error)
+        }
+    }
+    
+    func getRandomDatabaseEntry() -> DataModel
+    {
+        let nEntries: Int = DatabaseEntryArray.count
+        
+        if (nEntries > 0)
+        {
+            let randomDatabaseEntryIdx = Int.random(in: 0 ... (nEntries-1))
+
+            return DatabaseEntryArray[randomDatabaseEntryIdx]
         }
         
-        return DatabaseEntryArray
+        return DataModel(Expression: "", Explanation: "", Elaboration: "")
     }
 }
