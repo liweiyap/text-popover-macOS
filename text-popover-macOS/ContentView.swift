@@ -15,11 +15,14 @@ struct ContentView: View
     @State var Explanation: String = ""
     @State var Elaboration: String = ""
     
+    @State var currentDate: Date = Date()
+    let timer = Timer.publish(every: 60*60*24, on: .main, in: .common).autoconnect()
+    
     func update(_ randomDatabaseEntry: DatabaseManager.DataModel) -> Void
     {
-        self.Expression = randomDatabaseEntry.Expression
-        self.Explanation = randomDatabaseEntry.Explanation
-        self.Elaboration = randomDatabaseEntry.Elaboration
+        Expression = randomDatabaseEntry.Expression
+        Explanation = randomDatabaseEntry.Explanation
+        Elaboration = randomDatabaseEntry.Elaboration
     }
     
     var body: some View
@@ -30,21 +33,23 @@ struct ContentView: View
             
             VStack
             {
-                Button("Noch eine Redewendung?")
+                Spacer()
+                
+                Text(Expression)
+                .onAppear
                 {
+                    let randomDatabaseEntry = self.databaseManagerWrapper.getRandomDatabaseEntry()
+                    self.update(randomDatabaseEntry)
+                }
+                .onReceive(timer)
+                {
+                    time in
+                    
                     var randomDatabaseEntry = self.databaseManagerWrapper.getRandomDatabaseEntry()
                     while (self.Expression == randomDatabaseEntry.Expression)
                     {
                         randomDatabaseEntry = self.databaseManagerWrapper.getRandomDatabaseEntry()
                     }
-                    self.update(randomDatabaseEntry)
-                }
-                
-                Spacer()
-                
-                Text(Expression).onAppear
-                {
-                    let randomDatabaseEntry = self.databaseManagerWrapper.getRandomDatabaseEntry()
                     self.update(randomDatabaseEntry)
                 }
                 
