@@ -20,7 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
     {
         let contentView = ContentView()
         
-        popover.contentSize = NSSize(width: 400, height: 400)
+        popover.contentSize = NSSize(width: 400, height: 200)
         popover.contentViewController = NSHostingController(rootView: contentView)
         
         statusItem.button?.title = "Text-PopOver"
@@ -64,4 +64,3 @@ class AppDelegate: NSObject, NSApplicationDelegate
         }
     }
 }
-

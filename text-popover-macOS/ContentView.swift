@@ -10,24 +10,52 @@ import SwiftUI
 
 struct ContentView: View
 {
-    let databaseManager = DatabaseManager(
-        URL(fileURLWithPath: #file).deletingLastPathComponent().path +
-        "/../text-popover-macOSUtils/redewendungen.db")
+    @ObservedObject var databaseManagerWrapper = DatabaseManagerWrapper()
+    @State var Expression: String = ""
+    @State var Explanation: String = ""
+    @State var Elaboration: String = ""
     
-    var randomDatabaseEntry: DatabaseManager.DataModel
-    
-    init()
+    func update(_ randomDatabaseEntry: DatabaseManager.DataModel) -> Void
     {
-        randomDatabaseEntry = databaseManager.getRandomDatabaseEntry()
+        self.Expression = randomDatabaseEntry.Expression
+        self.Explanation = randomDatabaseEntry.Explanation
+        self.Elaboration = randomDatabaseEntry.Elaboration
     }
     
     var body: some View
     {
-        VStack
+        HStack
         {
-            Text(randomDatabaseEntry.Expression)
-            Text(randomDatabaseEntry.Explanation)
-            Text(randomDatabaseEntry.Elaboration)
+            Spacer()
+            
+            VStack
+            {
+                Button("Noch eine Redewendung?")
+                {
+                    var randomDatabaseEntry = self.databaseManagerWrapper.getRandomDatabaseEntry()
+                    while (self.Expression == randomDatabaseEntry.Expression)
+                    {
+                        randomDatabaseEntry = self.databaseManagerWrapper.getRandomDatabaseEntry()
+                    }
+                    self.update(randomDatabaseEntry)
+                }
+                
+                Spacer()
+                
+                Text(Expression).onAppear
+                {
+                    let randomDatabaseEntry = self.databaseManagerWrapper.getRandomDatabaseEntry()
+                    self.update(randomDatabaseEntry)
+                }
+                
+                Spacer()
+                
+                Text(Explanation)
+                
+                Spacer()
+            }
+            
+            Spacer()
         }
     }
 }
