@@ -26,7 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
         let accessEnabled = AXIsProcessTrustedWithOptions(options)
         if !accessEnabled
         {
-            print("Access Not Enabled")
+            print("Access not enabled. Check System Preferences > Security & Privacy.")
         }
         
         let contentView = ContentView()
@@ -40,7 +40,8 @@ class AppDelegate: NSObject, NSApplicationDelegate
         
         eventMonitor = EventMonitor(mask:
             [NSEvent.EventTypeMask.leftMouseDown, NSEvent.EventTypeMask.rightMouseDown,
-             NSEvent.EventTypeMask.otherMouseDown, NSEvent.EventTypeMask.keyDown])
+             NSEvent.EventTypeMask.otherMouseDown, NSEvent.EventTypeMask.keyDown,
+             NSEvent.EventTypeMask.swipe])
         {
             [weak self] event in
             
