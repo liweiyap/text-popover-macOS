@@ -18,6 +18,17 @@ class AppDelegate: NSObject, NSApplicationDelegate
 
     func applicationDidFinishLaunching(_ aNotification: Notification)
     {
+        /*
+         * Allows keyDown events to be detected
+         * https://stackoverflow.com/questions/49716420/adding-a-global-monitor-with-nseventmaskkeydown-mask-does-not-trigger
+         */
+        let options: NSDictionary = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String : true]
+        let accessEnabled = AXIsProcessTrustedWithOptions(options)
+        if !accessEnabled
+        {
+            print("Access Not Enabled")
+        }
+        
         let contentView = ContentView()
         
         popover.contentSize = NSSize(width: 400, height: 200)
@@ -27,9 +38,12 @@ class AppDelegate: NSObject, NSApplicationDelegate
         statusItem.button?.target = self
         statusItem.button?.action = #selector(togglePopover(_:))
         
-        eventMonitor = EventMonitor(
-        mask: [NSEvent.EventTypeMask.leftMouseDown, NSEvent.EventTypeMask.rightMouseDown])
-        {[weak self] event in
+        eventMonitor = EventMonitor(mask:
+            [NSEvent.EventTypeMask.leftMouseDown, NSEvent.EventTypeMask.rightMouseDown,
+             NSEvent.EventTypeMask.otherMouseDown, NSEvent.EventTypeMask.keyDown])
+        {
+            [weak self] event in
+            
             if let popover = self?.popover
             {
                 if popover.isShown
