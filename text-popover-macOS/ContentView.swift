@@ -15,7 +15,6 @@ struct ContentView: View
     @State var Explanation: String = ""
     @State var Elaboration: String = ""
     
-    @State var currentDate: Date = Date()
     let timer = Timer.publish(every: 60*60*24, on: .main, in: .common).autoconnect()
     
     func update(_ randomDatabaseEntry: DatabaseManager.DataModel) -> Void
@@ -23,6 +22,16 @@ struct ContentView: View
         Expression = randomDatabaseEntry.Expression
         Explanation = randomDatabaseEntry.Explanation
         Elaboration = randomDatabaseEntry.Elaboration
+    }
+    
+    func update() -> Void
+    {
+        var randomDatabaseEntry = databaseManagerWrapper.getRandomDatabaseEntry()
+        while (Expression == randomDatabaseEntry.Expression)
+        {
+            randomDatabaseEntry = databaseManagerWrapper.getRandomDatabaseEntry()
+        }
+        update(randomDatabaseEntry)
     }
     
     var body: some View
@@ -33,24 +42,28 @@ struct ContentView: View
             
             VStack
             {
+                HStack
+                {
+                    Button("Quit")
+                    {
+                        NSApp.terminate(self)
+                    }
+                    
+                    Spacer()
+                }
+                
                 Spacer()
                 
                 Text(Expression)
                 .onAppear
                 {
-                    let randomDatabaseEntry = self.databaseManagerWrapper.getRandomDatabaseEntry()
-                    self.update(randomDatabaseEntry)
+                    self.update()
                 }
                 .onReceive(timer)
                 {
                     time in
                     
-                    var randomDatabaseEntry = self.databaseManagerWrapper.getRandomDatabaseEntry()
-                    while (self.Expression == randomDatabaseEntry.Expression)
-                    {
-                        randomDatabaseEntry = self.databaseManagerWrapper.getRandomDatabaseEntry()
-                    }
-                    self.update(randomDatabaseEntry)
+                    self.update()
                 }
                 
                 Spacer()
