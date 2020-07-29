@@ -9,14 +9,7 @@
 import Foundation
 
 extension Int
-{
-    var minutes: Int
-    {
-        return self * 60
-    }
-    
-    var hours: Int
-    {
-        return self * 3600
-    }
+{    
+    static var secondsPerMinute = 60
+    static var secondsPerHour = 3600
 }
