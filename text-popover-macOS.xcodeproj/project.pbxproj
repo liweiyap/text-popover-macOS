@@ -19,6 +19,8 @@
 		E26056F424BF5C2200B24D05 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E26056F324BF5C2200B24D05 /* SQLite.framework */; };
 		E26056F524BF5C2200B24D05 /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E26056F324BF5C2200B24D05 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E26056FC24C3AFCA00B24D05 /* DatabaseManagerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26056FB24C3AFCA00B24D05 /* DatabaseManagerWrapper.swift */; };
+		E276B68624C7822100FF0BAA /* TimerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E276B68524C7822100FF0BAA /* TimerWrapper.swift */; };
+		E276B68824D0BA6C00FF0BAA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E276B68724D0BA6C00FF0BAA /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		E26056F024BF372A00B24D05 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		E26056F324BF5C2200B24D05 /* SQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SQLite.framework; path = Carthage/Build/Mac/SQLite.framework; sourceTree = "<group>"; };
 		E26056FB24C3AFCA00B24D05 /* DatabaseManagerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManagerWrapper.swift; sourceTree = "<group>"; };
+		E276B68524C7822100FF0BAA /* TimerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWrapper.swift; sourceTree = "<group>"; };
+		E276B68724D0BA6C00FF0BAA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +137,8 @@
 				E26056BB24BCD49A00B24D05 /* Preview Content */,
 				E26056EC24BF2F2A00B24D05 /* EventMonitor.swift */,
 				E26056FB24C3AFCA00B24D05 /* DatabaseManagerWrapper.swift */,
+				E276B68524C7822100FF0BAA /* TimerWrapper.swift */,
+				E276B68724D0BA6C00FF0BAA /* Constants.swift */,
 			);
 			path = "text-popover-macOS";
 			sourceTree = "<group>";
@@ -330,6 +336,8 @@
 				E26056B824BCD49900B24D05 /* ContentView.swift in Sources */,
 				E26056B624BCD49900B24D05 /* AppDelegate.swift in Sources */,
 				E26056FC24C3AFCA00B24D05 /* DatabaseManagerWrapper.swift in Sources */,
+				E276B68624C7822100FF0BAA /* TimerWrapper.swift in Sources */,
+				E276B68824D0BA6C00FF0BAA /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
