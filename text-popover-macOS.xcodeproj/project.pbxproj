@@ -21,6 +21,7 @@
 		E26056FC24C3AFCA00B24D05 /* DatabaseManagerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26056FB24C3AFCA00B24D05 /* DatabaseManagerWrapper.swift */; };
 		E276B68624C7822100FF0BAA /* TimerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E276B68524C7822100FF0BAA /* TimerWrapper.swift */; };
 		E276B68824D0BA6C00FF0BAA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E276B68724D0BA6C00FF0BAA /* Constants.swift */; };
+		E276B68B24D37EBE00FF0BAA /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E276B68A24D37EBE00FF0BAA /* SettingsButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		E26056FB24C3AFCA00B24D05 /* DatabaseManagerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManagerWrapper.swift; sourceTree = "<group>"; };
 		E276B68524C7822100FF0BAA /* TimerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWrapper.swift; sourceTree = "<group>"; };
 		E276B68724D0BA6C00FF0BAA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E276B68A24D37EBE00FF0BAA /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				E26056FB24C3AFCA00B24D05 /* DatabaseManagerWrapper.swift */,
 				E276B68524C7822100FF0BAA /* TimerWrapper.swift */,
 				E276B68724D0BA6C00FF0BAA /* Constants.swift */,
+				E276B68A24D37EBE00FF0BAA /* SettingsButton.swift */,
 			);
 			path = "text-popover-macOS";
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				E26056ED24BF2F2A00B24D05 /* EventMonitor.swift in Sources */,
 				E26056B824BCD49900B24D05 /* ContentView.swift in Sources */,
 				E26056B624BCD49900B24D05 /* AppDelegate.swift in Sources */,
+				E276B68B24D37EBE00FF0BAA /* SettingsButton.swift in Sources */,
 				E26056FC24C3AFCA00B24D05 /* DatabaseManagerWrapper.swift in Sources */,
 				E276B68624C7822100FF0BAA /* TimerWrapper.swift in Sources */,
 				E276B68824D0BA6C00FF0BAA /* Constants.swift in Sources */,

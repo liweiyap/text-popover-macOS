@@ -16,7 +16,6 @@ struct ContentView: View
     @State var Elaboration: String = ""
     
     @ObservedObject var timerWrapper = TimerWrapper()
-//    @State var timer = Timer.publish(every: TimeInterval(24.hours), on: .main, in: .common).autoconnect()
     
     func update(_ randomDatabaseEntry: DatabaseManager.DataModel) -> Void
     {
@@ -52,18 +51,7 @@ struct ContentView: View
                     
                     Spacer()
 
-                    MenuButton(">")
-                    {
-                        Button("5 Sekunden", action: {
-                            self.timerWrapper.timer = Timer.publish(every: 5.0, on: .main, in: .common).autoconnect()
-                        })
-                        
-                        Button("24 Stunden", action: {
-                            self.timerWrapper.timer = Timer.publish(every: TimeInterval(24 * Int.secondsPerHour), on: .main, in: .common).autoconnect()
-                        })
-                    }
-                    .frame(width: 10.0)
-                    .menuButtonStyle(BorderlessButtonMenuButtonStyle())
+                    SettingsButton(timer: $timerWrapper.timer)
                 }
                 
                 Spacer()
