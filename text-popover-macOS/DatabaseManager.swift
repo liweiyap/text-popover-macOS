@@ -6,7 +6,6 @@
 //  Copyright © 2020 Li-Wei Yap. All rights reserved.
 //
 
-import Foundation
 import SQLite
 
 class DatabaseManager
