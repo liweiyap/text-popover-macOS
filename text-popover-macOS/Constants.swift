@@ -14,80 +14,64 @@ extension Int
     static var secondsPerHour = 3600
 }
 
-enum MinutesInterval: String, CaseIterable
+struct IntervalHashable: Hashable
 {
-    case min05 = "5 Minuten"
-    case min10 = "10 Minuten"
-    case min15 = "15 Minuten"
-    case min20 = "20 Minuten"
-    case min30 = "30 Minuten"
-    case min45 = "45 Minuten"
+    var name: String
+    var value: Double
+}
 
-    func getInterval() -> Double
+protocol Interval
+{
+    func getIntervals() -> [IntervalHashable]
+}
+
+final class MinutesInterval: Interval
+{
+    let intervals =
+        [
+            IntervalHashable(name: "5 Minuten", value: 5.0 * Double(Int.secondsPerMinute)),
+            IntervalHashable(name: "10 Minuten", value: 10.0 * Double(Int.secondsPerMinute)),
+            IntervalHashable(name: "15 Minuten", value: 15.0 * Double(Int.secondsPerMinute)),
+            IntervalHashable(name: "20 Minuten", value: 20.0 * Double(Int.secondsPerMinute)),
+            IntervalHashable(name: "30 Minuten", value: 30.0 * Double(Int.secondsPerMinute)),
+            IntervalHashable(name: "45 Minuten", value: 45.0 * Double(Int.secondsPerMinute))
+        ]
+    
+    func getIntervals() -> [IntervalHashable]
     {
-        switch self
-        {
-        case .min05:
-            return 5.0 * Double(Int.secondsPerMinute)
-        case .min10:
-            return 10.0 * Double(Int.secondsPerMinute)
-        case .min15:
-            return 15.0 * Double(Int.secondsPerMinute)
-        case .min20:
-            return 20.0 * Double(Int.secondsPerMinute)
-        case .min30:
-            return 30.0 * Double(Int.secondsPerMinute)
-        case .min45:
-            return 45.0 * Double(Int.secondsPerMinute)
-        }
+        return intervals
     }
 }
 
-enum HoursIntervalShort: String, CaseIterable
+final class HoursIntervalShort: Interval
 {
-    case hr01 = "1 Stunde"
-    case hr02 = "2 Stunden"
-    case hr03 = "3 Stunden"
-    case hr04 = "4 Stunden"
-    case hr05 = "5 Stunden"
-    case hr06 = "6 Stunden"
-
-    func getInterval() -> Double
+    let intervals =
+        [
+            IntervalHashable(name: "1 Stunde", value: 1.0 * Double(Int.secondsPerHour)),
+            IntervalHashable(name: "2 Stunden", value: 2.0 * Double(Int.secondsPerHour)),
+            IntervalHashable(name: "3 Stunden", value: 3.0 * Double(Int.secondsPerHour)),
+            IntervalHashable(name: "4 Stunden", value: 4.0 * Double(Int.secondsPerHour)),
+            IntervalHashable(name: "5 Stunden", value: 5.0 * Double(Int.secondsPerHour)),
+            IntervalHashable(name: "6 Stunden", value: 6.0 * Double(Int.secondsPerHour))
+        ]
+    
+    func getIntervals() -> [IntervalHashable]
     {
-        switch self
-        {
-        case .hr01:
-            return 1.0 * Double(Int.secondsPerHour)
-        case .hr02:
-            return 2.0 * Double(Int.secondsPerHour)
-        case .hr03:
-            return 3.0 * Double(Int.secondsPerHour)
-        case .hr04:
-            return 4.0 * Double(Int.secondsPerHour)
-        case .hr05:
-            return 5.0 * Double(Int.secondsPerHour)
-        case .hr06:
-            return 6.0 * Double(Int.secondsPerHour)
-        }
+        return intervals
     }
 }
 
-enum HoursIntervalLong: String, CaseIterable
+final class HoursIntervalLong: Interval
 {
-    case hr08 = "8 Stunden"
-    case hr12 = "12 Stunden"
-    case hr24 = "24 Stunden"
-
-    func getInterval() -> Double
+    let intervals =
+        [
+            IntervalHashable(name: "8 Stunden", value: 8.0 * Double(Int.secondsPerHour)),
+            IntervalHashable(name: "12 Stunden", value: 12.0 * Double(Int.secondsPerHour)),
+            IntervalHashable(name: "24 Stunden", value: 24.0 * Double(Int.secondsPerHour))
+        ]
+    
+    func getIntervals() -> [IntervalHashable]
     {
-        switch self
-        {
-        case .hr08:
-            return 8.0 * Double(Int.secondsPerHour)
-        case .hr12:
-            return 12.0 * Double(Int.secondsPerHour)
-        case .hr24:
-            return 24.0 * Double(Int.secondsPerHour)
-        }
+        return intervals
     }
 }

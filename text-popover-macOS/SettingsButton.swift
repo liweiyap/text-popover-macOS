@@ -26,6 +26,25 @@ struct IntervalMenuItemButton: View
     }
 }
 
+struct IntervalMenuItemButtonArray: View
+{
+    @Binding var timer: Publishers.Autoconnect<Timer.TimerPublisher>
+    let window: NSWindow?
+    let intervals: [IntervalHashable]
+    
+    var body: some View
+    {
+        ForEach(intervals, id: \.self)
+        {
+            interval in
+            
+            IntervalMenuItemButton(timer: self.$timer, window: self.window,
+                                   name: interval.name, value: interval.value)
+        }
+    }
+}
+
+
 struct IntervalSettingsView: View
 {
     @Binding var timer: Publishers.Autoconnect<Timer.TimerPublisher>
@@ -37,35 +56,20 @@ struct IntervalSettingsView: View
         {
             MenuButton("Minuten")
             {
-                ForEach(MinutesInterval.allCases, id: \.self)
-                {
-                    key in
-
-                    IntervalMenuItemButton(timer: self.$timer, window: self.window,
-                                           name: key.rawValue, value: key.getInterval())
-                }
+                IntervalMenuItemButtonArray(timer: self.$timer, window: self.window,
+                                            intervals: MinutesInterval().getIntervals())
             }
             .frame(width: 100.0)
             
             MenuButton("Stunden")
             {
-                ForEach(HoursIntervalShort.allCases, id: \.self)
-                {
-                    key in
-
-                    IntervalMenuItemButton(timer: self.$timer, window: self.window,
-                                           name: key.rawValue, value: key.getInterval())
-                }
+                IntervalMenuItemButtonArray(timer: self.$timer, window: self.window,
+                                            intervals: HoursIntervalShort().getIntervals())
                 
                 Divider()
                 
-                ForEach(HoursIntervalLong.allCases, id: \.self)
-                {
-                    key in
-
-                    IntervalMenuItemButton(timer: self.$timer, window: self.window,
-                                           name: key.rawValue, value: key.getInterval())
-                }
+                IntervalMenuItemButtonArray(timer: self.$timer, window: self.window,
+                                            intervals: HoursIntervalLong().getIntervals())
             }
             .frame(width: 100.0)
         }
