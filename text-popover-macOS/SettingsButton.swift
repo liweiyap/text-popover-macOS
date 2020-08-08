@@ -9,10 +9,10 @@
 import SwiftUI
 import Combine
 
-struct TimeMenuItemButton: View
+struct IntervalMenuItemButton: View
 {
     @Binding var timer: Publishers.Autoconnect<Timer.TimerPublisher>
-    let myWindow: NSWindow?
+    let window: NSWindow?
     let name: String
     let value: Double
     
@@ -21,7 +21,7 @@ struct TimeMenuItemButton: View
         Button(name)
         {
             self.timer = Timer.publish(every: self.value, on: .main, in: .common).autoconnect()
-            self.myWindow!.close()
+            self.window!.close()
         }
     }
 }
@@ -29,53 +29,59 @@ struct TimeMenuItemButton: View
 struct IntervalSettingsView: View
 {
     @Binding var timer: Publishers.Autoconnect<Timer.TimerPublisher>
-    let myWindow: NSWindow?
+    let window: NSWindow?
     
     var body: some View
     {
-        MenuButton("Minuten")
+        VStack
         {
-            TimeMenuItemButton(timer: self.$timer, myWindow: myWindow,
-                               name: "5 Minuten", value: 5.0)
+            MenuButton("Minuten")
+            {
+                ForEach(MinutesInterval.allCases, id: \.self)
+                {
+                    key in
+
+                    IntervalMenuItemButton(timer: self.$timer, window: self.window,
+                                           name: key.rawValue, value: key.getInterval())
+                }
+            }
+            .frame(width: 100.0)
             
-            Divider()
-            
-            TimeMenuItemButton(timer: self.$timer, myWindow: myWindow,
-                               name: "10 Minuten", value: 10.0 * Double(Int.secondsPerMinute))
-            
-            TimeMenuItemButton(timer: self.$timer, myWindow: myWindow,
-                               name: "15 Minuten", value: 15.0 * Double(Int.secondsPerMinute))
-            
-            Divider()
-            
-            TimeMenuItemButton(timer: self.$timer, myWindow: myWindow,
-                               name: "20 Minuten", value: 20.0 * Double(Int.secondsPerMinute))
-            
-            TimeMenuItemButton(timer: self.$timer, myWindow: myWindow,
-                               name: "25 Minuten", value: 25.0 * Double(Int.secondsPerMinute))
-            
-            Divider()
-            
-            TimeMenuItemButton(timer: self.$timer, myWindow: myWindow,
-                               name: "30 Minuten", value: 30.0 * Double(Int.secondsPerMinute))
-            
-            TimeMenuItemButton(timer: self.$timer, myWindow: myWindow,
-                               name: "35 Minuten", value: 35.0 * Double(Int.secondsPerMinute))
+            MenuButton("Stunden")
+            {
+                ForEach(HoursIntervalShort.allCases, id: \.self)
+                {
+                    key in
+
+                    IntervalMenuItemButton(timer: self.$timer, window: self.window,
+                                           name: key.rawValue, value: key.getInterval())
+                }
+                
+                Divider()
+                
+                ForEach(HoursIntervalLong.allCases, id: \.self)
+                {
+                    key in
+
+                    IntervalMenuItemButton(timer: self.$timer, window: self.window,
+                                           name: key.rawValue, value: key.getInterval())
+                }
+            }
+            .frame(width: 100.0)
         }
-        .frame(width: 100.0)
     }
 }
 
 struct AllSettingsView: View
 {
     @Binding var timer: Publishers.Autoconnect<Timer.TimerPublisher>
-    let myWindow: NSWindow?
+    let window: NSWindow?
     
     var body: some View
     {
         TabView
         {
-            IntervalSettingsView(timer: self.$timer, myWindow: myWindow)
+            IntervalSettingsView(timer: self.$timer, window: window)
             .tabItem
             {
                 Text("Intervall")
@@ -102,7 +108,7 @@ struct SettingsButton: View
             )
             window.center()
             window.setFrameAutosaveName("Settings")
-            window.contentView = NSHostingView(rootView: AllSettingsView(timer: self.$timer, myWindow: window))
+            window.contentView = NSHostingView(rootView: AllSettingsView(timer: self.$timer, window: window))
 //            window.makeKeyAndOrderFront(nil)
             window.orderFront(nil)
             window.isReleasedWhenClosed = false
