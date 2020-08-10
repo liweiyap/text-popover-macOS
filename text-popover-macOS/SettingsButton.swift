@@ -14,6 +14,9 @@ struct AllSettingsView: View
     @Binding var timer: Publishers.Autoconnect<Timer.TimerPublisher>
     let window: NSWindow?
     
+    @Binding var displayExplanation: Bool
+    @Binding var displayElaboration: Bool
+    
     var body: some View
     {
         TabView
@@ -21,7 +24,14 @@ struct AllSettingsView: View
             IntervalSettingsView(timer: self.$timer, window: window)
             .tabItem
             {
-                Text("Intervall")
+                Text("Interval")
+            }
+            
+            AdditionalToggableTextSettingsView(displayExplanation: self.$displayExplanation,
+                                               displayElaboration: self.$displayElaboration)
+            .tabItem
+            {
+                Text("Additional Texts")
             }
         }
     }
@@ -30,6 +40,9 @@ struct AllSettingsView: View
 struct SettingsButton: View
 {
     @Binding var timer: Publishers.Autoconnect<Timer.TimerPublisher>
+    
+    @Binding var displayExplanation: Bool
+    @Binding var displayElaboration: Bool
     
     var body: some View
     {
@@ -43,9 +56,14 @@ struct SettingsButton: View
                 backing: .buffered,
                 defer: false
             )
+            
+            let allSettingsView = AllSettingsView(timer: self.$timer, window: window,
+                                                  displayExplanation: self.$displayExplanation,
+                                                  displayElaboration: self.$displayElaboration)
+            
             window.center()
             window.setFrameAutosaveName("Settings")
-            window.contentView = NSHostingView(rootView: AllSettingsView(timer: self.$timer, window: window))
+            window.contentView = NSHostingView(rootView: allSettingsView)
 //            window.makeKeyAndOrderFront(nil)
             window.orderFront(nil)
             window.isReleasedWhenClosed = false

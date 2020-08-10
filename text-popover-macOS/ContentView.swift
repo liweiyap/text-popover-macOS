@@ -17,6 +17,9 @@ struct ContentView: View
     
     @ObservedObject var timerWrapper = TimerWrapper()
     
+    @State var displayExplanation = true
+    @State var displayElaboration = false
+    
     func update(_ randomDatabaseEntry: DatabaseManager.DataModel) -> Void
     {
         Expression = randomDatabaseEntry.Expression
@@ -34,6 +37,7 @@ struct ContentView: View
         update(randomDatabaseEntry)
     }
     
+    @ViewBuilder
     var body: some View
     {
         HStack
@@ -51,7 +55,9 @@ struct ContentView: View
                     
                     Spacer()
 
-                    SettingsButton(timer: $timerWrapper.timer)
+                    SettingsButton(timer: $timerWrapper.timer,
+                                   displayExplanation: $displayExplanation,
+                                   displayElaboration: $displayElaboration)
                 }
                 
                 Spacer()
@@ -70,7 +76,10 @@ struct ContentView: View
                 
                 Spacer()
                 
-                Text(Explanation)
+                if displayExplanation
+                {
+                    Text(Explanation)
+                }
                 
                 Spacer()
             }
