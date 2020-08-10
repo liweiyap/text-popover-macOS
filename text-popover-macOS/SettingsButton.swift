@@ -53,9 +53,10 @@ struct SettingsButton: View
                                                   displayExplanation: self.$displayExplanation,
                                                   displayElaboration: self.$displayElaboration)
             
-            if let window = self.window
+            if self.window != nil
             {
-                window.close()
+                self.window!.close()
+                self.window = nil
             }
             
             self.window = NSWindow(
