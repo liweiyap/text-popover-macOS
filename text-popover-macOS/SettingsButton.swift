@@ -12,8 +12,6 @@ import Combine
 struct AllSettingsView: View
 {
     @Binding var timer: Publishers.Autoconnect<Timer.TimerPublisher>
-    let window: NSWindow?
-    
     @Binding var displayExplanation: Bool
     @Binding var displayElaboration: Bool
     
@@ -21,7 +19,7 @@ struct AllSettingsView: View
     {
         TabView
         {
-            IntervalSettingsView(timer: self.$timer, window: window)
+            IntervalSettingsView(timer: self.$timer)
             .tabItem
             {
                 Text("Interval")
@@ -40,9 +38,10 @@ struct AllSettingsView: View
 struct SettingsButton: View
 {
     @Binding var timer: Publishers.Autoconnect<Timer.TimerPublisher>
-    
     @Binding var displayExplanation: Bool
     @Binding var displayElaboration: Bool
+    
+    @State var window: NSWindow?
     
     var body: some View
     {
@@ -50,23 +49,28 @@ struct SettingsButton: View
         {
             NSApplication.shared.keyWindow?.close()
             
-            let window = NSWindow(
-                contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
-                styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
-                backing: .buffered,
-                defer: false
-            )
-            
-            let allSettingsView = AllSettingsView(timer: self.$timer, window: window,
+            let allSettingsView = AllSettingsView(timer: self.$timer,
                                                   displayExplanation: self.$displayExplanation,
                                                   displayElaboration: self.$displayElaboration)
             
-            window.center()
-            window.setFrameAutosaveName("Settings")
-            window.contentView = NSHostingView(rootView: allSettingsView)
-//            window.makeKeyAndOrderFront(nil)
-            window.orderFront(nil)
-            window.isReleasedWhenClosed = false
+            if let window = self.window
+            {
+                window.close()
+            }
+            
+            self.window = NSWindow(
+                contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
+                styleMask: [.titled, .closable, .fullSizeContentView],
+                backing: .buffered,
+                defer: false
+            )
+            self.window!.center()
+            self.window!.setFrameAutosaveName("Settings")
+            self.window!.title = "Settings"
+            self.window!.contentView = NSHostingView(rootView: allSettingsView)
+//            self.window!.makeKeyAndOrderFront(nil)
+            self.window!.orderFront(nil)
+            self.window!.isReleasedWhenClosed = false
         }
     }
 }
