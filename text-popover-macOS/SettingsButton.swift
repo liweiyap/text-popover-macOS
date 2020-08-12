@@ -48,8 +48,6 @@ struct SettingsButton: View
     {
         Button("⚙")
         {
-            NSApplication.shared.keyWindow?.close()
-            
             let allSettingsView = AllSettingsView(displayExplanation: self.$displayExplanation,
                                                   displayElaboration: self.$displayElaboration)
                 .environmentObject(self.timerWrapper)
@@ -70,8 +68,7 @@ struct SettingsButton: View
             self.window!.setFrameAutosaveName("Settings")
             self.window!.title = "Settings"
             self.window!.contentView = NSHostingView(rootView: allSettingsView)
-//            self.window!.makeKeyAndOrderFront(nil)
-            self.window!.orderFront(nil)
+            self.window!.orderFrontRegardless()
             self.window!.isReleasedWhenClosed = false
         }
     }
