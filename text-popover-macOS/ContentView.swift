@@ -15,7 +15,7 @@ struct ContentView: View
     @State var Explanation: String = ""
     @State var Elaboration: String = ""
     
-    @ObservedObject var timerWrapper = TimerWrapper()
+    var timerWrapper = TimerWrapper()
     
     @State var displayExplanation = true
     @State var displayElaboration = false
@@ -55,9 +55,9 @@ struct ContentView: View
                     
                     Spacer()
 
-                    SettingsButton(timer: $timerWrapper.timer,
-                                   displayExplanation: $displayExplanation,
+                    SettingsButton(displayExplanation: $displayExplanation,
                                    displayElaboration: $displayElaboration)
+                    .environmentObject(timerWrapper)
                 }
                 
                 Spacer()
@@ -67,11 +67,17 @@ struct ContentView: View
                 {
                     self.update()
                 }
-                .onReceive(timerWrapper.timer)
+                .onReceive(self.timerWrapper.timer)
                 {
                     time in
                     
-                    self.update()
+                    if self.timerWrapper.counter == self.timerWrapper.interval
+                    {
+                        self.update()
+                        self.timerWrapper.counter = 0
+                    }
+                    
+                    self.timerWrapper.counter += 1
                 }
                 
                 Spacer()

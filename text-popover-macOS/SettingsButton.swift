@@ -11,7 +11,7 @@ import Combine
 
 struct AllSettingsView: View
 {
-    @Binding var timer: Publishers.Autoconnect<Timer.TimerPublisher>
+    @EnvironmentObject var timerWrapper: TimerWrapper
     @Binding var displayExplanation: Bool
     @Binding var displayElaboration: Bool
     
@@ -19,11 +19,12 @@ struct AllSettingsView: View
     {
         TabView
         {
-            IntervalSettingsView(timer: self.$timer)
+            IntervalSettingsView()
             .tabItem
             {
                 Text("Interval")
             }
+            .environmentObject(self.timerWrapper)
             
             AdditionalToggableTextSettingsView(displayExplanation: self.$displayExplanation,
                                                displayElaboration: self.$displayElaboration)
@@ -37,7 +38,7 @@ struct AllSettingsView: View
 
 struct SettingsButton: View
 {
-    @Binding var timer: Publishers.Autoconnect<Timer.TimerPublisher>
+    @EnvironmentObject var timerWrapper: TimerWrapper
     @Binding var displayExplanation: Bool
     @Binding var displayElaboration: Bool
     
@@ -49,9 +50,9 @@ struct SettingsButton: View
         {
             NSApplication.shared.keyWindow?.close()
             
-            let allSettingsView = AllSettingsView(timer: self.$timer,
-                                                  displayExplanation: self.$displayExplanation,
+            let allSettingsView = AllSettingsView(displayExplanation: self.$displayExplanation,
                                                   displayElaboration: self.$displayElaboration)
+                .environmentObject(self.timerWrapper)
             
             if self.window != nil
             {
