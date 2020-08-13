@@ -11,8 +11,8 @@ import Combine
 
 struct IntervalHashable: Hashable
 {
-    var name: String
-    var value: Int
+    let name: String
+    let value: Int
 }
 
 protocol Interval

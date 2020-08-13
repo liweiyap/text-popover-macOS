@@ -12,8 +12,7 @@ import Combine
 struct AllSettingsView: View
 {
     @EnvironmentObject var timerWrapper: TimerWrapper
-    @Binding var displayExplanation: Bool
-    @Binding var displayElaboration: Bool
+    @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
     
     var body: some View
     {
@@ -26,12 +25,12 @@ struct AllSettingsView: View
             }
             .environmentObject(self.timerWrapper)
             
-            AdditionalToggableTextSettingsView(displayExplanation: self.$displayExplanation,
-                                               displayElaboration: self.$displayElaboration)
+            AdditionalToggableTextSettingsView()
             .tabItem
             {
                 Text("Additional Texts")
             }
+            .environmentObject(self.additionalToggableTextOptions)
         }
     }
 }
@@ -39,8 +38,7 @@ struct AllSettingsView: View
 struct SettingsButton: View
 {
     @EnvironmentObject var timerWrapper: TimerWrapper
-    @Binding var displayExplanation: Bool
-    @Binding var displayElaboration: Bool
+    @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
     
     @State var window: NSWindow?
     
@@ -48,9 +46,9 @@ struct SettingsButton: View
     {
         Button("⚙")
         {
-            let allSettingsView = AllSettingsView(displayExplanation: self.$displayExplanation,
-                                                  displayElaboration: self.$displayElaboration)
+            let allSettingsView = AllSettingsView()
                 .environmentObject(self.timerWrapper)
+                .environmentObject(self.additionalToggableTextOptions)
             
             if self.window != nil
             {

@@ -8,21 +8,26 @@
 
 import SwiftUI
 
+final class AdditionalToggableTextOptions: ObservableObject
+{
+    @Published var displayExplanation = true
+    @Published var displayElaboration = false
+}
+
 struct AdditionalToggableTextSettingsView: View
 {
-    @Binding var displayExplanation: Bool
-    @Binding var displayElaboration: Bool
+    @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
     
     var body: some View
     {
         VStack
         {
-            Toggle(isOn: $displayExplanation)
+            Toggle(isOn: $additionalToggableTextOptions.displayExplanation)
             {
                 Text("Display Explanation")
             }
             
-            Toggle(isOn: $displayElaboration)
+            Toggle(isOn: $additionalToggableTextOptions.displayElaboration)
             {
                 Text("Display Elaboration")
             }

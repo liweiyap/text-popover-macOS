@@ -15,10 +15,8 @@ struct ContentView: View
     @State var Explanation: String = ""
     @State var Elaboration: String = ""
     
-    var timerWrapper = TimerWrapper()
-    
-    @State var displayExplanation = true
-    @State var displayElaboration = false
+    let timerWrapper = TimerWrapper()
+    @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
     
     func update(_ randomDatabaseEntry: DatabaseManager.DataModel) -> Void
     {
@@ -55,9 +53,9 @@ struct ContentView: View
                     
                     Spacer()
 
-                    SettingsButton(displayExplanation: $displayExplanation,
-                                   displayElaboration: $displayElaboration)
+                    SettingsButton()
                     .environmentObject(timerWrapper)
+                    .environmentObject(additionalToggableTextOptions)
                 }
                 
                 Spacer()
@@ -71,18 +69,18 @@ struct ContentView: View
                 {
                     time in
                     
+                    self.timerWrapper.counter += 1
+                    
                     if self.timerWrapper.counter == self.timerWrapper.interval
                     {
                         self.update()
                         self.timerWrapper.counter = 0
                     }
-                    
-                    self.timerWrapper.counter += 1
                 }
                 
                 Spacer()
                 
-                if displayExplanation
+                if additionalToggableTextOptions.displayExplanation
                 {
                     Text(Explanation)
                 }
