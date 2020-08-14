@@ -13,6 +13,7 @@ struct AllSettingsView: View
 {
     @EnvironmentObject var timerWrapper: TimerWrapper
     @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
+    @EnvironmentObject var intervalMenuButtonNames: IntervalMenuButtonNames
     
     var body: some View
     {
@@ -23,14 +24,12 @@ struct AllSettingsView: View
             {
                 Text("Interval")
             }
-            .environmentObject(self.timerWrapper)
             
             AdditionalToggableTextSettingsView()
             .tabItem
             {
                 Text("Additional Texts")
             }
-            .environmentObject(self.additionalToggableTextOptions)
         }
     }
 }
@@ -39,6 +38,7 @@ struct SettingsButton: View
 {
     @EnvironmentObject var timerWrapper: TimerWrapper
     @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
+    @EnvironmentObject var intervalMenuButtonNames: IntervalMenuButtonNames
     
     @State var window: NSWindow?
     
@@ -49,6 +49,7 @@ struct SettingsButton: View
             let allSettingsView = AllSettingsView()
                 .environmentObject(self.timerWrapper)
                 .environmentObject(self.additionalToggableTextOptions)
+                .environmentObject(self.intervalMenuButtonNames)
             
             if self.window != nil
             {

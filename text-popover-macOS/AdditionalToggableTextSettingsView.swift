@@ -10,8 +10,8 @@ import SwiftUI
 
 final class AdditionalToggableTextOptions: ObservableObject
 {
-    @Published var displayExplanation = true
-    @Published var displayElaboration = false
+    @Published var displayExplanation: Bool = true
+    @Published var displayElaboration: Bool = false
 }
 
 struct AdditionalToggableTextSettingsView: View

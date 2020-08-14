@@ -15,8 +15,9 @@ struct ContentView: View
     @State var Explanation: String = ""
     @State var Elaboration: String = ""
     
-    let timerWrapper = TimerWrapper()
+    @EnvironmentObject var timerWrapper: TimerWrapper
     @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
+    let intervalMenuButtonNames = IntervalMenuButtonNames()
     
     func update(_ randomDatabaseEntry: DatabaseManager.DataModel) -> Void
     {
@@ -33,6 +34,11 @@ struct ContentView: View
             randomDatabaseEntry = databaseManagerWrapper.getRandomDatabaseEntry()
         }
         update(randomDatabaseEntry)
+    }
+    
+    func getTime() -> TimerWrapper.Time
+    {
+        return timerWrapper.getTime()
     }
     
     @ViewBuilder
@@ -54,8 +60,7 @@ struct ContentView: View
                     Spacer()
 
                     SettingsButton()
-                    .environmentObject(timerWrapper)
-                    .environmentObject(additionalToggableTextOptions)
+                    .environmentObject(self.intervalMenuButtonNames)
                 }
                 
                 Spacer()
@@ -86,6 +91,8 @@ struct ContentView: View
                 }
                 
                 Spacer()
+                
+                Text("Nächste Redewendung in: \(String(format: "%02d",getTime().hours)):\(String(format: "%02d",getTime().minutes)):\(String(format: "%02d",getTime().seconds))")
             }
             
             Spacer()

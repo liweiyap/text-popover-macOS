@@ -11,3 +11,6 @@ extension Int
     static var secondsPerMinute = 60
     static var secondsPerHour = 3600
 }
+
+let minutesMenuButtonDefaultName: String = "Minutes"
+let hoursMenuButtonDefaultName: String = "Hours"
