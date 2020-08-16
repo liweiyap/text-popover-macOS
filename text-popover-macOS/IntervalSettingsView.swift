@@ -11,8 +11,14 @@ import Combine
 
 final class IntervalMenuButtonNames: ObservableObject
 {
-    @Published var minutesMenuButtonName: String = minutesMenuButtonDefaultName
-    @Published var hoursMenuButtonName: String = hoursMenuButtonDefaultName
+    @Published var minutesMenuButtonName: String = "Minutes"
+    @Published var hoursMenuButtonName: String = "Hours"
+    
+    func resetToDefault() -> Void
+    {
+        minutesMenuButtonName = "Minutes"
+        hoursMenuButtonName = "Hours"
+    }
 }
 
 struct IntervalHashable: Hashable
@@ -80,12 +86,10 @@ final class HoursIntervalLong: Interval
 struct IntervalMenuItemButton: View
 {
     @EnvironmentObject var timerWrapper: TimerWrapper
+    @EnvironmentObject var intervalMenuButtonNames: IntervalMenuButtonNames
     let name: String
     let value: Int
-    
     @Binding var parentMenuButtonName: String
-    @Binding var nonParentMenuButtonName: String
-    let nonParentMenuButtonDefaultName: String
     
     var body: some View
     {
@@ -93,8 +97,9 @@ struct IntervalMenuItemButton: View
         {
             self.timerWrapper.interval = self.value
             self.timerWrapper.counter = 0
+            
+            self.intervalMenuButtonNames.resetToDefault()
             self.parentMenuButtonName = self.name
-            self.nonParentMenuButtonName = self.nonParentMenuButtonDefaultName
         }
     }
 }
@@ -104,9 +109,8 @@ struct IntervalMenuItemButtonArray: View
     @EnvironmentObject var timerWrapper: TimerWrapper
     let intervals: [IntervalHashable]
     
+    @EnvironmentObject var intervalMenuButtonNames: IntervalMenuButtonNames
     @Binding var parentMenuButtonName: String
-    @Binding var nonParentMenuButtonName: String
-    let nonParentMenuButtonDefaultName: String
     
     var body: some View
     {
@@ -115,9 +119,7 @@ struct IntervalMenuItemButtonArray: View
             interval in
             
             IntervalMenuItemButton(name: interval.name, value: interval.value,
-                                   parentMenuButtonName: self.$parentMenuButtonName,
-                                   nonParentMenuButtonName: self.$nonParentMenuButtonName,
-                                   nonParentMenuButtonDefaultName: self.nonParentMenuButtonDefaultName)
+                                   parentMenuButtonName: self.$parentMenuButtonName)
         }
     }
 }
@@ -136,15 +138,13 @@ struct IntervalSettingsView: View
     {
         VStack
         {
-            Text("Time Until Next Expression: \(String(format: "%02d",self.getTime().hours)):\(String(format: "%02d",self.getTime().minutes)):\(String(format: "%02d",self.getTime().seconds))")
+            Text("Time until next Expression: \(String(format: "%02d",self.getTime().hours)):\(String(format: "%02d",self.getTime().minutes)):\(String(format: "%02d",self.getTime().seconds))")
             
             MenuButton(intervalMenuButtonNames.minutesMenuButtonName)
             {
                 IntervalMenuItemButtonArray(
                     intervals: MinutesInterval().getIntervals(),
-                    parentMenuButtonName: $intervalMenuButtonNames.minutesMenuButtonName,
-                    nonParentMenuButtonName: $intervalMenuButtonNames.hoursMenuButtonName,
-                    nonParentMenuButtonDefaultName: hoursMenuButtonDefaultName)
+                    parentMenuButtonName: $intervalMenuButtonNames.minutesMenuButtonName)
             }
             .frame(width: 100.0)
             
@@ -152,17 +152,13 @@ struct IntervalSettingsView: View
             {
                 IntervalMenuItemButtonArray(
                     intervals: HoursIntervalShort().getIntervals(),
-                    parentMenuButtonName: $intervalMenuButtonNames.hoursMenuButtonName,
-                    nonParentMenuButtonName: $intervalMenuButtonNames.minutesMenuButtonName,
-                    nonParentMenuButtonDefaultName: minutesMenuButtonDefaultName)
+                    parentMenuButtonName: $intervalMenuButtonNames.hoursMenuButtonName)
                 
                 Divider()
                 
                 IntervalMenuItemButtonArray(
                     intervals: HoursIntervalLong().getIntervals(),
-                    parentMenuButtonName: $intervalMenuButtonNames.hoursMenuButtonName,
-                    nonParentMenuButtonName: $intervalMenuButtonNames.minutesMenuButtonName,
-                    nonParentMenuButtonDefaultName: minutesMenuButtonDefaultName)
+                    parentMenuButtonName: $intervalMenuButtonNames.hoursMenuButtonName)
             }
             .frame(width: 100.0)
         }
