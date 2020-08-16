@@ -129,6 +129,8 @@ struct IntervalSettingsView: View
     @EnvironmentObject var timerWrapper: TimerWrapper
     @EnvironmentObject var intervalMenuButtonNames: IntervalMenuButtonNames
     
+    static var intervalMenuButtonWidth: CGFloat = 100.0
+    
     func getTime() -> TimerWrapper.Time
     {
         return timerWrapper.getTime()
@@ -146,7 +148,7 @@ struct IntervalSettingsView: View
                     intervals: MinutesInterval().getIntervals(),
                     parentMenuButtonName: $intervalMenuButtonNames.minutesMenuButtonName)
             }
-            .frame(width: 100.0)
+            .frame(width: IntervalSettingsView.intervalMenuButtonWidth)
             
             MenuButton(intervalMenuButtonNames.hoursMenuButtonName)
             {
@@ -160,7 +162,7 @@ struct IntervalSettingsView: View
                     intervals: HoursIntervalLong().getIntervals(),
                     parentMenuButtonName: $intervalMenuButtonNames.hoursMenuButtonName)
             }
-            .frame(width: 100.0)
+            .frame(width: IntervalSettingsView.intervalMenuButtonWidth)
         }
     }
 }
