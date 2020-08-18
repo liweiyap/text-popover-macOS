@@ -42,10 +42,28 @@ struct SettingsButton: View
     
     @State var window: NSWindow?
     
+    static var SettingsButtonDimensions: Int = 20
+    
+    func resize(image: NSImage, width: Int, height: Int) -> NSImage
+    {
+        let destSize = NSMakeSize(CGFloat(width), CGFloat(height))
+        let newImage = NSImage(size: destSize)
+        
+        newImage.lockFocus()
+        image.draw(
+            in: NSMakeRect(0, 0, destSize.width, destSize.height),
+            from: NSMakeRect(0, 0, image.size.width, image.size.height),
+            operation: NSCompositingOperation.sourceOver,
+            fraction: CGFloat(1))
+        newImage.unlockFocus()
+        
+        newImage.size = destSize
+        return NSImage(data: newImage.tiffRepresentation!)!
+    }
+    
     var body: some View
     {
-        Button("⚙")
-        {
+        Button(action: {
             let allSettingsView = AllSettingsView()
                 .environmentObject(self.timerWrapper)
                 .environmentObject(self.additionalToggableTextOptions)
@@ -69,6 +87,18 @@ struct SettingsButton: View
             self.window!.contentView = NSHostingView(rootView: allSettingsView)
             self.window!.orderFrontRegardless()
             self.window!.isReleasedWhenClosed = false
+        })
+        {
+            /*
+             * For some reason, when `Text("⚙").font(.title)` is used, there is some vspace above the ⚙?
+             *
+             * Here, if we use a PlainButtonStyle(), then we don't need `.scaledToFit()`
+             */
+            Image(nsImage: resize(image: NSImage(named: NSImage.advancedName)!,
+                                  width: SettingsButton.SettingsButtonDimensions,
+                                  height: SettingsButton.SettingsButtonDimensions))
+            .renderingMode(.original)
         }
+        .buttonStyle(PlainButtonStyle())
     }
 }
