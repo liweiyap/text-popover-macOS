@@ -85,7 +85,7 @@ final class HoursIntervalLong: Interval
 
 struct IntervalMenuItemButton: View
 {
-    @EnvironmentObject var timerWrapper: TimerWrapper
+    @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     @EnvironmentObject var intervalMenuButtonNames: IntervalMenuButtonNames
     let name: String
     let value: Int
@@ -95,8 +95,8 @@ struct IntervalMenuItemButton: View
     {
         Button(name)
         {
-            self.timerWrapper.interval = self.value
-            self.timerWrapper.timeRemaining = self.value
+            self.countdownTimerWrapper.interval = self.value
+            self.countdownTimerWrapper.timeRemaining = self.value
             
             self.intervalMenuButtonNames.resetToDefault()
             self.parentMenuButtonName = self.name
@@ -106,7 +106,7 @@ struct IntervalMenuItemButton: View
 
 struct IntervalMenuItemButtonArray: View
 {
-    @EnvironmentObject var timerWrapper: TimerWrapper
+    @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     let intervals: [IntervalHashable]
     
     @EnvironmentObject var intervalMenuButtonNames: IntervalMenuButtonNames
@@ -126,14 +126,14 @@ struct IntervalMenuItemButtonArray: View
 
 struct IntervalSettingsView: View
 {
-    @EnvironmentObject var timerWrapper: TimerWrapper
+    @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     @EnvironmentObject var intervalMenuButtonNames: IntervalMenuButtonNames
     
     static var intervalMenuButtonWidth: CGFloat = 100.0
     
-    func getTimeRemaining() -> TimerWrapper.Time
+    func getTimeRemaining() -> CountdownTimerWrapper.Time
     {
-        return timerWrapper.getTimeRemaining()
+        return countdownTimerWrapper.getTimeRemaining()
     }
     
     var body: some View

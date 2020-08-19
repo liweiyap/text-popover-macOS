@@ -15,7 +15,7 @@ struct ContentView: View
     @State var Explanation: String = ""
     @State var Elaboration: String = ""
     
-    @EnvironmentObject var timerWrapper: TimerWrapper
+    @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
     let intervalMenuButtonNames = IntervalMenuButtonNames()
     
@@ -36,9 +36,9 @@ struct ContentView: View
         update(randomDatabaseEntry)
     }
     
-    func getTimeRemaining() -> TimerWrapper.Time
+    func getTimeRemaining() -> CountdownTimerWrapper.Time
     {
-        return timerWrapper.getTimeRemaining()
+        return countdownTimerWrapper.getTimeRemaining()
     }
     
     @ViewBuilder
@@ -70,16 +70,16 @@ struct ContentView: View
                 {
                     self.update()
                 }
-                .onReceive(self.timerWrapper.timer)
+                .onReceive(self.countdownTimerWrapper.timer)
                 {
                     time in
                     
-                    self.timerWrapper.timeRemaining -= 1
+                    self.countdownTimerWrapper.timeRemaining -= 1
                     
-                    if self.timerWrapper.timeRemaining == 0
+                    if self.countdownTimerWrapper.timeRemaining == 0
                     {
                         self.update()
-                        self.timerWrapper.timeRemaining = self.timerWrapper.interval
+                        self.countdownTimerWrapper.timeRemaining = self.countdownTimerWrapper.interval
                     }
                 }
                 

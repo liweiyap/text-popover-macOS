@@ -1,14 +1,14 @@
 //
-//  TimerWrapper.swift
+//  CountdownTimerWrapper.swift
 //  text-popover-macOS
 //
-//  Created by Li-Wei Yap on 21.07.20.
+//  Created by Li-Wei Yap on 19.08.20.
 //  Copyright © 2020 Li-Wei Yap. All rights reserved.
 //
 
 import Foundation
 
-final class TimerWrapper: ObservableObject
+final class CountdownTimerWrapper: ObservableObject
 {
     @Published var timer = Timer.publish(every: TimeInterval(Int.secondsPerMinute),
                                          tolerance: 0.5, on: .main, in: .common).autoconnect()

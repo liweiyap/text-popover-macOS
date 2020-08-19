@@ -16,7 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
     let popover = NSPopover()
     var eventMonitor: EventMonitor?
     
-    let timerWrapper = TimerWrapper()
+    let countdownTimerWrapper = CountdownTimerWrapper()
     let additionalToggableTextOptions = AdditionalToggableTextOptions()
 
     func applicationDidFinishLaunching(_ aNotification: Notification)
@@ -33,7 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
         }
         
         let contentView = ContentView()
-            .environmentObject(timerWrapper)
+            .environmentObject(countdownTimerWrapper)
             .environmentObject(additionalToggableTextOptions)
         
         popover.contentSize = NSSize(width: 400, height: 200)

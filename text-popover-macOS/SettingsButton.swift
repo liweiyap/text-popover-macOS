@@ -11,7 +11,7 @@ import Combine
 
 struct AllSettingsView: View
 {
-    @EnvironmentObject var timerWrapper: TimerWrapper
+    @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
     @EnvironmentObject var intervalMenuButtonNames: IntervalMenuButtonNames
     
@@ -36,7 +36,7 @@ struct AllSettingsView: View
 
 struct SettingsButton: View
 {
-    @EnvironmentObject var timerWrapper: TimerWrapper
+    @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
     @EnvironmentObject var intervalMenuButtonNames: IntervalMenuButtonNames
     
@@ -66,7 +66,7 @@ struct SettingsButton: View
     {
         Button(action: {
             let allSettingsView = AllSettingsView()
-                .environmentObject(self.timerWrapper)
+                .environmentObject(self.countdownTimerWrapper)
                 .environmentObject(self.additionalToggableTextOptions)
                 .environmentObject(self.intervalMenuButtonNames)
             
