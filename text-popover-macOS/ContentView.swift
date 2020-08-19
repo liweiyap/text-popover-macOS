@@ -36,9 +36,9 @@ struct ContentView: View
         update(randomDatabaseEntry)
     }
     
-    func getTime() -> TimerWrapper.Time
+    func getTimeRemaining() -> TimerWrapper.Time
     {
-        return timerWrapper.getTime()
+        return timerWrapper.getTimeRemaining()
     }
     
     @ViewBuilder
@@ -74,12 +74,12 @@ struct ContentView: View
                 {
                     time in
                     
-                    self.timerWrapper.counter += 1
+                    self.timerWrapper.timeRemaining -= 1
                     
-                    if self.timerWrapper.counter == self.timerWrapper.interval
+                    if self.timerWrapper.timeRemaining == 0
                     {
                         self.update()
-                        self.timerWrapper.counter = 0
+                        self.timerWrapper.timeRemaining = self.timerWrapper.interval
                     }
                 }
                 
@@ -92,7 +92,7 @@ struct ContentView: View
                 
                 Spacer()
                 
-                Text("Nächste Redewendung in: \(String(format: "%02d",getTime().hours)):\(String(format: "%02d",getTime().minutes)):\(String(format: "%02d",getTime().seconds))")
+                Text("Nächste Redewendung in: \(String(format:"%02d",getTimeRemaining().hours)):\(String(format:"%02d",getTimeRemaining().minutes))")
             }
             
             Spacer()

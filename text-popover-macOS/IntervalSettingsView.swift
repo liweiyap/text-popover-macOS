@@ -36,12 +36,12 @@ final class MinutesInterval: Interval
 {
     let intervals =
         [
-            IntervalHashable(name: "5 minutes", value: 5 * Int.secondsPerMinute),
-            IntervalHashable(name: "10 minutes", value: 10 * Int.secondsPerMinute),
-            IntervalHashable(name: "15 minutes", value: 15 * Int.secondsPerMinute),
-            IntervalHashable(name: "20 minutes", value: 20 * Int.secondsPerMinute),
-            IntervalHashable(name: "30 minutes", value: 30 * Int.secondsPerMinute),
-            IntervalHashable(name: "45 minutes", value: 45 * Int.secondsPerMinute)
+            IntervalHashable(name: "5 minutes", value: 5),
+            IntervalHashable(name: "10 minutes", value: 10),
+            IntervalHashable(name: "15 minutes", value: 15),
+            IntervalHashable(name: "20 minutes", value: 20),
+            IntervalHashable(name: "30 minutes", value: 30),
+            IntervalHashable(name: "45 minutes", value: 45)
         ]
     
     func getIntervals() -> [IntervalHashable]
@@ -54,12 +54,12 @@ final class HoursIntervalShort: Interval
 {
     let intervals =
         [
-            IntervalHashable(name: "1 hour", value: 1 * Int.secondsPerHour),
-            IntervalHashable(name: "2 hours", value: 2 * Int.secondsPerHour),
-            IntervalHashable(name: "3 hours", value: 3 * Int.secondsPerHour),
-            IntervalHashable(name: "4 hours", value: 4 * Int.secondsPerHour),
-            IntervalHashable(name: "5 hours", value: 5 * Int.secondsPerHour),
-            IntervalHashable(name: "6 hours", value: 6 * Int.secondsPerHour)
+            IntervalHashable(name: "1 hour", value: 1 * Int.minutesPerHour),
+            IntervalHashable(name: "2 hours", value: 2 * Int.minutesPerHour),
+            IntervalHashable(name: "3 hours", value: 3 * Int.minutesPerHour),
+            IntervalHashable(name: "4 hours", value: 4 * Int.minutesPerHour),
+            IntervalHashable(name: "5 hours", value: 5 * Int.minutesPerHour),
+            IntervalHashable(name: "6 hours", value: 6 * Int.minutesPerHour)
         ]
     
     func getIntervals() -> [IntervalHashable]
@@ -72,9 +72,9 @@ final class HoursIntervalLong: Interval
 {
     let intervals =
         [
-            IntervalHashable(name: "8 hours", value: 8 * Int.secondsPerHour),
-            IntervalHashable(name: "12 hours", value: 12 * Int.secondsPerHour),
-            IntervalHashable(name: "24 hours", value: 24 * Int.secondsPerHour)
+            IntervalHashable(name: "8 hours", value: 8 * Int.minutesPerHour),
+            IntervalHashable(name: "12 hours", value: 12 * Int.minutesPerHour),
+            IntervalHashable(name: "24 hours", value: 24 * Int.minutesPerHour)
         ]
     
     func getIntervals() -> [IntervalHashable]
@@ -96,7 +96,7 @@ struct IntervalMenuItemButton: View
         Button(name)
         {
             self.timerWrapper.interval = self.value
-            self.timerWrapper.counter = 0
+            self.timerWrapper.timeRemaining = self.value
             
             self.intervalMenuButtonNames.resetToDefault()
             self.parentMenuButtonName = self.name
@@ -131,16 +131,16 @@ struct IntervalSettingsView: View
     
     static var intervalMenuButtonWidth: CGFloat = 100.0
     
-    func getTime() -> TimerWrapper.Time
+    func getTimeRemaining() -> TimerWrapper.Time
     {
-        return timerWrapper.getTime()
+        return timerWrapper.getTimeRemaining()
     }
     
     var body: some View
     {
         VStack
         {
-            Text("Time until next Expression: \(String(format: "%02d",self.getTime().hours)):\(String(format: "%02d",self.getTime().minutes)):\(String(format: "%02d",self.getTime().seconds))")
+            Text("Time until next Expression: \(String(format:"%02d",self.getTimeRemaining().hours)):\(String(format:"%02d",self.getTimeRemaining().minutes))")
             
             MenuButton(intervalMenuButtonNames.minutesMenuButtonName)
             {

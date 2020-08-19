@@ -10,33 +10,30 @@ import Foundation
 
 final class TimerWrapper: ObservableObject
 {
-    @Published var timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
+    @Published var timer = Timer.publish(every: TimeInterval(Int.secondsPerMinute),
+                                         tolerance: 0.5, on: .main, in: .common).autoconnect()
     
-    @Published var interval = 24 * Int.secondsPerHour
+    @Published var interval = 24 * Int.minutesPerHour
     
-    @Published var counter = 0
+    @Published var timeRemaining = 24 * Int.minutesPerHour
     
     struct Time
     {
         var hours: Int
         var minutes: Int
-        var seconds: Int
         
-        init(_ hrs: Int, _ mins: Int, _ secs: Int)
+        init(_ hrs: Int, _ mins: Int)
         {
             hours = hrs
             minutes = mins
-            seconds = secs
         }
     }
     
-    func getTime() -> Time
+    func getTimeRemaining() -> Time
     {
-        var secondsRemaining: Int = interval - counter
-        let hoursRemaining: Int = secondsRemaining / Int.secondsPerHour
-        let minutesRemaining: Int = (secondsRemaining / Int.secondsPerMinute) % Int.secondsPerMinute
-        secondsRemaining %= Int.secondsPerMinute
+        let hoursRemaining: Int = timeRemaining / Int.minutesPerHour
+        let minutesRemaining: Int = timeRemaining % Int.minutesPerHour
         
-        return Time(hoursRemaining, minutesRemaining, secondsRemaining)
+        return Time(hoursRemaining, minutesRemaining)
     }
 }

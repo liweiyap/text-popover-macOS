@@ -10,4 +10,5 @@ extension Int
 {    
     static var secondsPerMinute = 60
     static var secondsPerHour = 3600
+    static var minutesPerHour = 60
 }
