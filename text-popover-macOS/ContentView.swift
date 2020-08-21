@@ -8,6 +8,23 @@
 
 import SwiftUI
 
+struct ElaborationButton: View
+{
+    var body: some View
+    {
+        Button(action: {
+            
+        })
+        {
+            Image(nsImage: NSImage(named: NSImage.infoName)!
+                .resized(to: NSSize(width: SettingsButton.SettingsButtonDimensions,
+                                    height: SettingsButton.SettingsButtonDimensions))!)
+            .renderingMode(.original)
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+}
+
 struct ContentView: View
 {
     @ObservedObject var databaseManagerWrapper = DatabaseManagerWrapper()
@@ -55,6 +72,11 @@ struct ContentView: View
                     Button("Quit")
                     {
                         NSApp.terminate(self)
+                    }
+                    
+                    if additionalToggableTextOptions.displayElaboration
+                    {
+                        ElaborationButton()
                     }
                     
                     Spacer()
