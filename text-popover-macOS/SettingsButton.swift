@@ -78,8 +78,8 @@ struct SettingsButton: View
              * Use .resize() as an alternative to `Image(nsImage).scaledToFit()`
              */
             Image(nsImage: NSImage(named: NSImage.advancedName)!
-                .resize(width: SettingsButton.SettingsButtonDimensions,
-                        height: SettingsButton.SettingsButtonDimensions))
+                .resized(to: NSSize(width: SettingsButton.SettingsButtonDimensions,
+                                    height: SettingsButton.SettingsButtonDimensions))!)
             .renderingMode(.original)
         }
         .buttonStyle(PlainButtonStyle())
