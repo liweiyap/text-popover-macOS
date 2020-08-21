@@ -10,8 +10,13 @@ import Foundation
 
 final class CountdownTimerWrapper: ObservableObject
 {
+    /*
+     * From the documentation: "A general rule, set the tolerance to at least 10% of the interval, for a repeating timer."
+     * https://developer.apple.com/documentation/foundation/timer#1667624
+     */
     @Published var timer = Timer.publish(every: TimeInterval(Int.secondsPerMinute),
-                                         tolerance: 0.5, on: .main, in: .common).autoconnect()
+                                         tolerance: TimeInterval(Int.secondsPerMinute / 10),
+                                         on: .main, in: .common).autoconnect()
     
     @Published var interval = 24 * Int.minutesPerHour
     

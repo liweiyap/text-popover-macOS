@@ -58,6 +58,8 @@ struct ContentView: View
                     }
                     
                     Spacer()
+                    
+                    Text("\(String(format:"%02d",getTimeRemaining().hours)):\(String(format:"%02d",getTimeRemaining().minutes))")
 
                     SettingsButton()
                     .environmentObject(self.intervalMenuButtonNames)
@@ -91,8 +93,6 @@ struct ContentView: View
                 }
                 
                 Spacer()
-                
-                Text("Nächste Redewendung in: \(String(format:"%02d",getTimeRemaining().hours)):\(String(format:"%02d",getTimeRemaining().minutes))")
             }
             
             Spacer()
