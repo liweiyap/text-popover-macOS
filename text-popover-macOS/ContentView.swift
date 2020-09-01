@@ -99,18 +99,6 @@ struct ContentView: View
                 else
                 {
                     Text(Expression)
-                    .onReceive(self.countdownTimerWrapper.timer)
-                    {
-                        time in
-                        
-                        self.countdownTimerWrapper.timeRemaining -= 1
-                        
-                        if self.countdownTimerWrapper.timeRemaining == 0
-                        {
-                            self.update()
-                            self.countdownTimerWrapper.timeRemaining = self.countdownTimerWrapper.interval
-                        }
-                    }
                     
                     Spacer()
                     
@@ -128,6 +116,18 @@ struct ContentView: View
         .onAppear
         {
             self.update()
+        }
+        .onReceive(self.countdownTimerWrapper.timer)
+        {
+            time in
+            
+            self.countdownTimerWrapper.timeRemaining -= 1
+            
+            if self.countdownTimerWrapper.timeRemaining == 0
+            {
+                self.update()
+                self.countdownTimerWrapper.timeRemaining = self.countdownTimerWrapper.interval
+            }
         }
     }  // body
 }
