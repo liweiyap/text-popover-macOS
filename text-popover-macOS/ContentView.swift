@@ -10,10 +10,12 @@ import SwiftUI
 
 struct ElaborationButton: View
 {
+    @Binding var showElaboration: Bool
+    
     var body: some View
     {
         Button(action: {
-            
+            self.showElaboration.toggle()
         })
         {
             Image(nsImage: NSImage(named: NSImage.infoName)!
@@ -31,6 +33,7 @@ struct ContentView: View
     @State var Expression: String = ""
     @State var Explanation: String = ""
     @State var Elaboration: String = ""
+    @State var showElaboration: Bool = false
     
     @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
@@ -76,7 +79,7 @@ struct ContentView: View
                     
                     if additionalToggableTextOptions.displayElaboration
                     {
-                        ElaborationButton()
+                        ElaborationButton(showElaboration: self.$showElaboration)
                     }
                     
                     Spacer()
@@ -85,41 +88,48 @@ struct ContentView: View
 
                     SettingsButton()
                     .environmentObject(self.intervalMenuButtonNames)
-                }
+                }  // Inner HStack
                 
                 Spacer()
                 
-                Text(Expression)
-                .onAppear
+                if showElaboration
                 {
-                    self.update()
+                    Text(Elaboration)
                 }
-                .onReceive(self.countdownTimerWrapper.timer)
+                else
                 {
-                    time in
-                    
-                    self.countdownTimerWrapper.timeRemaining -= 1
-                    
-                    if self.countdownTimerWrapper.timeRemaining == 0
+                    Text(Expression)
+                    .onReceive(self.countdownTimerWrapper.timer)
                     {
-                        self.update()
-                        self.countdownTimerWrapper.timeRemaining = self.countdownTimerWrapper.interval
+                        time in
+                        
+                        self.countdownTimerWrapper.timeRemaining -= 1
+                        
+                        if self.countdownTimerWrapper.timeRemaining == 0
+                        {
+                            self.update()
+                            self.countdownTimerWrapper.timeRemaining = self.countdownTimerWrapper.interval
+                        }
+                    }
+                    
+                    Spacer()
+                    
+                    if additionalToggableTextOptions.displayExplanation
+                    {
+                        Text(Explanation)
                     }
                 }
                 
                 Spacer()
-                
-                if additionalToggableTextOptions.displayExplanation
-                {
-                    Text(Explanation)
-                }
-                
-                Spacer()
-            }
+            }  // VStack
             
             Spacer()
+        }  // Outer HStack
+        .onAppear
+        {
+            self.update()
         }
-    }
+    }  // body
 }
 
 struct ContentView_Previews: PreviewProvider
