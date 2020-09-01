@@ -75,7 +75,7 @@ struct SettingsButton: View
             /*
              * For some reason, when `Text("⚙").font(.title)` is used, there is some vspace above the ⚙?
              *
-             * Use .resize() as an alternative to `Image(nsImage).scaledToFit()`
+             * Use .resized() as an alternative to `Image(nsImage).scaledToFit()`
              */
             Image(nsImage: NSImage(named: NSImage.advancedName)!
                 .resized(to: NSSize(width: SettingsButton.SettingsButtonDimensions,

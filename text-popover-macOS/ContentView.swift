@@ -10,12 +10,12 @@ import SwiftUI
 
 struct ElaborationButton: View
 {
-    @Binding var showElaboration: Bool
+    @Binding var elaborationIsViewed: Bool
     
     var body: some View
     {
         Button(action: {
-            self.showElaboration.toggle()
+            self.elaborationIsViewed.toggle()
         })
         {
             Image(nsImage: NSImage(named: NSImage.infoName)!
@@ -27,13 +27,26 @@ struct ElaborationButton: View
     }
 }
 
+struct BackButton: View
+{
+    @Binding var elaborationIsViewed: Bool
+    
+    var body: some View
+    {
+        Button("Back")
+        {
+            self.elaborationIsViewed.toggle()
+        }
+    }
+}
+
 struct ContentView: View
 {
     @ObservedObject var databaseManagerWrapper = DatabaseManagerWrapper()
     @State var Expression: String = ""
     @State var Explanation: String = ""
     @State var Elaboration: String = ""
-    @State var showElaboration: Bool = false
+    @State var elaborationIsViewed: Bool = false
     
     @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
@@ -79,7 +92,14 @@ struct ContentView: View
                     
                     if additionalToggableTextOptions.displayElaboration
                     {
-                        ElaborationButton(showElaboration: self.$showElaboration)
+                        if elaborationIsViewed
+                        {
+                            BackButton(elaborationIsViewed: self.$elaborationIsViewed)
+                        }
+                        else
+                        {
+                            ElaborationButton(elaborationIsViewed: self.$elaborationIsViewed)
+                        }
                     }
                     
                     Spacer()
@@ -92,7 +112,7 @@ struct ContentView: View
                 
                 Spacer()
                 
-                if showElaboration
+                if elaborationIsViewed
                 {
                     Text(Elaboration)
                 }
