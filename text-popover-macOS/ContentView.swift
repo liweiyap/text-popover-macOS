@@ -40,6 +40,31 @@ struct BackButton: View
     }
 }
 
+struct CloseButtonStyle: ButtonStyle
+{
+    func makeBody(configuration: Self.Configuration) -> some View
+    {
+        configuration.label
+            .frame(width: 12, height: 12)
+            .foregroundColor(Color.black)
+            .background(Color(hex: "#FF605C"))
+            .clipShape(Circle())
+    }
+}
+
+struct CloseButton: View
+{
+    var body: some View
+    {
+        Button(action: {
+            NSApp.terminate(self)
+        })
+        {
+            Text("X")
+        }.buttonStyle(CloseButtonStyle())
+    }
+}
+
 struct ContentView: View
 {
     @ObservedObject var databaseManagerWrapper = DatabaseManagerWrapper()
@@ -85,10 +110,7 @@ struct ContentView: View
             {
                 HStack
                 {
-                    Button("Quit")
-                    {
-                        NSApp.terminate(self)
-                    }
+                    CloseButton()
                     
                     if additionalToggableTextOptions.displayElaboration
                     {
