@@ -47,7 +47,7 @@ struct CloseButtonStyle: ButtonStyle
         configuration.label
             .frame(width: 12, height: 12)
             .foregroundColor(Color.black)
-            .background(Color(hex: "#FF605C"))
+            .background(Color.sunsetOrange)
             .clipShape(Circle())
     }
 }
@@ -60,8 +60,9 @@ struct CloseButton: View
             NSApp.terminate(self)
         })
         {
-            Text("X")
-        }.buttonStyle(CloseButtonStyle())
+            Text("×")
+        }
+        .buttonStyle(CloseButtonStyle())
     }
 }
 
