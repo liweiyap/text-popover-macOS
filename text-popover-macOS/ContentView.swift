@@ -78,6 +78,8 @@ struct ContentView: View
     @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
     let intervalMenuButtonNames = IntervalMenuButtonNames()
     
+    var AppDelegateInstance = AppDelegate.selfInstance
+    
     func update(_ randomDatabaseEntry: DatabaseManager.DataModel) -> Void
     {
         Expression = randomDatabaseEntry.Expression
@@ -98,6 +100,18 @@ struct ContentView: View
     func getTimeRemaining() -> CountdownTimerWrapper.Time
     {
         return countdownTimerWrapper.getTimeRemaining()
+    }
+    
+    func showPopoverIfNotAlreadyShown() -> Void
+    {
+        if !(AppDelegateInstance?.popover.isShown)!
+        {
+            if let button = AppDelegateInstance?.statusItem.button
+            {
+                AppDelegateInstance?.popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
+                AppDelegateInstance?.eventMonitor?.start()
+            }
+        }
     }
     
     @ViewBuilder
@@ -169,6 +183,7 @@ struct ContentView: View
             if self.countdownTimerWrapper.timeRemaining == 0
             {
                 self.update()
+                self.showPopoverIfNotAlreadyShown()
                 self.countdownTimerWrapper.timeRemaining = self.countdownTimerWrapper.interval
             }
         }

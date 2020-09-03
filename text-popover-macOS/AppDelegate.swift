@@ -18,6 +18,14 @@ class AppDelegate: NSObject, NSApplicationDelegate
     
     let countdownTimerWrapper = CountdownTimerWrapper()
     let additionalToggableTextOptions = AdditionalToggableTextOptions()
+    
+    static var selfInstance: AppDelegate?
+    
+    override init()
+    {
+        super.init()
+        AppDelegate.selfInstance = self
+    }
 
     func applicationDidFinishLaunching(_ aNotification: Notification)
     {
