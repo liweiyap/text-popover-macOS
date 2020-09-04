@@ -138,7 +138,7 @@ struct IntervalSettingsView: View
     
     var body: some View
     {
-        VStack
+        VStack(alignment: .leading)
         {
             Text("Time until next Expression: \(String(format:"%02d",self.getTimeRemaining().hours)):\(String(format:"%02d",self.getTimeRemaining().minutes))")
             

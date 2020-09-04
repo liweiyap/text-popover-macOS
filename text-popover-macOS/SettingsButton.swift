@@ -17,18 +17,18 @@ struct AllSettingsView: View
     
     var body: some View
     {
-        TabView
+        VStack(alignment: .center)
         {
-            IntervalSettingsView()
-            .tabItem
+            HStack(alignment: .firstTextBaseline)
             {
-                Text("Interval")
+                Text("Interval: ").frame(width: 180, alignment: .trailing)
+                IntervalSettingsView().frame(width: 300, alignment: .leading)
             }
             
-            AdditionalToggableTextSettingsView()
-            .tabItem
+            HStack(alignment: .firstTextBaseline)
             {
-                Text("Additional Texts")
+                Text("Additional Texts: ").frame(width: 180, alignment: .trailing)
+                AdditionalToggableTextSettingsView().frame(width: 300, alignment: .leading)
             }
         }
     }

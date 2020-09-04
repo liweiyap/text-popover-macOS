@@ -20,7 +20,7 @@ struct AdditionalToggableTextSettingsView: View
     
     var body: some View
     {
-        VStack
+        VStack(alignment: .leading)
         {
             Toggle(isOn: $additionalToggableTextOptions.displayExplanation)
             {
