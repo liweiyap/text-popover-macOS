@@ -14,6 +14,22 @@ final class TimeoutActivityOptions: ObservableObject
     
     @Published var soundOnTimeout: NSSound? = nil
     @Published var soundMenuButtonName: String = "Sound"
+    @Published var soundVolume: Float = 1.0
+}
+
+struct SoundVolumeSlider: View
+{
+    @EnvironmentObject var timeoutActivityOptions: TimeoutActivityOptions
+    
+    var body: some View
+    {
+        Slider(value: $timeoutActivityOptions.soundVolume, in: 0.0 ... 1.0, step: 0.1, onEditingChanged:
+        {
+            data in
+            
+            self.timeoutActivityOptions.soundOnTimeout?.volume = self.timeoutActivityOptions.soundVolume
+        })
+    }
 }
 
 struct TimeoutActivitySettingsView: View
@@ -23,6 +39,7 @@ struct TimeoutActivitySettingsView: View
                   "Morse", "Ping", "Pop", "Purr", "Sosumi", "Submarine", "Tink"]
     
     static var soundMenuButtonWidth: CGFloat = 110.0
+    static var soundVolumeSliderWidth: CGFloat = 110.0
     
     var body: some View
     {
@@ -53,6 +70,9 @@ struct TimeoutActivitySettingsView: View
                 }
             }
             .frame(width: TimeoutActivitySettingsView.soundMenuButtonWidth)
+            
+            SoundVolumeSlider()
+            .frame(width: TimeoutActivitySettingsView.soundVolumeSliderWidth)
         }
     }
 }
