@@ -137,20 +137,20 @@
 			children = (
 				E26056B524BCD49900B24D05 /* AppDelegate.swift */,
 				E26056B724BCD49900B24D05 /* ContentView.swift */,
+				E276B68A24D37EBE00FF0BAA /* SettingsButton.swift */,
+				E276B68C24DF0BE500FF0BAA /* IntervalSettingsView.swift */,
+				E216E6CD2503E9D1000E02B0 /* TimeoutActivitySettingsView.swift */,
+				E276B68E24E1FF0C00FF0BAA /* AdditionalToggableTextSettingsView.swift */,
+				E283C56324EDD4B600E4E1CE /* CountdownTimerWrapper.swift */,
 				E26056F024BF372A00B24D05 /* DatabaseManager.swift */,
+				E26056FB24C3AFCA00B24D05 /* DatabaseManagerWrapper.swift */,
+				E26056EC24BF2F2A00B24D05 /* EventMonitor.swift */,
+				E283C56524F0456F00E4E1CE /* Extensions.swift */,
 				E26056B924BCD49A00B24D05 /* Assets.xcassets */,
 				E26056BE24BCD49A00B24D05 /* Main.storyboard */,
 				E26056C124BCD49A00B24D05 /* Info.plist */,
 				E26056C224BCD49A00B24D05 /* text_popover_macOS.entitlements */,
 				E26056BB24BCD49A00B24D05 /* Preview Content */,
-				E26056EC24BF2F2A00B24D05 /* EventMonitor.swift */,
-				E26056FB24C3AFCA00B24D05 /* DatabaseManagerWrapper.swift */,
-				E276B68A24D37EBE00FF0BAA /* SettingsButton.swift */,
-				E276B68C24DF0BE500FF0BAA /* IntervalSettingsView.swift */,
-				E276B68E24E1FF0C00FF0BAA /* AdditionalToggableTextSettingsView.swift */,
-				E283C56324EDD4B600E4E1CE /* CountdownTimerWrapper.swift */,
-				E283C56524F0456F00E4E1CE /* Extensions.swift */,
-				E216E6CD2503E9D1000E02B0 /* TimeoutActivitySettingsView.swift */,
 			);
 			path = "text-popover-macOS";
 			sourceTree = "<group>";

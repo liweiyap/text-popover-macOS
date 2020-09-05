@@ -115,6 +115,11 @@ struct ContentView: View
         }
     }
     
+    func playSound() -> Void
+    {
+        self.timeoutActivityOptions.soundOnTimeout?.play()
+    }
+    
     @ViewBuilder
     var body: some View
     {
@@ -185,6 +190,7 @@ struct ContentView: View
             {
                 self.update()
                 self.togglePopover()
+                self.playSound()
                 self.countdownTimerWrapper.timeRemaining = self.countdownTimerWrapper.interval
             }
         }

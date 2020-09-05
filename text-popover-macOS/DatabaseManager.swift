@@ -55,7 +55,7 @@ class DatabaseManager
         }
         catch
         {
-            print("createDatabase():\n", error)
+            print("DatabaseManager::createDatabase():\n", error)
         }
     }
     
@@ -68,7 +68,7 @@ class DatabaseManager
         }
         catch
         {
-            print("connectDatabase():\n", error)
+            print("DatabaseManager::connectDatabase():\n", error)
         }
     }
     
@@ -88,7 +88,7 @@ class DatabaseManager
         }
         catch
         {
-            print("readDatabase():\n", error)
+            print("DatabaseManager::readDatabase():\n", error)
         }
     }
     
@@ -96,7 +96,7 @@ class DatabaseManager
     {
         let nEntries: Int = DatabaseEntryArray.count
         
-        if (nEntries > 0)
+        if nEntries > 0
         {
             let randomDatabaseEntryIdx = Int.random(in: 0 ... (nEntries-1))
 

@@ -23,7 +23,10 @@ struct SingleSettingsView<Content:View>: View
         self.labelWidthProportion = 3.0/8.0
         
         self.view = view
-        self.viewWidthProportion = 1.0 - self.labelWidthProportion
+        self.viewWidthProportion = 5.0/8.0
+        
+        assert(abs(self.labelWidthProportion + self.viewWidthProportion - 1.0) < 1e-3,
+               "SingleSettingsView::init(): The sum of both labelWidthProportion and viewWidthProportion must be equal to 1.")
     }
     
     var body: some View

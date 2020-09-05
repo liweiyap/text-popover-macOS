@@ -99,7 +99,7 @@ struct IntervalMenuItemButton: View
              * Current interval is already in progress. If same interval value is re-selected,
              * then don't stop current interval.
              */
-            if (self.countdownTimerWrapper.interval != self.value)
+            if self.countdownTimerWrapper.interval != self.value
             {
                 self.countdownTimerWrapper.interval = self.value
                 self.countdownTimerWrapper.timeRemaining = self.value
