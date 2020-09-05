@@ -9,6 +9,38 @@
 import SwiftUI
 import Combine
 
+struct SingleSettingsView<Content:View>: View
+{
+    var label: String
+    var labelWidthProportion: CGFloat
+    
+    var view: Content
+    var viewWidthProportion: CGFloat
+    
+    init(label: String, view: Content)
+    {
+        self.label = label
+        self.labelWidthProportion = 3.0/8.0
+        
+        self.view = view
+        self.viewWidthProportion = 1.0 - self.labelWidthProportion
+    }
+    
+    var body: some View
+    {
+        HStack(alignment: .firstTextBaseline)
+        {
+            Text("\(label):")
+            .frame(width: CGFloat(SettingsButton.SettingsWindowWidth) * labelWidthProportion,
+                   alignment: .trailing)
+            
+            view
+            .frame(width: CGFloat(SettingsButton.SettingsWindowWidth) * viewWidthProportion,
+                   alignment: .leading)
+        }
+    }
+}
+
 struct AllSettingsView: View
 {
     @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
@@ -19,17 +51,8 @@ struct AllSettingsView: View
     {
         VStack(alignment: .center)
         {
-            HStack(alignment: .firstTextBaseline)
-            {
-                Text("Interval:").frame(width: 180, alignment: .trailing)
-                IntervalSettingsView().frame(width: 300, alignment: .leading)
-            }
-            
-            HStack(alignment: .firstTextBaseline)
-            {
-                Text("Additional Texts:").frame(width: 180, alignment: .trailing)
-                AdditionalToggableTextSettingsView().frame(width: 300, alignment: .leading)
-            }
+            SingleSettingsView(label: "Interval", view: IntervalSettingsView())
+            SingleSettingsView(label: "Additional Texts", view: AdditionalToggableTextSettingsView())
         }
     }
 }
@@ -43,6 +66,8 @@ struct SettingsButton: View
     @State var window: NSWindow?
     
     static var SettingsButtonDimensions: Int = 20
+    static var SettingsWindowWidth: Int = 480
+    static var SettingsWindowHeight: Int = 300
     
     var body: some View
     {
@@ -59,7 +84,9 @@ struct SettingsButton: View
             }
             
             self.window = NSWindow(
-                contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
+                contentRect: NSRect(x: 0, y: 0,
+                                    width: SettingsButton.SettingsWindowWidth,
+                                    height: SettingsButton.SettingsWindowHeight),
                 styleMask: [.titled, .closable, .fullSizeContentView],
                 backing: .buffered,
                 defer: false
