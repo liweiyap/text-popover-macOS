@@ -117,11 +117,6 @@ struct ContentView: View
     
     func playSound() -> Void
     {
-        /*
-         * Set volume here as well, in case Slider is set before MenuButton
-         * (i.e. before sound type is chosen)
-         */
-        self.timeoutActivityOptions.soundOnTimeout?.volume = self.timeoutActivityOptions.soundVolume
         self.timeoutActivityOptions.soundOnTimeout?.play()
     }
     

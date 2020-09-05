@@ -65,6 +65,7 @@ struct TimeoutActivitySettingsView: View
                     Button(sound)
                     {
                         self.timeoutActivityOptions.soundOnTimeout = NSSound(named: sound)
+                        self.timeoutActivityOptions.soundOnTimeout?.volume = self.timeoutActivityOptions.soundVolume
                         self.timeoutActivityOptions.soundMenuButtonName = sound
                     }
                 }
