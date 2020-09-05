@@ -95,10 +95,25 @@ struct IntervalMenuItemButton: View
     {
         Button(name)
         {
-            self.countdownTimerWrapper.interval = self.value
-            self.countdownTimerWrapper.timeRemaining = self.value
+            /*
+             * Current interval is already in progress. If same interval value is re-selected,
+             * then don't stop current interval.
+             */
+            if (self.countdownTimerWrapper.interval != self.value)
+            {
+                self.countdownTimerWrapper.interval = self.value
+                self.countdownTimerWrapper.timeRemaining = self.value
+                self.intervalMenuButtonNames.resetToDefault()
+            }
             
-            self.intervalMenuButtonNames.resetToDefault()
+            /*
+             * Don't include the following in the IF statement, because we want to account for
+             * the edge case, which occurs at the very start or if no interval has been chosen
+             * yet from the menu buttons. Here, the interval that is active has some numerical
+             * value, but the current [minutes|hours]MenuButtonName is equal to its default
+             * "Minutes"|"Hours" rather than this numerical value, so we want to set it to this
+             * numerical value.
+             */
             self.parentMenuButtonName = self.name
         }
     }
@@ -129,7 +144,7 @@ struct IntervalSettingsView: View
     @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     @EnvironmentObject var intervalMenuButtonNames: IntervalMenuButtonNames
     
-    static var intervalMenuButtonWidth: CGFloat = 100.0
+    static var intervalMenuButtonWidth: CGFloat = 110.0
     
     func getTimeRemaining() -> CountdownTimerWrapper.Time
     {
@@ -140,7 +155,7 @@ struct IntervalSettingsView: View
     {
         VStack(alignment: .leading)
         {
-            Text("Time until next Expression: \(String(format:"%02d",self.getTimeRemaining().hours)):\(String(format:"%02d",self.getTimeRemaining().minutes))")
+            Text("\(String(format:"%02d",self.getTimeRemaining().hours)):\(String(format:"%02d",self.getTimeRemaining().minutes)) until next Expression")
             
             MenuButton(intervalMenuButtonNames.minutesMenuButtonName)
             {

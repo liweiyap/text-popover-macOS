@@ -21,13 +21,13 @@ struct AllSettingsView: View
         {
             HStack(alignment: .firstTextBaseline)
             {
-                Text("Interval: ").frame(width: 180, alignment: .trailing)
+                Text("Interval:").frame(width: 180, alignment: .trailing)
                 IntervalSettingsView().frame(width: 300, alignment: .leading)
             }
             
             HStack(alignment: .firstTextBaseline)
             {
-                Text("Additional Texts: ").frame(width: 180, alignment: .trailing)
+                Text("Additional Texts:").frame(width: 180, alignment: .trailing)
                 AdditionalToggableTextSettingsView().frame(width: 300, alignment: .leading)
             }
         }
