@@ -51,7 +51,9 @@ struct AllSettingsView: View
         VStack(alignment: .center)
         {
             SingleSettingsView(label: "Interval", view: IntervalSettingsView())
+            Divider()
             SingleSettingsView(label: "Activity on timeout", view: TimeoutActivitySettingsView())
+            Divider()
             SingleSettingsView(label: "Additional texts", view: AdditionalToggableTextSettingsView())
         }
     }

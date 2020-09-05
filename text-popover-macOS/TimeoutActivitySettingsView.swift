@@ -23,9 +23,9 @@ struct SoundVolumeSlider: View
     
     var body: some View
     {
-        Slider(value: $timeoutActivityOptions.soundVolume, in: 0.0 ... 1.0, step: 0.1, onEditingChanged:
+        Slider(value: $timeoutActivityOptions.soundVolume, in: 0.0 ... 1.0, onEditingChanged:
         {
-            data in
+            _volume in
             
             self.timeoutActivityOptions.soundOnTimeout?.volume = self.timeoutActivityOptions.soundVolume
         })
@@ -39,7 +39,7 @@ struct TimeoutActivitySettingsView: View
                   "Morse", "Ping", "Pop", "Purr", "Sosumi", "Submarine", "Tink"]
     
     static var soundMenuButtonWidth: CGFloat = 110.0
-    static var soundVolumeSliderWidth: CGFloat = 110.0
+    static var soundVolumeSliderBoxWidth: CGFloat = 110.0
     
     var body: some View
     {
@@ -72,8 +72,13 @@ struct TimeoutActivitySettingsView: View
             }
             .frame(width: TimeoutActivitySettingsView.soundMenuButtonWidth)
             
-            SoundVolumeSlider()
-            .frame(width: TimeoutActivitySettingsView.soundVolumeSliderWidth)
+            HStack(alignment: .top)
+            {
+                Image(nsImage: NSImage(named: NSImage.touchBarVolumeDownTemplateName)!)
+                
+                SoundVolumeSlider()
+            }
+            .frame(width: TimeoutActivitySettingsView.soundVolumeSliderBoxWidth)
         }
     }
 }
