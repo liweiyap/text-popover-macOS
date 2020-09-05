@@ -32,6 +32,19 @@ struct SoundVolumeSlider: View
     }
 }
 
+struct SoundVolumeSliderBox: View
+{
+    var body: some View
+    {
+        HStack(alignment: .top)
+        {
+            Image(nsImage: NSImage(named: NSImage.touchBarVolumeDownTemplateName)!)
+            
+            SoundVolumeSlider()
+        }
+    }
+}
+
 struct TimeoutActivitySettingsView: View
 {
     @EnvironmentObject var timeoutActivityOptions: TimeoutActivityOptions
@@ -72,12 +85,7 @@ struct TimeoutActivitySettingsView: View
             }
             .frame(width: TimeoutActivitySettingsView.soundMenuButtonWidth)
             
-            HStack(alignment: .top)
-            {
-                Image(nsImage: NSImage(named: NSImage.touchBarVolumeDownTemplateName)!)
-                
-                SoundVolumeSlider()
-            }
+            SoundVolumeSliderBox()
             .frame(width: TimeoutActivitySettingsView.soundVolumeSliderBoxWidth)
         }
     }
