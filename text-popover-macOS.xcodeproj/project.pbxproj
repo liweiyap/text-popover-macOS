@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E216E6CE2503E9D1000E02B0 /* TimeoutActivitySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E216E6CD2503E9D1000E02B0 /* TimeoutActivitySettingsView.swift */; };
 		E26056B624BCD49900B24D05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26056B524BCD49900B24D05 /* AppDelegate.swift */; };
 		E26056B824BCD49900B24D05 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26056B724BCD49900B24D05 /* ContentView.swift */; };
 		E26056BA24BCD49A00B24D05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E26056B924BCD49A00B24D05 /* Assets.xcassets */; };
@@ -58,6 +59,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E216E6CD2503E9D1000E02B0 /* TimeoutActivitySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeoutActivitySettingsView.swift; sourceTree = "<group>"; };
 		E26056B224BCD49900B24D05 /* text-popover-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "text-popover-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E26056B524BCD49900B24D05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E26056B724BCD49900B24D05 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				E276B68E24E1FF0C00FF0BAA /* AdditionalToggableTextSettingsView.swift */,
 				E283C56324EDD4B600E4E1CE /* CountdownTimerWrapper.swift */,
 				E283C56524F0456F00E4E1CE /* Extensions.swift */,
+				E216E6CD2503E9D1000E02B0 /* TimeoutActivitySettingsView.swift */,
 			);
 			path = "text-popover-macOS";
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				E26056ED24BF2F2A00B24D05 /* EventMonitor.swift in Sources */,
 				E26056B824BCD49900B24D05 /* ContentView.swift in Sources */,
 				E26056B624BCD49900B24D05 /* AppDelegate.swift in Sources */,
+				E216E6CE2503E9D1000E02B0 /* TimeoutActivitySettingsView.swift in Sources */,
 				E276B68B24D37EBE00FF0BAA /* SettingsButton.swift in Sources */,
 				E26056FC24C3AFCA00B24D05 /* DatabaseManagerWrapper.swift in Sources */,
 				E276B68F24E1FF0D00FF0BAA /* AdditionalToggableTextSettingsView.swift in Sources */,

@@ -121,10 +121,7 @@ struct IntervalMenuItemButton: View
 
 struct IntervalMenuItemButtonArray: View
 {
-    @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     let intervals: [IntervalHashable]
-    
-    @EnvironmentObject var intervalMenuButtonNames: IntervalMenuButtonNames
     @Binding var parentMenuButtonName: String
     
     var body: some View

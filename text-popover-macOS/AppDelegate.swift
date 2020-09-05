@@ -18,6 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
     
     let countdownTimerWrapper = CountdownTimerWrapper()
     let additionalToggableTextOptions = AdditionalToggableTextOptions()
+    let timeoutActivityOptions = TimeoutActivityOptions()
     
     static var selfInstance: AppDelegate?
     
@@ -43,6 +44,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
         let contentView = ContentView()
             .environmentObject(countdownTimerWrapper)
             .environmentObject(additionalToggableTextOptions)
+            .environmentObject(timeoutActivityOptions)
         
         popover.contentSize = NSSize(width: 400, height: 200)
         popover.contentViewController = NSHostingController(rootView: contentView)

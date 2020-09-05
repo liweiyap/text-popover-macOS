@@ -76,6 +76,7 @@ struct ContentView: View
     
     @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
+    @EnvironmentObject var timeoutActivityOptions: TimeoutActivityOptions
     let intervalMenuButtonNames = IntervalMenuButtonNames()
     
     var AppDelegateInstance = AppDelegate.selfInstance
@@ -102,9 +103,9 @@ struct ContentView: View
         return countdownTimerWrapper.getTimeRemaining()
     }
     
-    func showPopoverIfNotAlreadyShown() -> Void
+    func togglePopover() -> Void
     {
-        if !(AppDelegateInstance?.popover.isShown)!
+        if ( self.timeoutActivityOptions.showPopoverOnTimeout && (!(AppDelegateInstance?.popover.isShown)!) )
         {
             if let button = AppDelegateInstance?.statusItem.button
             {
@@ -183,7 +184,7 @@ struct ContentView: View
             if self.countdownTimerWrapper.timeRemaining == 0
             {
                 self.update()
-                self.showPopoverIfNotAlreadyShown()
+                self.togglePopover()
                 self.countdownTimerWrapper.timeRemaining = self.countdownTimerWrapper.interval
             }
         }

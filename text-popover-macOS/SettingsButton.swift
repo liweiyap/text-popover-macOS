@@ -43,16 +43,13 @@ struct SingleSettingsView<Content:View>: View
 
 struct AllSettingsView: View
 {
-    @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
-    @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
-    @EnvironmentObject var intervalMenuButtonNames: IntervalMenuButtonNames
-    
     var body: some View
     {
         VStack(alignment: .center)
         {
             SingleSettingsView(label: "Interval", view: IntervalSettingsView())
-            SingleSettingsView(label: "Additional Texts", view: AdditionalToggableTextSettingsView())
+            SingleSettingsView(label: "Activity on timeout", view: TimeoutActivitySettingsView())
+            SingleSettingsView(label: "Additional texts", view: AdditionalToggableTextSettingsView())
         }
     }
 }
@@ -61,6 +58,7 @@ struct SettingsButton: View
 {
     @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
+    @EnvironmentObject var timeoutActivityOptions: TimeoutActivityOptions
     @EnvironmentObject var intervalMenuButtonNames: IntervalMenuButtonNames
     
     @State var window: NSWindow?
@@ -75,6 +73,7 @@ struct SettingsButton: View
             let allSettingsView = AllSettingsView()
                 .environmentObject(self.countdownTimerWrapper)
                 .environmentObject(self.additionalToggableTextOptions)
+                .environmentObject(self.timeoutActivityOptions)
                 .environmentObject(self.intervalMenuButtonNames)
             
             if self.window != nil
