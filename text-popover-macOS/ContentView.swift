@@ -12,6 +12,8 @@ struct ElaborationButton: View
 {
     @Binding var elaborationIsViewed: Bool
     
+    static var ElaborationButtonDimensions: CGFloat = 20.0
+    
     var body: some View
     {
         Button(action: {
@@ -19,11 +21,25 @@ struct ElaborationButton: View
         })
         {
             Image(nsImage: NSImage(named: NSImage.infoName)!
-                .resized(to: NSSize(width: SettingsButton.SettingsButtonDimensions,
-                                    height: SettingsButton.SettingsButtonDimensions))!)
+                .resized(to: NSSize(width: ElaborationButton.ElaborationButtonDimensions,
+                                    height: ElaborationButton.ElaborationButtonDimensions))!)
             .renderingMode(.original)
         }
         .buttonStyle(PlainButtonStyle())
+    }
+}
+
+struct BackButtonStyle: ButtonStyle
+{
+    static var BackButtonDimensions: CGFloat = 16.0
+    
+    func makeBody(configuration: Self.Configuration) -> some View
+    {
+        configuration.label
+            .frame(width: BackButtonStyle.BackButtonDimensions,
+                   height: BackButtonStyle.BackButtonDimensions)
+            .background(configuration.isPressed ? Color.blue : Color(NSColor.controlColor))
+            .clipShape(Circle())
     }
 }
 
@@ -33,10 +49,16 @@ struct BackButton: View
     
     var body: some View
     {
-        Button("Back")
-        {
+        Button(action: {
             self.elaborationIsViewed.toggle()
+        })
+        {
+            Image(nsImage: NSImage(named: NSImage.leftFacingTriangleTemplateName)!
+                .resized(to: NSSize(width: BackButtonStyle.BackButtonDimensions / 2,
+                                    height: BackButtonStyle.BackButtonDimensions / 2))!)
+            .renderingMode(.original)
         }
+        .buttonStyle(BackButtonStyle())
     }
 }
 
@@ -161,17 +183,24 @@ struct ContentView: View
             {
                 HStack(alignment: .center)
                 {
-                    CloseButton()
-                    
-                    if additionalToggableTextOptions.displayElaboration
+                    /*
+                     * Manually adjust spacing, because, for some reason,
+                     * ElaborationButton by default lies more rightward than BackButton.
+                     */
+                    HStack(spacing: elaborationIsViewed ? 6 : 4)
                     {
-                        if elaborationIsViewed
+                        CloseButton()
+                        
+                        if additionalToggableTextOptions.displayElaboration
                         {
-                            BackButton(elaborationIsViewed: self.$elaborationIsViewed)
-                        }
-                        else
-                        {
-                            ElaborationButton(elaborationIsViewed: self.$elaborationIsViewed)
+                            if elaborationIsViewed
+                            {
+                                BackButton(elaborationIsViewed: self.$elaborationIsViewed)
+                            }
+                            else
+                            {
+                                ElaborationButton(elaborationIsViewed: self.$elaborationIsViewed)
+                            }
                         }
                     }
                     
