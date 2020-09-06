@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E216E6CE2503E9D1000E02B0 /* TimeoutActivitySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E216E6CD2503E9D1000E02B0 /* TimeoutActivitySettingsView.swift */; };
+		E216E6D2250473FD000E02B0 /* ContentViewToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E216E6D1250473FD000E02B0 /* ContentViewToolbar.swift */; };
 		E26056B624BCD49900B24D05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26056B524BCD49900B24D05 /* AppDelegate.swift */; };
 		E26056B824BCD49900B24D05 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26056B724BCD49900B24D05 /* ContentView.swift */; };
 		E26056BA24BCD49A00B24D05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E26056B924BCD49A00B24D05 /* Assets.xcassets */; };
@@ -60,6 +61,7 @@
 
 /* Begin PBXFileReference section */
 		E216E6CD2503E9D1000E02B0 /* TimeoutActivitySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeoutActivitySettingsView.swift; sourceTree = "<group>"; };
+		E216E6D1250473FD000E02B0 /* ContentViewToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewToolbar.swift; sourceTree = "<group>"; };
 		E26056B224BCD49900B24D05 /* text-popover-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "text-popover-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E26056B524BCD49900B24D05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E26056B724BCD49900B24D05 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			children = (
 				E26056B524BCD49900B24D05 /* AppDelegate.swift */,
 				E26056B724BCD49900B24D05 /* ContentView.swift */,
+				E216E6D1250473FD000E02B0 /* ContentViewToolbar.swift */,
 				E276B68A24D37EBE00FF0BAA /* SettingsButton.swift */,
 				E276B68C24DF0BE500FF0BAA /* IntervalSettingsView.swift */,
 				E216E6CD2503E9D1000E02B0 /* TimeoutActivitySettingsView.swift */,
@@ -347,6 +350,7 @@
 				E26056ED24BF2F2A00B24D05 /* EventMonitor.swift in Sources */,
 				E26056B824BCD49900B24D05 /* ContentView.swift in Sources */,
 				E26056B624BCD49900B24D05 /* AppDelegate.swift in Sources */,
+				E216E6D2250473FD000E02B0 /* ContentViewToolbar.swift in Sources */,
 				E216E6CE2503E9D1000E02B0 /* TimeoutActivitySettingsView.swift in Sources */,
 				E276B68B24D37EBE00FF0BAA /* SettingsButton.swift in Sources */,
 				E26056FC24C3AFCA00B24D05 /* DatabaseManagerWrapper.swift in Sources */,
