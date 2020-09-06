@@ -123,10 +123,6 @@ struct ContentViewToolbar: View
     {
         HStack(alignment: .center)
         {
-            /*
-             * Manually adjust spacing, because, for some reason,
-             * ElaborationButton by default lies more rightward than BackButton.
-             */
             CloseButton()
             
             if additionalToggableTextOptions.displayElaboration
