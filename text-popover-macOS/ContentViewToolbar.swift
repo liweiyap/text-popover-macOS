@@ -42,11 +42,14 @@ struct BackButton: View
         })
         {
             Image(nsImage: NSImage(named: NSImage.invalidDataFreestandingTemplateName)!
+                .tint(colour: NSColor.royalBlue)
                 .resized(to: NSSize(width: BackButton.BackButtonDimensions,
                                     height: BackButton.BackButtonDimensions))!)
             .renderingMode(.original)
         }
         .buttonStyle(PlainButtonStyle())
+        .background(Color.white)
+        .clipShape(Circle())
     }
 }
 
