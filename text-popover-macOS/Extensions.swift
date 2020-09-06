@@ -61,3 +61,10 @@ extension Color
     static let pastelOrange = Color(red: 255/255, green: 189/255, blue: 68/255, opacity: 1)
     static let malachite = Color(red: 0, green: 202/255, blue: 78/255, opacity: 1)
 }
+
+extension NSColor
+{
+    static let sunsetOrange = NSColor(red: 255/255, green: 96/255, blue: 92/255, alpha: 1)
+    static let pastelOrange = NSColor(red: 255/255, green: 189/255, blue: 68/255, alpha: 1)
+    static let malachite = NSColor(red: 0, green: 202/255, blue: 78/255, alpha: 1)
+}

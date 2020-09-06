@@ -42,27 +42,57 @@ struct BackButton: View
 
 struct CloseButtonStyle: ButtonStyle
 {
+    @Binding var isHovering: Bool
+    
+    static var CloseButtonDimensions: CGFloat = 12.0
+    static var CloseButtonColour = NSColor.sunsetOrange
+    
     func makeBody(configuration: Self.Configuration) -> some View
     {
-        configuration.label
-            .frame(width: 12, height: 12)
-            .foregroundColor(Color.black)
-            .background(Color.sunsetOrange)
-            .clipShape(Circle())
+        ZStack
+        {
+            configuration.label
+                .frame(width: CloseButtonStyle.CloseButtonDimensions,
+                       height: CloseButtonStyle.CloseButtonDimensions)
+                .background(Color(CloseButtonStyle.CloseButtonColour))
+                .clipShape(Circle())
+        }
+        .onHover
+        {
+            hover in
+
+            self.isHovering = hover
+        }
+        .overlay(HStack{
+            if self.isHovering
+            {
+                Image(nsImage: NSImage(named: NSImage.stopProgressTemplateName)!
+                    .resized(to: NSSize(width: CloseButtonStyle.CloseButtonDimensions / 2,
+                                        height: CloseButtonStyle.CloseButtonDimensions / 2))!)
+            }
+        })
     }
 }
 
 struct CloseButton: View
 {
+    @State var isHovering: Bool = false
+    
     var body: some View
     {
         Button(action: {
             NSApp.terminate(self)
         })
         {
-            Text("×")
+            /*
+             * For some reason, when `Text("×")` is used, there is some vspace above the ×?
+             */
+            Image(nsImage: NSImage(named: NSImage.stopProgressTemplateName)!
+                .tint(colour: CloseButtonStyle.CloseButtonColour)
+                .resized(to: NSSize(width: CloseButtonStyle.CloseButtonDimensions / 2,
+                                    height: CloseButtonStyle.CloseButtonDimensions / 2))!)
         }
-        .buttonStyle(CloseButtonStyle())
+        .buttonStyle(CloseButtonStyle(isHovering: $isHovering))
     }
 }
 
@@ -129,7 +159,7 @@ struct ContentView: View
             
             VStack
             {
-                HStack
+                HStack(alignment: .center)
                 {
                     CloseButton()
                     
