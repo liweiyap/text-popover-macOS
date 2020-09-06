@@ -29,23 +29,11 @@ struct ElaborationButton: View
     }
 }
 
-struct BackButtonStyle: ButtonStyle
-{
-    static var BackButtonDimensions: CGFloat = 16.0
-    
-    func makeBody(configuration: Self.Configuration) -> some View
-    {
-        configuration.label
-            .frame(width: BackButtonStyle.BackButtonDimensions,
-                   height: BackButtonStyle.BackButtonDimensions)
-            .background(configuration.isPressed ? Color.blue : Color(NSColor.controlColor))
-            .clipShape(Circle())
-    }
-}
-
 struct BackButton: View
 {
     @Binding var elaborationIsViewed: Bool
+    
+    static var BackButtonDimensions: CGFloat = 18.0
     
     var body: some View
     {
@@ -53,12 +41,12 @@ struct BackButton: View
             self.elaborationIsViewed.toggle()
         })
         {
-            Image(nsImage: NSImage(named: NSImage.leftFacingTriangleTemplateName)!
-                .resized(to: NSSize(width: BackButtonStyle.BackButtonDimensions / 2,
-                                    height: BackButtonStyle.BackButtonDimensions / 2))!)
+            Image(nsImage: NSImage(named: NSImage.invalidDataFreestandingTemplateName)!
+                .resized(to: NSSize(width: BackButton.BackButtonDimensions,
+                                    height: BackButton.BackButtonDimensions))!)
             .renderingMode(.original)
         }
-        .buttonStyle(BackButtonStyle())
+        .buttonStyle(PlainButtonStyle())
     }
 }
 
@@ -187,20 +175,17 @@ struct ContentView: View
                      * Manually adjust spacing, because, for some reason,
                      * ElaborationButton by default lies more rightward than BackButton.
                      */
-                    HStack(spacing: elaborationIsViewed ? 6 : 4)
+                    CloseButton()
+                    
+                    if additionalToggableTextOptions.displayElaboration
                     {
-                        CloseButton()
-                        
-                        if additionalToggableTextOptions.displayElaboration
+                        if elaborationIsViewed
                         {
-                            if elaborationIsViewed
-                            {
-                                BackButton(elaborationIsViewed: self.$elaborationIsViewed)
-                            }
-                            else
-                            {
-                                ElaborationButton(elaborationIsViewed: self.$elaborationIsViewed)
-                            }
+                            BackButton(elaborationIsViewed: self.$elaborationIsViewed)
+                        }
+                        else
+                        {
+                            ElaborationButton(elaborationIsViewed: self.$elaborationIsViewed)
                         }
                     }
                     
