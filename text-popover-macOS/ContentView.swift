@@ -21,8 +21,6 @@ struct ContentView: View
     @EnvironmentObject var timeoutActivityOptions: TimeoutActivityOptions
     @EnvironmentObject var backgroundOptions: BackgroundOptions
     
-    var AppDelegateInstance = AppDelegate.selfInstance
-    
     func update(_ randomDatabaseEntry: DatabaseManager.DataModel) -> Void
     {
         Expression = randomDatabaseEntry.Expression
@@ -42,7 +40,7 @@ struct ContentView: View
     
     func togglePopover() -> Void
     {
-        if ( self.timeoutActivityOptions.showPopoverOnTimeout && (!(AppDelegateInstance?.popover.isShown)!) )
+        if ( self.timeoutActivityOptions.showPopoverOnTimeout && (!(AppDelegate.selfInstance?.popover.isShown)!) )
         {
             if let button = AppDelegate.selfInstance?.statusItem.button
             {
