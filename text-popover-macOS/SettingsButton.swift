@@ -44,45 +44,6 @@ struct SingleSettingsView<Content:View>: View
     }
 }
 
-final class BackgroundOptions: ObservableObject
-{
-    @Published var darkMode: Bool = true
-    {
-        didSet
-        {
-            toggleBackgroundColour()
-        }
-    }
-    
-    func toggleBackgroundColour() -> Void
-    {
-        if (self.darkMode)
-        {
-            AppDelegate.selfInstance?.popover.appearance = NSAppearance(named: .darkAqua)
-        }
-        else
-        {
-            AppDelegate.selfInstance?.popover.appearance = NSAppearance(named: .aqua)
-        }
-    }
-}
-
-struct BackgroundSettingsView: View
-{
-    @EnvironmentObject var backgroundOptions: BackgroundOptions
-    
-    var body: some View
-    {
-        VStack(alignment: .leading)
-        {
-            Toggle(isOn: $backgroundOptions.darkMode)
-            {
-                Text("Dark mode")
-            }
-        }
-    }
-}
-
 struct AllSettingsView: View
 {
     var body: some View
