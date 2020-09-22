@@ -19,6 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
     let countdownTimerWrapper = CountdownTimerWrapper()
     let additionalToggableTextOptions = AdditionalToggableTextOptions()
     let timeoutActivityOptions = TimeoutActivityOptions()
+    let backgroundOptions = BackgroundOptions()
     
     static var selfInstance: AppDelegate?
     
@@ -45,9 +46,11 @@ class AppDelegate: NSObject, NSApplicationDelegate
             .environmentObject(countdownTimerWrapper)
             .environmentObject(additionalToggableTextOptions)
             .environmentObject(timeoutActivityOptions)
+            .environmentObject(backgroundOptions)
         
         popover.contentSize = NSSize(width: 400, height: 200)
         popover.contentViewController = NSHostingController(rootView: contentView)
+        backgroundOptions.toggleBackgroundColour()
         
         statusItem.button?.title = "Text-PopOver"
         statusItem.button?.target = self

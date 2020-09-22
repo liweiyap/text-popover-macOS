@@ -19,6 +19,7 @@ struct ContentView: View
     @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
     @EnvironmentObject var timeoutActivityOptions: TimeoutActivityOptions
+    @EnvironmentObject var backgroundOptions: BackgroundOptions
     
     var AppDelegateInstance = AppDelegate.selfInstance
     
@@ -43,10 +44,11 @@ struct ContentView: View
     {
         if ( self.timeoutActivityOptions.showPopoverOnTimeout && (!(AppDelegateInstance?.popover.isShown)!) )
         {
-            if let button = AppDelegateInstance?.statusItem.button
+            if let button = AppDelegate.selfInstance?.statusItem.button
             {
-                AppDelegateInstance?.popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
-                AppDelegateInstance?.eventMonitor?.start()
+                AppDelegate.selfInstance?.popover.show(relativeTo: button.bounds, of: button,
+                                                       preferredEdge: NSRectEdge.minY)
+                AppDelegate.selfInstance?.eventMonitor?.start()
             }
         }
     }

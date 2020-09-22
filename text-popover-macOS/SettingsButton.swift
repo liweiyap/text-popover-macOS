@@ -44,6 +44,45 @@ struct SingleSettingsView<Content:View>: View
     }
 }
 
+final class BackgroundOptions: ObservableObject
+{
+    @Published var darkMode: Bool = true
+    {
+        didSet
+        {
+            toggleBackgroundColour()
+        }
+    }
+    
+    func toggleBackgroundColour() -> Void
+    {
+        if (self.darkMode)
+        {
+            AppDelegate.selfInstance?.popover.appearance = NSAppearance(named: .darkAqua)
+        }
+        else
+        {
+            AppDelegate.selfInstance?.popover.appearance = NSAppearance(named: .aqua)
+        }
+    }
+}
+
+struct BackgroundSettingsView: View
+{
+    @EnvironmentObject var backgroundOptions: BackgroundOptions
+    
+    var body: some View
+    {
+        VStack(alignment: .leading)
+        {
+            Toggle(isOn: $backgroundOptions.darkMode)
+            {
+                Text("Dark mode")
+            }
+        }
+    }
+}
+
 struct AllSettingsView: View
 {
     var body: some View
@@ -55,6 +94,8 @@ struct AllSettingsView: View
             SingleSettingsView(label: "Activity on timeout", view: TimeoutActivitySettingsView())
             Divider()
             SingleSettingsView(label: "Additional texts", view: AdditionalToggableTextSettingsView())
+            Divider()
+            SingleSettingsView(label: "Background", view: BackgroundSettingsView())
         }
     }
 }
@@ -64,6 +105,7 @@ struct SettingsButton: View
     @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
     @EnvironmentObject var timeoutActivityOptions: TimeoutActivityOptions
+    @EnvironmentObject var backgroundOptions: BackgroundOptions
     @EnvironmentObject var intervalMenuButtonNames: IntervalMenuButtonNames
     
     @State var window: NSWindow?
@@ -79,6 +121,7 @@ struct SettingsButton: View
                 .environmentObject(self.countdownTimerWrapper)
                 .environmentObject(self.additionalToggableTextOptions)
                 .environmentObject(self.timeoutActivityOptions)
+                .environmentObject(self.backgroundOptions)
                 .environmentObject(self.intervalMenuButtonNames)
             
             if self.window != nil
