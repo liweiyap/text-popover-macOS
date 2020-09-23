@@ -113,7 +113,6 @@ struct ContentViewToolbar: View
 {
     @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
-    let intervalMenuButtonNames = IntervalMenuButtonNames()
     
     @Binding var elaborationIsViewed: Bool
     
@@ -145,7 +144,6 @@ struct ContentViewToolbar: View
             Text("\(String(format:"%02d",getTimeRemaining().hours)):\(String(format:"%02d",getTimeRemaining().minutes))")
 
             SettingsButton()
-            .environmentObject(intervalMenuButtonNames)
         }
     }
 }

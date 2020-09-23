@@ -20,6 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
     let additionalToggableTextOptions = AdditionalToggableTextOptions()
     let timeoutActivityOptions = TimeoutActivityOptions()
     let backgroundOptions = BackgroundOptions()
+    let intervalMenuButtonNames = IntervalMenuButtonNames()
     
     static var selfInstance: AppDelegate?
     
@@ -47,6 +48,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
             .environmentObject(additionalToggableTextOptions)
             .environmentObject(timeoutActivityOptions)
             .environmentObject(backgroundOptions)
+            .environmentObject(intervalMenuButtonNames)
         
         popover.contentSize = NSSize(width: 400, height: 200)
         popover.contentViewController = NSHostingController(rootView: contentView)
