@@ -19,6 +19,8 @@ struct ContentView: View
     @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
     @EnvironmentObject var timeoutActivityOptions: TimeoutActivityOptions
+    @EnvironmentObject var backgroundOptions: BackgroundOptions
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
     
     func update(_ randomDatabaseEntry: DatabaseManager.DataModel) -> Void
     {
@@ -53,6 +55,11 @@ struct ContentView: View
     func playSound() -> Void
     {
         timeoutActivityOptions.soundOnTimeout?.play()
+    }
+    
+    func toggleBackgroundColour() -> Void
+    {
+        backgroundOptions.darkMode = (colorScheme == .dark)
     }
     
     @ViewBuilder
@@ -91,6 +98,7 @@ struct ContentView: View
         }
         .onAppear
         {
+            toggleBackgroundColour()
             update()
         }
         .onReceive(countdownTimerWrapper.timer)
