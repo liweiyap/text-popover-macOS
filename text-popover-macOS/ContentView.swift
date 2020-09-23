@@ -19,7 +19,6 @@ struct ContentView: View
     @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
     @EnvironmentObject var timeoutActivityOptions: TimeoutActivityOptions
-    @EnvironmentObject var backgroundOptions: BackgroundOptions
     
     func update(_ randomDatabaseEntry: DatabaseManager.DataModel) -> Void
     {
