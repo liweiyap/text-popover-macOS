@@ -17,7 +17,7 @@ struct ElaborationButton: View
     var body: some View
     {
         Button(action: {
-            self.elaborationIsViewed.toggle()
+            elaborationIsViewed.toggle()
         })
         {
             Image(nsImage: NSImage(named: NSImage.infoName)!
@@ -38,7 +38,7 @@ struct BackButton: View
     var body: some View
     {
         Button(action: {
-            self.elaborationIsViewed.toggle()
+            elaborationIsViewed.toggle()
         })
         {
             Image(nsImage: NSImage(named: NSImage.invalidDataFreestandingTemplateName)!
@@ -60,7 +60,7 @@ struct CloseButtonStyle: ButtonStyle
     static var CloseButtonDimensions: CGFloat = 12.0
     static var CloseButtonColour = NSColor.sunsetOrange
     
-    func makeBody(configuration: Self.Configuration) -> some View
+    func makeBody(configuration: Configuration) -> some View
     {
         ZStack
         {
@@ -74,10 +74,10 @@ struct CloseButtonStyle: ButtonStyle
         {
             hover in
 
-            self.isHovering = hover
+            isHovering = hover
         }
         .overlay(HStack{
-            if self.isHovering
+            if isHovering
             {
                 Image(nsImage: NSImage(named: NSImage.stopProgressTemplateName)!
                     .resized(to: NSSize(width: CloseButtonStyle.CloseButtonDimensions / 2,
@@ -132,11 +132,11 @@ struct ContentViewToolbar: View
             {
                 if elaborationIsViewed
                 {
-                    BackButton(elaborationIsViewed: self.$elaborationIsViewed)
+                    BackButton(elaborationIsViewed: $elaborationIsViewed)
                 }
                 else
                 {
-                    ElaborationButton(elaborationIsViewed: self.$elaborationIsViewed)
+                    ElaborationButton(elaborationIsViewed: $elaborationIsViewed)
                 }
             }
             
@@ -145,7 +145,7 @@ struct ContentViewToolbar: View
             Text("\(String(format:"%02d",getTimeRemaining().hours)):\(String(format:"%02d",getTimeRemaining().minutes))")
 
             SettingsButton()
-            .environmentObject(self.intervalMenuButtonNames)
+            .environmentObject(intervalMenuButtonNames)
         }
     }
 }

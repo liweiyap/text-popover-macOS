@@ -40,7 +40,7 @@ struct ContentView: View
     
     func togglePopover() -> Void
     {
-        if ( self.timeoutActivityOptions.showPopoverOnTimeout && (!(AppDelegate.selfInstance?.popover.isShown)!) )
+        if ( timeoutActivityOptions.showPopoverOnTimeout && (!(AppDelegate.selfInstance?.popover.isShown)!) )
         {
             if let button = AppDelegate.selfInstance?.statusItem.button
             {
@@ -53,7 +53,7 @@ struct ContentView: View
     
     func playSound() -> Void
     {
-        self.timeoutActivityOptions.soundOnTimeout?.play()
+        timeoutActivityOptions.soundOnTimeout?.play()
     }
     
     @ViewBuilder
@@ -92,20 +92,20 @@ struct ContentView: View
         }
         .onAppear
         {
-            self.update()
+            update()
         }
-        .onReceive(self.countdownTimerWrapper.timer)
+        .onReceive(countdownTimerWrapper.timer)
         {
             time in
             
-            self.countdownTimerWrapper.timeRemaining -= 1
+            countdownTimerWrapper.timeRemaining -= 1
             
-            if self.countdownTimerWrapper.timeRemaining == 0
+            if countdownTimerWrapper.timeRemaining == 0
             {
-                self.update()
-                self.togglePopover()
-                self.playSound()
-                self.countdownTimerWrapper.timeRemaining = self.countdownTimerWrapper.interval
+                update()
+                togglePopover()
+                playSound()
+                countdownTimerWrapper.timeRemaining = countdownTimerWrapper.interval
             }
         }
     }  // body

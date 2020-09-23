@@ -20,7 +20,7 @@ final class BackgroundOptions: ObservableObject
     
     func toggleBackgroundColour() -> Void
     {
-        if (self.darkMode)
+        if (darkMode)
         {
             AppDelegate.selfInstance?.popover.appearance = NSAppearance(named: .darkAqua)
         }

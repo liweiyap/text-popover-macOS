@@ -20,12 +20,12 @@ struct SingleSettingsView<Content:View>: View
     init(label: String, view: Content)
     {
         self.label = label
-        self.labelWidthProportion = 3.0/8.0
+        labelWidthProportion = 3.0/8.0
         
         self.view = view
-        self.viewWidthProportion = 5.0/8.0
+        viewWidthProportion = 5.0/8.0
         
-        assert(abs(self.labelWidthProportion + self.viewWidthProportion - 1.0) < 1e-3,
+        assert(abs(labelWidthProportion + viewWidthProportion - 1.0) < 1e-3,
                "SingleSettingsView::init(): The sum of both labelWidthProportion and viewWidthProportion must be equal to 1.")
     }
     
@@ -79,19 +79,19 @@ struct SettingsButton: View
     {
         Button(action: {
             let allSettingsView = AllSettingsView()
-                .environmentObject(self.countdownTimerWrapper)
-                .environmentObject(self.additionalToggableTextOptions)
-                .environmentObject(self.timeoutActivityOptions)
-                .environmentObject(self.backgroundOptions)
-                .environmentObject(self.intervalMenuButtonNames)
+                .environmentObject(countdownTimerWrapper)
+                .environmentObject(additionalToggableTextOptions)
+                .environmentObject(timeoutActivityOptions)
+                .environmentObject(backgroundOptions)
+                .environmentObject(intervalMenuButtonNames)
             
-            if self.window != nil
+            if window != nil
             {
-                self.window!.close()
-                self.window = nil
+                window!.close()
+                window = nil
             }
             
-            self.window = NSWindow(
+            window = NSWindow(
                 contentRect: NSRect(x: 0, y: 0,
                                     width: SettingsButton.SettingsWindowWidth,
                                     height: SettingsButton.SettingsWindowHeight),
@@ -99,12 +99,12 @@ struct SettingsButton: View
                 backing: .buffered,
                 defer: false
             )
-            self.window!.center()
-            self.window!.setFrameAutosaveName("Settings")
-            self.window!.title = "Settings"
-            self.window!.contentView = NSHostingView(rootView: allSettingsView)
-            self.window!.orderFrontRegardless()
-            self.window!.isReleasedWhenClosed = false
+            window!.center()
+            window!.setFrameAutosaveName("Settings")
+            window!.title = "Settings"
+            window!.contentView = NSHostingView(rootView: allSettingsView)
+            window!.orderFrontRegardless()
+            window!.isReleasedWhenClosed = false
         })
         {
             /*

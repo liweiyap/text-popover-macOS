@@ -27,7 +27,7 @@ struct SoundVolumeSlider: View
         {
             _volume in
             
-            self.timeoutActivityOptions.soundOnTimeout?.volume = self.timeoutActivityOptions.soundVolume
+            timeoutActivityOptions.soundOnTimeout?.volume = timeoutActivityOptions.soundVolume
         })
     }
 }
@@ -67,8 +67,8 @@ struct TimeoutActivitySettingsView: View
             {
                 Button("No sound")
                 {
-                    self.timeoutActivityOptions.soundOnTimeout = nil
-                    self.timeoutActivityOptions.soundMenuButtonName = "No sound"
+                    timeoutActivityOptions.soundOnTimeout = nil
+                    timeoutActivityOptions.soundMenuButtonName = "No sound"
                 }
                 
                 ForEach(sounds, id: \.self)
@@ -77,9 +77,9 @@ struct TimeoutActivitySettingsView: View
                     
                     Button(sound)
                     {
-                        self.timeoutActivityOptions.soundOnTimeout = NSSound(named: sound)
-                        self.timeoutActivityOptions.soundOnTimeout?.volume = self.timeoutActivityOptions.soundVolume
-                        self.timeoutActivityOptions.soundMenuButtonName = sound
+                        timeoutActivityOptions.soundOnTimeout = NSSound(named: sound)
+                        timeoutActivityOptions.soundOnTimeout?.volume = timeoutActivityOptions.soundVolume
+                        timeoutActivityOptions.soundMenuButtonName = sound
                     }
                 }
             }

@@ -99,11 +99,11 @@ struct IntervalMenuItemButton: View
              * Current interval is already in progress. If same interval value is re-selected,
              * then don't stop current interval.
              */
-            if self.countdownTimerWrapper.interval != self.value
+            if countdownTimerWrapper.interval != value
             {
-                self.countdownTimerWrapper.interval = self.value
-                self.countdownTimerWrapper.timeRemaining = self.value
-                self.intervalMenuButtonNames.resetToDefault()
+                countdownTimerWrapper.interval = value
+                countdownTimerWrapper.timeRemaining = value
+                intervalMenuButtonNames.resetToDefault()
             }
             
             /*
@@ -114,7 +114,7 @@ struct IntervalMenuItemButton: View
              * "Minutes"|"Hours" rather than this numerical value, so we want to set it to this
              * numerical value.
              */
-            self.parentMenuButtonName = self.name
+            parentMenuButtonName = name
         }
     }
 }
@@ -131,7 +131,7 @@ struct IntervalMenuItemButtonArray: View
             interval in
             
             IntervalMenuItemButton(name: interval.name, value: interval.value,
-                                   parentMenuButtonName: self.$parentMenuButtonName)
+                                   parentMenuButtonName: $parentMenuButtonName)
         }
     }
 }
@@ -152,7 +152,7 @@ struct IntervalSettingsView: View
     {
         VStack(alignment: .leading)
         {
-            Text("\(String(format:"%02d",self.getTimeRemaining().hours)):\(String(format:"%02d",self.getTimeRemaining().minutes)) until next Expression")
+            Text("\(String(format:"%02d",getTimeRemaining().hours)):\(String(format:"%02d",getTimeRemaining().minutes)) until next Expression")
             
             MenuButton(intervalMenuButtonNames.minutesMenuButtonName)
             {
