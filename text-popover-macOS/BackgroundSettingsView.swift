@@ -10,6 +10,9 @@ import SwiftUI
 
 final class BackgroundOptions: ObservableObject
 {
+    /*
+     * We use Bool instead of ColorScheme because of Toggle in BackgroundSettingsView
+     */
     @Published var darkMode: Bool = true
     {
         didSet
