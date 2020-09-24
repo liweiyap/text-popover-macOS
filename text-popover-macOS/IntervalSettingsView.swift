@@ -162,6 +162,9 @@ struct IntervalSettingsView: View
             }
             .frame(width: IntervalSettingsView.intervalMenuButtonWidth)
             
+            /*
+             * Using MenuButton instead of Picker allows us to include Divider alongside items.
+             */
             MenuButton(intervalMenuButtonNames.hoursMenuButtonName)
             {
                 IntervalMenuItemButtonArray(

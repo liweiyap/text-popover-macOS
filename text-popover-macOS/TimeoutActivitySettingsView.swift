@@ -63,6 +63,10 @@ struct TimeoutActivitySettingsView: View
                 Text("Pop up on timeout")
             }
             
+            /*
+             * Using MenuButton instead of Picker allows us to distinguish between
+             * the action/callback/onReceive function of "No sound" and that of all the sounds.
+             */
             MenuButton(timeoutActivityOptions.soundMenuButtonName)
             {
                 Button("No sound")
