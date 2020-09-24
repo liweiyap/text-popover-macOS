@@ -141,7 +141,8 @@ struct ContentViewToolbar: View
             
             Spacer()
             
-            Text("\(String(format:"%02d",getTimeRemaining().hours)):\(String(format:"%02d",getTimeRemaining().minutes))")
+            Text("\(String(format:"%02d", getTimeRemaining().hours)):" +
+                 "\(String(format:"%02d", getTimeRemaining().minutes))")
 
             SettingsButton()
         }

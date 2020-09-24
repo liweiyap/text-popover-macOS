@@ -152,7 +152,8 @@ struct IntervalSettingsView: View
     {
         VStack(alignment: .leading)
         {
-            Text("\(String(format:"%02d",getTimeRemaining().hours)):\(String(format:"%02d",getTimeRemaining().minutes)) until next Expression")
+            Text("\(String(format:"%02d", getTimeRemaining().hours)):" +
+                 "\(String(format:"%02d", getTimeRemaining().minutes)) until next Expression")
             
             MenuButton(intervalMenuButtonNames.minutesMenuButtonName)
             {
