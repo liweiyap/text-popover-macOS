@@ -21,16 +21,12 @@ final class BackgroundOptions: ObservableObject
         }
     }
     
+    /*
+     * Changes the NSPopover arrow colour too
+     */
     func toggleBackgroundColour() -> Void
     {
-        if (darkMode)
-        {
-            AppDelegate.selfInstance?.popover.appearance = NSAppearance(named: .darkAqua)
-        }
-        else
-        {
-            AppDelegate.selfInstance?.popover.appearance = NSAppearance(named: .aqua)
-        }
+        AppDelegate.selfInstance?.popover.appearance = NSAppearance(named: darkMode ? .darkAqua : .aqua)
     }
 }
 
