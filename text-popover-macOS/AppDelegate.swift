@@ -52,7 +52,6 @@ class AppDelegate: NSObject, NSApplicationDelegate
         
         popover.contentSize = NSSize(width: 400, height: 200)
         popover.contentViewController = NSHostingController(rootView: contentView)
-        backgroundOptions.toggleBackgroundColour()
         
         statusItem.button?.title = "Text-PopOver"
         statusItem.button?.target = self
