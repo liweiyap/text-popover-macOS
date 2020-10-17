@@ -70,3 +70,63 @@ extension NSColor
     static let malachite = NSColor(red: 0, green: 202/255, blue: 78/255, alpha: 1)
     static let royalBlue = NSColor(red: 71/255, green: 94/255, blue: 213/255, alpha: 1)
 }
+
+struct NSViewAccessor<Content>: NSViewRepresentable where Content: View
+{
+    var onNSView: (NSView) -> Void
+    var viewBuilder: () -> Content
+
+    init(onNSViewAdded: @escaping (NSView) -> Void, @ViewBuilder viewBuilder: @escaping () -> Content)
+    {
+        self.onNSView = onNSViewAdded
+        self.viewBuilder = viewBuilder
+    }
+
+    func makeNSView(context: Context) -> NSViewAccessorHosting<Content>
+    {
+        return NSViewAccessorHosting(onNSView: onNSView, rootView: self.viewBuilder())
+    }
+
+    func updateNSView(_ nsView: NSViewAccessorHosting<Content>, context: Context)
+    {
+        nsView.rootView = self.viewBuilder()
+    }
+}
+
+class NSViewAccessorHosting<Content>: NSHostingView<Content> where Content: View
+{
+    var onNSView: ((NSView) -> Void)
+
+    init(onNSView: @escaping (NSView) -> Void, rootView: Content)
+    {
+        self.onNSView = onNSView
+        super.init(rootView: rootView)
+    }
+    
+    @objc required dynamic init?(coder aDecoder: NSCoder)
+    {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    required init(rootView: Content)
+    {
+        fatalError("init(rootView:) has not been implemented")
+    }
+
+    override func didAddSubview(_ subview: NSView)
+    {
+        super.didAddSubview(subview)
+        onNSView(subview)
+    }
+}
+
+extension View
+{
+    func onNSView(added: @escaping (NSView) -> Void) -> some View
+    {
+        NSViewAccessor(onNSViewAdded: added)
+        {
+            self
+        }
+    }
+}
