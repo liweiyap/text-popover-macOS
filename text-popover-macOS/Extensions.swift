@@ -71,6 +71,10 @@ extension NSColor
     static let royalBlue = NSColor(red: 71/255, green: 94/255, blue: 213/255, alpha: 1)
 }
 
+/*
+ * Helper struct to access the NSView of a View from SwiftUI
+ * Called in onNSView()
+ */
 struct NSViewAccessor<Content>: NSViewRepresentable where Content: View
 {
     var onNSView: (NSView) -> Void
@@ -93,6 +97,10 @@ struct NSViewAccessor<Content>: NSViewRepresentable where Content: View
     }
 }
 
+/*
+ * Helper class to access the NSView of a View from SwiftUI
+ * Required in NSViewAccessor
+ */
 class NSViewAccessorHosting<Content>: NSHostingView<Content> where Content: View
 {
     var onNSView: ((NSView) -> Void)
@@ -120,6 +128,9 @@ class NSViewAccessorHosting<Content>: NSHostingView<Content> where Content: View
     }
 }
 
+/*
+ * Access the NSView of a View from SwiftUI
+ */
 extension View
 {
     func onNSView(added: @escaping (NSView) -> Void) -> some View
