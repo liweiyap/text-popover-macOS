@@ -27,6 +27,9 @@ struct IntervalHashable: Hashable
     let value: Int
 }
 
+/*
+ * Base abstract class / Interface
+ */
 protocol Interval
 {
     func getIntervals() -> [IntervalHashable]
