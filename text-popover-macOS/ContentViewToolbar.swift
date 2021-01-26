@@ -12,7 +12,7 @@ struct ElaborationButton: View
 {
     @Binding var elaborationIsViewed: Bool
     
-    static var ElaborationButtonDimensions: CGFloat = 20.0
+    static let ElaborationButtonDimensions: CGFloat = 20.0
     
     var body: some View
     {
@@ -33,7 +33,7 @@ struct BackButton: View
 {
     @Binding var elaborationIsViewed: Bool
     
-    static var BackButtonDimensions: CGFloat = 18.0
+    static let BackButtonDimensions: CGFloat = 18.0
     
     var body: some View
     {
@@ -57,8 +57,8 @@ struct CloseButtonStyle: ButtonStyle
 {
     @Binding var isHovering: Bool
     
-    static var CloseButtonDimensions: CGFloat = 12.0
-    static var CloseButtonColour = NSColor.sunsetOrange
+    static let CloseButtonDimensions: CGFloat = 12.0
+    static let CloseButtonColour = NSColor.sunsetOrange
     
     func makeBody(configuration: Configuration) -> some View
     {

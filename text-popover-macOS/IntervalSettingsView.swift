@@ -144,7 +144,7 @@ struct IntervalSettingsView: View
     @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     @EnvironmentObject var intervalMenuButtonNames: IntervalMenuButtonNames
     
-    static var intervalMenuButtonWidth: CGFloat = 110.0
+    static let intervalMenuButtonWidth: CGFloat = 110.0
     
     func getTimeRemaining() -> CountdownTimerWrapper.Time
     {

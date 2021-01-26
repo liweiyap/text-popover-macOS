@@ -51,8 +51,8 @@ struct TimeoutActivitySettingsView: View
     let sounds = ["Basso", "Blow", "Bottle", "Frog", "Funk", "Glass", "Hero",
                   "Morse", "Ping", "Pop", "Purr", "Sosumi", "Submarine", "Tink"]
     
-    static var soundMenuButtonWidth: CGFloat = 110.0
-    static var soundVolumeSliderBoxWidth: CGFloat = 110.0
+    static let soundMenuButtonWidth: CGFloat = 110.0
+    static let soundVolumeSliderBoxWidth: CGFloat = 110.0
     
     var body: some View
     {

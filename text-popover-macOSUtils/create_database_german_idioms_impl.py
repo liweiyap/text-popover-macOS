@@ -204,4 +204,4 @@ if __name__ == "__main__":
 
         main()
     except IndexError:
-        print("ERROR: To run: `python3 create_table.py <database.db>")
+        print("ERROR: To run: `python3 create_database_german_idioms_impl.py <database.db>")

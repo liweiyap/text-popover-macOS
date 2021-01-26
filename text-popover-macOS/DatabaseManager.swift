@@ -8,20 +8,53 @@
 
 import SQLite
 
-class DatabaseManager
+struct DataModel: Hashable
+{
+    let Expression: String
+    let Explanation: String
+    let Elaboration: String
+}
+
+/*
+ * Base abstract class / Interface
+ */
+protocol DatabaseManager
+{
+    func getRandomDatabaseEntry() -> DataModel
+}
+
+final class DatabaseManagerGeneralIdiomsImpl: DatabaseManager
+{
+    var database_connection: Connection!
+    let database_table = Table("Idioms")
+    let expression = Expression<String>("Expression")
+    let explanation = Expression<String>("Explanation")
+    let elaboration = Expression<String>("Elaboration")
+    
+    var DatabaseEntryArray = [DataModel]()
+    
+    func getRandomDatabaseEntry() -> DataModel
+    {
+        let nEntries: Int = DatabaseEntryArray.count
+        
+        if nEntries > 0
+        {
+            let randomDatabaseEntryIdx = Int.random(in: 0 ... (nEntries-1))
+
+            return DatabaseEntryArray[randomDatabaseEntryIdx]
+        }
+        
+        return DataModel(Expression: "", Explanation: "", Elaboration: "")
+    }
+}
+
+final class DatabaseManagerGermanIdiomsImpl: DatabaseManager
 {
     var database_connection: Connection!
     let database_table = Table("Redewendungen")
     let expression = Expression<String>("Expression")
     let explanation = Expression<String>("Explanation")
     let elaboration = Expression<String>("Elaboration")
-    
-    struct DataModel: Hashable
-    {
-        let Expression: String
-        let Explanation: String
-        let Elaboration: String
-    }
     
     var DatabaseEntryArray = [DataModel]()
 
@@ -36,7 +69,7 @@ class DatabaseManager
     {
         let fileUrl = URL(fileURLWithPath: #file)
         let dirUrl = fileUrl.deletingLastPathComponent()
-        let python_script_path = dirUrl.path + "/../text-popover-macOSUtils/create_table.py"
+        let python_script_path = dirUrl.path + "/../text-popover-macOSUtils/create_database_german_idioms_impl.py"
         
         /*
          * Using Process() to find `which python3` returns only:

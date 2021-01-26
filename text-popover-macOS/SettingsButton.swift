@@ -9,7 +9,7 @@
 import SwiftUI
 import Combine
 
-struct SingleSettingsView<Content:View>: View
+struct SingleGeneralSettingView<Content:View>: View
 {
     var label: String
     var labelWidthProportion: CGFloat
@@ -26,7 +26,7 @@ struct SingleSettingsView<Content:View>: View
         viewWidthProportion = 5.0/8.0
         
         assert(abs(labelWidthProportion + viewWidthProportion - 1.0) < 1e-3,
-               "SingleSettingsView::init(): The sum of both labelWidthProportion and viewWidthProportion must be equal to 1.")
+               "SingleGeneralSettingView::init(): The sum of both labelWidthProportion and viewWidthProportion must be equal to 1.")
     }
     
     var body: some View
@@ -44,25 +44,167 @@ struct SingleSettingsView<Content:View>: View
     }
 }
 
-struct AllSettingsView: View
+struct GeneralSettingsView: View
 {
     var body: some View
     {
         VStack(alignment: .center)
         {
-            SingleSettingsView(label: "Interval", view: IntervalSettingsView())
+            SingleGeneralSettingView(label: "Interval", view: IntervalSettingsView())
             Divider()
-            SingleSettingsView(label: "Activity on timeout", view: TimeoutActivitySettingsView())
+            SingleGeneralSettingView(label: "Activity on timeout", view: TimeoutActivitySettingsView())
             Divider()
-            SingleSettingsView(label: "Additional texts", view: AdditionalToggableTextSettingsView())
+            SingleGeneralSettingView(label: "Additional texts", view: AdditionalToggableTextSettingsView())
             Divider()
-            SingleSettingsView(label: "Background", view: BackgroundSettingsView())
+            SingleGeneralSettingView(label: "Background", view: BackgroundSettingsView())
+            Spacer()
+        }
+    }
+}
+
+// https://www.notion.so/SwiftUI-on-macOS-Selection-in-List-c3c5505255db40488d55a16b08bad832
+struct DatabaseList: View
+{
+    @EnvironmentObject var databaseManagerWrapper: DatabaseManagerWrapper
+    @State var selectedString: String? = nil
+    
+    var body: some View
+    {
+        List(databaseManagerWrapper.getDatabaseNames(), id: \.self, selection: $selectedString)
+        {
+            list in
+            
+            Text(list)
+        }
+        /*
+         * The following allows List to be an alternative to
+         * `ScrollView(.vertical, showsIndicators: false) {}`
+         * by disabling scrollbars
+         */
+        .onNSView(added: {
+            nsView in
+
+            let root = nsView.subviews[0] as! NSScrollView
+
+            root.hasVerticalScroller = false
+            root.hasHorizontalScroller = false
+        })
+    }
+}
+
+struct DatabaseListToolbarButton: View
+{
+    static let DatabaseListToolbarButtonDimensions: CGFloat = 20.0
+    var imageName: String
+
+    var body: some View
+    {
+        Button(action: {})
+        {
+            Image(nsImage: NSImage(named: imageName)!)
+            .resizable()
+        }
+        .buttonStyle(BorderlessButtonStyle())
+        .frame(width: DatabaseListToolbarButton.DatabaseListToolbarButtonDimensions,
+               height: DatabaseListToolbarButton.DatabaseListToolbarButtonDimensions)
+    }
+}
+
+struct DatabaseListToolbar: View
+{
+    var body: some View
+    {
+        HStack(spacing: 0)
+        {
+            DatabaseListToolbarButton(imageName: NSImage.addTemplateName)
+            Divider()
+            DatabaseListToolbarButton(imageName: NSImage.removeTemplateName)
+            Divider()
+            Spacer()
+        }
+        .frame(height: DatabaseListToolbarButton.DatabaseListToolbarButtonDimensions)
+    }
+}
+
+struct DatabaseSelector: View
+{
+    var body: some View
+    {
+        VStack(spacing: 0)
+        {
+            DatabaseList()
+            DatabaseListToolbar()
+        }
+        .border(Color(NSColor.gridColor), width: 1)
+    }
+}
+
+struct AddNewDatabaseHelper: View
+{
+    var body: some View
+    {
+        HStack
+        {
+            Spacer()
+            VStack
+            {
+                Spacer()
+                Text("Click Add (+) to add a new Database.")
+                Spacer()
+            }
+            Spacer()
+        }
+        .font(Font.system(size: 15))
+        .background(Color(NSColor.unemphasizedSelectedContentBackgroundColor))
+        .cornerRadius(6)
+        .overlay(RoundedRectangle(cornerRadius: 6)
+                    .stroke(lineWidth: 1)
+                    .foregroundColor(Color(NSColor.gridColor)))
+    }
+}
+
+struct DatabaseSelectionView: View
+{
+    let centerSpacing: CGFloat = 20
+    
+    var body: some View
+    {
+        HStack(spacing: centerSpacing)
+        {
+            DatabaseSelector()
+            .frame(width: (CGFloat(SettingsButton.SettingsWindowWidth) - centerSpacing) * 3.0/10.0)
+            
+            AddNewDatabaseHelper()
+            .frame(width: (CGFloat(SettingsButton.SettingsWindowWidth) - centerSpacing) * 7.0/10.0)
+        }
+        .padding()
+    }
+}
+
+struct AllSettingsView: View
+{
+    var body: some View
+    {
+        TabView
+        {
+            GeneralSettingsView()
+            .tabItem
+            {
+                Text("General")
+            }
+            
+            DatabaseSelectionView()
+            .tabItem
+            {
+                Text("Databases")
+            }
         }
     }
 }
 
 struct SettingsButton: View
 {
+    @EnvironmentObject var databaseManagerWrapper: DatabaseManagerWrapper
     @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
     @EnvironmentObject var timeoutActivityOptions: TimeoutActivityOptions
@@ -71,14 +213,15 @@ struct SettingsButton: View
     
     @State var window: NSWindow?
     
-    static var SettingsButtonDimensions: Int = 20
-    static var SettingsWindowWidth: Int = 480
-    static var SettingsWindowHeight: Int = 300
+    static let SettingsButtonDimensions: Int = 20
+    static let SettingsWindowWidth: Int = 480
+    static let SettingsWindowHeight: Int = 330
     
     var body: some View
     {
         Button(action: {
             let allSettingsView = AllSettingsView()
+                .environmentObject(databaseManagerWrapper)
                 .environmentObject(countdownTimerWrapper)
                 .environmentObject(additionalToggableTextOptions)
                 .environmentObject(timeoutActivityOptions)

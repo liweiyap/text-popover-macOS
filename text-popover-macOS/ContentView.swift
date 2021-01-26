@@ -10,19 +10,19 @@ import SwiftUI
 
 struct ContentView: View
 {
-    @ObservedObject var databaseManagerWrapper = DatabaseManagerWrapper()
     @State var Expression: String = ""
     @State var Explanation: String = ""
     @State var Elaboration: String = ""
     @State var elaborationIsViewed: Bool = false
     
+    @EnvironmentObject var databaseManagerWrapper: DatabaseManagerWrapper
     @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
     @EnvironmentObject var timeoutActivityOptions: TimeoutActivityOptions
     @EnvironmentObject var backgroundOptions: BackgroundOptions
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     
-    func update(_ randomDatabaseEntry: DatabaseManager.DataModel) -> Void
+    func update(_ randomDatabaseEntry: DataModel) -> Void
     {
         Expression = randomDatabaseEntry.Expression
         Explanation = randomDatabaseEntry.Explanation
