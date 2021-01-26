@@ -15,12 +15,17 @@ final class DatabaseManagerWrapper: ObservableObject
         URL(fileURLWithPath: #file).deletingLastPathComponent().path +
         "/../text-popover-macOSUtils/german-idioms.db")
     
+    enum DatabaseManagerWrapperError: Error
+    {
+        case moreThanOneTableInDBFile
+    }
+    
     func getRandomDatabaseEntry() -> DataModel
     {
         return databaseManager.getRandomDatabaseEntry()
     }
     
-    func getDatabaseNames() -> [String]
+    func getDatabaseNames() throws -> [String]
     {
         var databases = [String]()
         
@@ -41,11 +46,20 @@ final class DatabaseManagerWrapper: ObservableObject
                     for tableNames in try databaseConnection.prepare(
                         "SELECT name FROM sqlite_master WHERE type='table';")
                     {
+                        if tableNames.count > 1
+                        {
+                            throw DatabaseManagerWrapperError.moreThanOneTableInDBFile
+                        }
+                        
                         if let tableName = tableNames[0]
                         {
                             databases.append(tableName as! String)
                         }
                     }
+                }
+                catch DatabaseManagerWrapperError.moreThanOneTableInDBFile
+                {
+                    print("DatabaseManagerWrapper::getDatabaseNames(): Reading of .db files with more than one table is not yet supported\n")
                 }
                 catch
                 {

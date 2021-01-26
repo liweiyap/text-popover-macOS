@@ -68,9 +68,21 @@ struct DatabaseList: View
     @EnvironmentObject var databaseManagerWrapper: DatabaseManagerWrapper
     @State var selectedString: String? = nil
     
+    func getDatabaseNames() -> [String]
+    {
+        do
+        {
+            return try databaseManagerWrapper.getDatabaseNames()
+        }
+        catch
+        {
+            return [String]()
+        }
+    }
+    
     var body: some View
     {
-        List(databaseManagerWrapper.getDatabaseNames(), id: \.self, selection: $selectedString)
+        List(getDatabaseNames(), id: \.self, selection: $selectedString)
         {
             list in
             
