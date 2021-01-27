@@ -25,7 +25,7 @@ final class DatabaseManagerWrapper: ObservableObject
         return databaseManager.getRandomDatabaseEntry()
     }
     
-    func getDatabaseNames() throws -> [String]
+    func getDatabaseNames() -> [String]
     {
         var databases = [String]()
         
@@ -59,11 +59,13 @@ final class DatabaseManagerWrapper: ObservableObject
                 }
                 catch DatabaseManagerWrapperError.moreThanOneTableInDBFile
                 {
-                    print("DatabaseManagerWrapper::getDatabaseNames(): Reading of .db files with more than one table is not yet supported\n")
+                    print("DatabaseManagerWrapper::getDatabaseNames(): Reading of .db files with more than one table is not yet supported. Please check \(databaseUrlString).\n")
+                    return databases
                 }
                 catch
                 {
                     print("DatabaseManagerWrapper::getDatabaseNames():\n", error)
+                    return databases
                 }
             }
         }

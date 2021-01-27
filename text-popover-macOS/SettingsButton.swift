@@ -62,31 +62,52 @@ struct GeneralSettingsView: View
     }
 }
 
-// https://www.notion.so/SwiftUI-on-macOS-Selection-in-List-c3c5505255db40488d55a16b08bad832
+struct DatabaseText: View
+{
+    let databaseName: String
+    let onTapActivity: () -> Void
+    
+    var body: some View
+    {
+        Text(databaseName)
+        /*
+         * Allows us to make the whole area (not just the text) tappable
+         */
+        .contentShape(Rectangle())
+        .onTapGesture {
+            onTapActivity()
+        }
+    }
+}
+
+/*
+ * https://www.notion.so/SwiftUI-on-macOS-Selection-in-List-c3c5505255db40488d55a16b08bad832
+ */
 struct DatabaseList: View
 {
     @EnvironmentObject var databaseManagerWrapper: DatabaseManagerWrapper
     @State var selectedString: String? = nil
     
-    func getDatabaseNames() -> [String]
-    {
-        do
-        {
-            return try databaseManagerWrapper.getDatabaseNames()
-        }
-        catch
-        {
-            return [String]()
-        }
-    }
-    
     var body: some View
     {
-        List(getDatabaseNames(), id: \.self, selection: $selectedString)
+        List(databaseManagerWrapper.getDatabaseNames(), id: \.self, selection: $selectedString)
         {
-            list in
+            databaseName in
             
-            Text(list)
+            /*
+             * `german-idioms.db` is the default database that will
+             * always be present in text-popover-macOSUtils/,
+             * hence the decision to hard-code the logic upon selection in DatabaseList
+             */
+            if (databaseName == "Redewendungen")
+            {
+                DatabaseText(databaseName: databaseName, onTapActivity:
+                {
+                    databaseManagerWrapper.databaseManager = DatabaseManagerGermanIdiomsImpl(
+                        URL(fileURLWithPath: #file).deletingLastPathComponent().path +
+                        "/../text-popover-macOSUtils/german-idioms.db")
+                })
+            }
         }
         /*
          * The following allows List to be an alternative to
