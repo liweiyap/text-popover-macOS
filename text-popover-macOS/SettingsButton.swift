@@ -62,7 +62,7 @@ struct GeneralSettingsView: View
     }
 }
 
-struct DatabaseText: View
+struct DatabaseListText: View
 {
     let databaseName: String
     let onTapActivity: () -> Void
@@ -101,11 +101,13 @@ struct DatabaseList: View
              */
             if (databaseName == "Redewendungen")
             {
-                DatabaseText(databaseName: databaseName, onTapActivity:
+                DatabaseListText(databaseName: databaseName, onTapActivity:
                 {
                     databaseManagerWrapper.databaseManager = DatabaseManagerGermanIdiomsImpl(
                         URL(fileURLWithPath: #file).deletingLastPathComponent().path +
                         "/../text-popover-macOSUtils/german-idioms.db")
+                    
+                    databaseManagerWrapper.nonDefaultDatabaseManagerSelected = false
                 })
             }
         }
@@ -145,14 +147,21 @@ struct DatabaseListToolbarButton: View
 
 struct DatabaseListToolbar: View
 {
+    @EnvironmentObject var databaseManagerWrapper: DatabaseManagerWrapper
+    
     var body: some View
     {
         HStack(spacing: 0)
         {
             DatabaseListToolbarButton(imageName: NSImage.addTemplateName)
+            
             Divider()
+            
             DatabaseListToolbarButton(imageName: NSImage.removeTemplateName)
+            .disabled(!databaseManagerWrapper.nonDefaultDatabaseManagerSelected)
+            
             Divider()
+            
             Spacer()
         }
         .frame(height: DatabaseListToolbarButton.DatabaseListToolbarButtonDimensions)

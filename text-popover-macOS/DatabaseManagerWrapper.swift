@@ -15,6 +15,8 @@ final class DatabaseManagerWrapper: ObservableObject
         URL(fileURLWithPath: #file).deletingLastPathComponent().path +
         "/../text-popover-macOSUtils/german-idioms.db")
     
+    @Published var nonDefaultDatabaseManagerSelected: Bool = false
+    
     enum DatabaseManagerWrapperError: Error
     {
         case moreThanOneTableInDBFile
