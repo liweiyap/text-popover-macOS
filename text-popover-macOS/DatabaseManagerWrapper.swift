@@ -16,6 +16,7 @@ final class DatabaseManagerWrapper: ObservableObject
         "/../text-popover-macOSUtils/german-idioms.db")
     
     @Published var nonDefaultDatabaseManagerSelected: Bool = false
+    @Published var toAddNewDatabase: Bool = false
     
     enum DatabaseManagerWrapperError: Error
     {

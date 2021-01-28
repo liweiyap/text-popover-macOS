@@ -130,11 +130,12 @@ struct DatabaseList: View
 struct DatabaseListToolbarButton: View
 {
     static let DatabaseListToolbarButtonDimensions: CGFloat = 20.0
-    var imageName: String
+    let imageName: String
+    let buttonActivity: () -> Void
 
     var body: some View
     {
-        Button(action: {})
+        Button(action: buttonActivity)
         {
             Image(nsImage: NSImage(named: imageName)!)
             .resizable()
@@ -142,6 +143,9 @@ struct DatabaseListToolbarButton: View
         .buttonStyle(BorderlessButtonStyle())
         .frame(width: DatabaseListToolbarButton.DatabaseListToolbarButtonDimensions,
                height: DatabaseListToolbarButton.DatabaseListToolbarButtonDimensions)
+        /*
+         * .contentShape(Rectangle()) does not work, for some reason
+         */
     }
 }
 
@@ -153,11 +157,14 @@ struct DatabaseListToolbar: View
     {
         HStack(spacing: 0)
         {
-            DatabaseListToolbarButton(imageName: NSImage.addTemplateName)
+            DatabaseListToolbarButton(imageName: NSImage.addTemplateName, buttonActivity: {
+                databaseManagerWrapper.toAddNewDatabase = true
+            })
+            .disabled(databaseManagerWrapper.toAddNewDatabase)
             
             Divider()
             
-            DatabaseListToolbarButton(imageName: NSImage.removeTemplateName)
+            DatabaseListToolbarButton(imageName: NSImage.removeTemplateName, buttonActivity: {})
             .disabled(!databaseManagerWrapper.nonDefaultDatabaseManagerSelected)
             
             Divider()
@@ -183,25 +190,69 @@ struct DatabaseSelector: View
 
 struct AddNewDatabaseHelper: View
 {
+    @EnvironmentObject var databaseManagerWrapper: DatabaseManagerWrapper
+    @State var newDatabaseName: String = ""
+    
     var body: some View
     {
-        HStack
+        GeometryReader
         {
-            Spacer()
-            VStack
+            geometry in
+            
+            HStack
             {
                 Spacer()
-                Text("Click Add (+) to add a new Database.")
+                
+                VStack
+                {
+                    Spacer()
+                    
+                    if databaseManagerWrapper.toAddNewDatabase
+                    {
+                        TextField("Name of database", text: $newDatabaseName)
+                        
+                        Spacer()
+                        .frame(height: geometry.size.height * 1.0/8.0)
+                        
+                        HStack
+                        {
+                            Button("Create")
+                            {
+                                if (newDatabaseName == "Redewendungen" || newDatabaseName == "german-idioms")
+                                {
+                                    print("Please select another name.")
+                                    return
+                                }
+                                
+                                print(URL(fileURLWithPath: #file).deletingLastPathComponent().path +
+                                        "/../text-popover-macOSUtils/" + newDatabaseName + ".db")
+
+                            }
+                            .disabled(newDatabaseName == "")
+                            
+                            Button("Back")
+                            {
+                                databaseManagerWrapper.toAddNewDatabase = false
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Text("Click Add (+) to add a new Database.")
+                    }
+                    
+                    Spacer()
+                }
+                
                 Spacer()
             }
-            Spacer()
+            .font(Font.system(size: 15))
+            .background(Color(NSColor.unemphasizedSelectedContentBackgroundColor))
+            .cornerRadius(6)
+            .overlay(RoundedRectangle(cornerRadius: 6)
+                        .stroke(lineWidth: 1)
+                        .foregroundColor(Color(NSColor.gridColor)))
         }
-        .font(Font.system(size: 15))
-        .background(Color(NSColor.unemphasizedSelectedContentBackgroundColor))
-        .cornerRadius(6)
-        .overlay(RoundedRectangle(cornerRadius: 6)
-                    .stroke(lineWidth: 1)
-                    .foregroundColor(Color(NSColor.gridColor)))
     }
 }
 
