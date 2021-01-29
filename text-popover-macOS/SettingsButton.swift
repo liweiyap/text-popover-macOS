@@ -86,11 +86,11 @@ struct DatabaseListText: View
 struct DatabaseList: View
 {
     @EnvironmentObject var databaseManagerWrapper: DatabaseManagerWrapper
-    @State var selectedString: String? = nil
+    @State var lastSelectedDatabaseManager: String? = "Redewendungen"
     
     var body: some View
     {
-        List(databaseManagerWrapper.getDatabaseNames(), id: \.self, selection: $selectedString)
+        List(databaseManagerWrapper.getDatabaseNames(), id: \.self, selection: $lastSelectedDatabaseManager)
         {
             databaseName in
             
@@ -103,11 +103,16 @@ struct DatabaseList: View
             {
                 DatabaseListText(databaseName: databaseName, onTapActivity:
                 {
-                    databaseManagerWrapper.databaseManager = DatabaseManagerGermanIdiomsImpl(
-                        URL(fileURLWithPath: #file).deletingLastPathComponent().path +
-                        "/../text-popover-macOSUtils/german-idioms.db")
+                    if lastSelectedDatabaseManager != databaseName
+                    {
+                        databaseManagerWrapper.databaseManager = DatabaseManagerGermanIdiomsImpl(
+                            URL(fileURLWithPath: #file).deletingLastPathComponent().path +
+                            "/../text-popover-macOSUtils/german-idioms.db")
+                        
+                        databaseManagerWrapper.nonDefaultDatabaseManagerSelected = false
+                    }
                     
-                    databaseManagerWrapper.nonDefaultDatabaseManagerSelected = false
+                    lastSelectedDatabaseManager = databaseName
                 })
             }
         }
