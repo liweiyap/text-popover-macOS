@@ -33,6 +33,78 @@ final class DatabaseManagerGeneralIdiomsImpl: DatabaseManager
     
     var DatabaseEntryArray = [DataModel]()
     
+    init(_ database_name: String)
+    {
+        createDatabase(database_name)
+//        connectDatabase(database_path)
+//        readDatabase()
+    }
+    
+    func createDatabase(_ database_name: String) -> Void
+    {
+        do
+        {
+            let database_path: String = URL(fileURLWithPath: #file).deletingLastPathComponent().path +
+                "/../text-popover-macOSUtils/" + database_name + ".db"
+            let database_connection = try Connection(database_path)
+            let database_table = Table(database_name)
+            
+            for tableNames in try database_connection.prepare("SELECT name FROM sqlite_master WHERE type='table';")
+            {
+                if tableNames.count > 0
+                {
+                    return
+                }
+            }
+            
+            try database_connection.run(database_table.create
+            {
+                table in
+                
+                table.column(expression)
+                table.column(explanation)
+                table.column(elaboration)
+            })
+        }
+        catch
+        {
+            print("DatabaseManagerGeneralIdiomsImpl::createDatabase():\n", error)
+        }
+    }
+    
+    func connectDatabase(_ database_path: String) -> Void
+    {
+        do
+        {
+            let database_connection = try Connection(database_path)
+            self.database_connection = database_connection
+        }
+        catch
+        {
+            print("DatabaseManagerGeneralIdiomsImpl::connectDatabase():\n", error)
+        }
+    }
+    
+    func readDatabase() -> Void
+    {
+        do
+        {
+            let database_entries = try database_connection.prepare(database_table)
+            
+            for entry in database_entries
+            {
+                DatabaseEntryArray.append(DataModel(
+                    Expression: entry[self.expression],
+                    Explanation: entry[self.explanation],
+                    Elaboration: entry[self.elaboration]))
+            }
+        }
+        catch
+        {
+            print("DatabaseManagerGeneralIdiomsImpl::readDatabase():\n", error)
+        }
+    }
+    
     func getRandomDatabaseEntry() -> DataModel
     {
         let nEntries: Int = DatabaseEntryArray.count
@@ -88,7 +160,7 @@ final class DatabaseManagerGermanIdiomsImpl: DatabaseManager
         }
         catch
         {
-            print("DatabaseManager::createDatabase():\n", error)
+            print("DatabaseManagerGermanIdiomsImpl::createDatabase():\n", error)
         }
     }
     
@@ -101,7 +173,7 @@ final class DatabaseManagerGermanIdiomsImpl: DatabaseManager
         }
         catch
         {
-            print("DatabaseManager::connectDatabase():\n", error)
+            print("DatabaseManagerGermanIdiomsImpl::connectDatabase():\n", error)
         }
     }
     
@@ -121,7 +193,7 @@ final class DatabaseManagerGermanIdiomsImpl: DatabaseManager
         }
         catch
         {
-            print("DatabaseManager::readDatabase():\n", error)
+            print("DatabaseManagerGermanIdiomsImpl::readDatabase():\n", error)
         }
     }
     

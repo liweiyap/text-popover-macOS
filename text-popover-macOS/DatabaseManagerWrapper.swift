@@ -11,7 +11,7 @@ import SQLite
 
 final class DatabaseManagerWrapper: ObservableObject
 {
-    @Published var databaseManager = DatabaseManagerGermanIdiomsImpl(
+    @Published var databaseManager: DatabaseManager = DatabaseManagerGermanIdiomsImpl(
         URL(fileURLWithPath: #file).deletingLastPathComponent().path +
         "/../text-popover-macOSUtils/german-idioms.db")
     

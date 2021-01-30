@@ -115,6 +115,20 @@ struct DatabaseList: View
                     lastSelectedDatabaseManager = databaseName
                 })
             }
+            else
+            {
+                DatabaseListText(databaseName: databaseName, onTapActivity:
+                {
+                    if lastSelectedDatabaseManager != databaseName
+                    {
+                        databaseManagerWrapper.databaseManager = DatabaseManagerGeneralIdiomsImpl(databaseName)
+                        
+                        databaseManagerWrapper.nonDefaultDatabaseManagerSelected = true
+                    }
+                    
+                    lastSelectedDatabaseManager = databaseName
+                })
+            }
         }
         /*
          * The following allows List to be an alternative to
@@ -229,14 +243,27 @@ struct AddNewDatabaseHelper: View
                                     return
                                 }
                                 
-                                print(URL(fileURLWithPath: #file).deletingLastPathComponent().path +
-                                        "/../text-popover-macOSUtils/" + newDatabaseName + ".db")
-
+                                let newDatabasePath: String = URL(fileURLWithPath: #file).deletingLastPathComponent().path +
+                                    "/../text-popover-macOSUtils/" + newDatabaseName + ".db"
+                                
+                                if (FileManager.default.fileExists(atPath: newDatabasePath))
+                                {
+                                    print("Database already exists.")
+                                    return
+                                }
+                                else
+                                {
+                                    databaseManagerWrapper.databaseManager = DatabaseManagerGeneralIdiomsImpl(newDatabaseName)
+                                }
+                                
+                                newDatabaseName = ""
+                                databaseManagerWrapper.toAddNewDatabase = false
                             }
                             .disabled(newDatabaseName == "")
                             
                             Button("Back")
                             {
+                                newDatabaseName = ""
                                 databaseManagerWrapper.toAddNewDatabase = false
                             }
                         }
