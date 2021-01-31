@@ -130,9 +130,12 @@ final class DatabaseManagerGermanIdiomsImpl: DatabaseManager
     
     var DatabaseEntryArray = [DataModel]()
 
-    init(_ database_path: String)
+    init(_ database_path: String, _ do_create_database: Bool)
     {
-        createDatabase(database_path)
+        if do_create_database
+        {
+            createDatabase(database_path)
+        }
         connectDatabase(database_path)
         readDatabase()
     }

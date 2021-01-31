@@ -13,9 +13,8 @@ final class DatabaseManagerWrapper: ObservableObject
 {
     @Published var databaseManager: DatabaseManager = DatabaseManagerGermanIdiomsImpl(
         URL(fileURLWithPath: #file).deletingLastPathComponent().path +
-        "/../text-popover-macOSUtils/german-idioms.db")
+        "/../text-popover-macOSUtils/german-idioms.db", true)
     
-    @Published var nonDefaultDatabaseManagerSelected: Bool = false
     @Published var toAddNewDatabase: Bool = false
     
     enum DatabaseManagerWrapperError: Error

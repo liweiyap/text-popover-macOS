@@ -86,7 +86,7 @@ struct DatabaseListText: View
 struct DatabaseList: View
 {
     @EnvironmentObject var databaseManagerWrapper: DatabaseManagerWrapper
-    @State var lastSelectedDatabaseManager: String? = "Redewendungen"
+    @Binding var lastSelectedDatabaseManager: String?
     
     var body: some View
     {
@@ -107,9 +107,7 @@ struct DatabaseList: View
                     {
                         databaseManagerWrapper.databaseManager = DatabaseManagerGermanIdiomsImpl(
                             URL(fileURLWithPath: #file).deletingLastPathComponent().path +
-                            "/../text-popover-macOSUtils/german-idioms.db")
-                        
-                        databaseManagerWrapper.nonDefaultDatabaseManagerSelected = false
+                            "/../text-popover-macOSUtils/german-idioms.db", false)
                     }
                     
                     lastSelectedDatabaseManager = databaseName
@@ -122,8 +120,6 @@ struct DatabaseList: View
                     if lastSelectedDatabaseManager != databaseName
                     {
                         databaseManagerWrapper.databaseManager = DatabaseManagerGeneralIdiomsImpl(databaseName)
-                        
-                        databaseManagerWrapper.nonDefaultDatabaseManagerSelected = true
                     }
                     
                     lastSelectedDatabaseManager = databaseName
@@ -171,6 +167,7 @@ struct DatabaseListToolbarButton: View
 struct DatabaseListToolbar: View
 {
     @EnvironmentObject var databaseManagerWrapper: DatabaseManagerWrapper
+    @Binding var lastSelectedDatabaseManager: String?
     
     var body: some View
     {
@@ -184,7 +181,7 @@ struct DatabaseListToolbar: View
             Divider()
             
             DatabaseListToolbarButton(imageName: NSImage.removeTemplateName, buttonActivity: {})
-            .disabled(!databaseManagerWrapper.nonDefaultDatabaseManagerSelected)
+            .disabled(lastSelectedDatabaseManager == "Redewendungen")
             
             Divider()
             
@@ -196,12 +193,14 @@ struct DatabaseListToolbar: View
 
 struct DatabaseSelector: View
 {
+    @Binding var lastSelectedDatabaseManager: String?
+    
     var body: some View
     {
         VStack(spacing: 0)
         {
-            DatabaseList()
-            DatabaseListToolbar()
+            DatabaseList(lastSelectedDatabaseManager: $lastSelectedDatabaseManager)
+            DatabaseListToolbar(lastSelectedDatabaseManager: $lastSelectedDatabaseManager)
         }
         .border(Color(NSColor.gridColor), width: 1)
     }
@@ -211,6 +210,12 @@ struct AddNewDatabaseHelper: View
 {
     @EnvironmentObject var databaseManagerWrapper: DatabaseManagerWrapper
     @State var newDatabaseName: String = ""
+    
+    @Binding var lastSelectedDatabaseManager: String?
+    @State var newDatabaseEntryExpression: String = ""
+    @State var newDatabaseEntryExplanation: String = ""
+    @State var newDatabaseEntryElaboration: String = ""
+    @State var oldDatabaseEntryExpression: String = ""
     
     var body: some View
     {
@@ -270,7 +275,28 @@ struct AddNewDatabaseHelper: View
                     }
                     else
                     {
-                        Text("Click Add (+) to add a new Database.")
+                        if lastSelectedDatabaseManager == "Redewendungen"
+                        {
+                            Text("Click Add (+) to add a new Database.")
+                        }
+                        else
+                        {
+                            Text("Add new entry to database \(lastSelectedDatabaseManager!):")
+                            TextField("Expression", text: $newDatabaseEntryExpression)
+                            TextField("Explanation", text: $newDatabaseEntryExplanation)
+                            TextField("Elaboration", text: $newDatabaseEntryElaboration)
+                            Button("Add")
+                            {
+                                
+                            }
+                            
+                            Text("Remove entry from database \(lastSelectedDatabaseManager!):")
+                            TextField("Expression", text: $oldDatabaseEntryExpression)
+                            Button("Remove")
+                            {
+                                
+                            }
+                        }
                     }
                     
                     Spacer()
@@ -290,16 +316,18 @@ struct AddNewDatabaseHelper: View
 
 struct DatabaseSelectionView: View
 {
+    @State var lastSelectedDatabaseManager: String? = "Redewendungen"
+    
     let centerSpacing: CGFloat = 20
     
     var body: some View
     {
         HStack(spacing: centerSpacing)
         {
-            DatabaseSelector()
+            DatabaseSelector(lastSelectedDatabaseManager: $lastSelectedDatabaseManager)
             .frame(width: (CGFloat(SettingsButton.SettingsWindowWidth) - centerSpacing) * 3.0/10.0)
             
-            AddNewDatabaseHelper()
+            AddNewDatabaseHelper(lastSelectedDatabaseManager: $lastSelectedDatabaseManager)
             .frame(width: (CGFloat(SettingsButton.SettingsWindowWidth) - centerSpacing) * 7.0/10.0)
         }
         .padding()
