@@ -85,12 +85,12 @@ struct DatabaseListText: View
  */
 struct DatabaseList: View
 {
-    @EnvironmentObject var databaseManagerWrapper: DatabaseManagerWrapper
-    @Binding var lastSelectedDatabaseManager: String?
+    @EnvironmentObject var databaseManager: DatabaseManager
+    @Binding var lastSelectedDatabase: String?
     
     var body: some View
     {
-        List(databaseManagerWrapper.getDatabaseNames(), id: \.self, selection: $lastSelectedDatabaseManager)
+        List(databaseManager.getDatabaseNames(), id: \.self, selection: $lastSelectedDatabase)
         {
             databaseName in
             
@@ -103,30 +103,30 @@ struct DatabaseList: View
             {
                 DatabaseListText(databaseName: databaseName, onTapActivity:
                 {
-                    if lastSelectedDatabaseManager != databaseName
+                    if lastSelectedDatabase != databaseName
                     {
                         print("New database selected: \(databaseName)")
-                        databaseManagerWrapper.databaseManager = DatabaseManagerGermanIdiomsImpl(
+                        databaseManager.database = DatabaseGermanIdiomsImpl(
                             URL(fileURLWithPath: #file).deletingLastPathComponent().path +
                             "/../text-popover-macOSUtils/german-idioms.db", false)
-                        databaseManagerWrapper.notifyDatabasesChanged()
+                        databaseManager.notifyDatabasesChanged()
                     }
                     
-                    lastSelectedDatabaseManager = databaseName
+                    lastSelectedDatabase = databaseName
                 })
             }
             else
             {
                 DatabaseListText(databaseName: databaseName, onTapActivity:
                 {
-                    if lastSelectedDatabaseManager != databaseName
+                    if lastSelectedDatabase != databaseName
                     {
                         print("New database selected: \(databaseName)")
-                        databaseManagerWrapper.databaseManager = DatabaseManagerGeneralIdiomsImpl(databaseName)
-                        databaseManagerWrapper.notifyDatabasesChanged()
+                        databaseManager.database = DatabaseGeneralIdiomsImpl(databaseName)
+                        databaseManager.notifyDatabasesChanged()
                     }
                     
-                    lastSelectedDatabaseManager = databaseName
+                    lastSelectedDatabase = databaseName
                 })
             }
         }
@@ -171,34 +171,34 @@ struct DatabaseListToolbarButton: View
 
 struct DatabaseListToolbar: View
 {
-    @EnvironmentObject var databaseManagerWrapper: DatabaseManagerWrapper
-    @Binding var lastSelectedDatabaseManager: String?
+    @EnvironmentObject var databaseManager: DatabaseManager
+    @Binding var lastSelectedDatabase: String?
     
     var body: some View
     {
         HStack(spacing: 0)
         {
             DatabaseListToolbarButton(imageName: NSImage.addTemplateName, buttonActivity: {
-                databaseManagerWrapper.toAddNewDatabase = true
+                databaseManager.toAddNewDatabase = true
             })
-            .disabled(databaseManagerWrapper.toAddNewDatabase)
+            .disabled(databaseManager.toAddNewDatabase)
             
             Divider()
             
             DatabaseListToolbarButton(imageName: NSImage.removeTemplateName, buttonActivity: {
-                if lastSelectedDatabaseManager != nil
+                if lastSelectedDatabase != nil
                 {
                     let oldDatabasePath: String = URL(fileURLWithPath: #file).deletingLastPathComponent().path +
-                        "/../text-popover-macOSUtils/" + lastSelectedDatabaseManager! + ".db"
+                        "/../text-popover-macOSUtils/" + lastSelectedDatabase! + ".db"
                     
                     do
                     {
-                        lastSelectedDatabaseManager = "Redewendungen"
+                        lastSelectedDatabase = "Redewendungen"
                         print("New database selected: Redewendungen")
-                        databaseManagerWrapper.databaseManager = DatabaseManagerGermanIdiomsImpl(
+                        databaseManager.database = DatabaseGermanIdiomsImpl(
                             URL(fileURLWithPath: #file).deletingLastPathComponent().path +
                             "/../text-popover-macOSUtils/german-idioms.db", false)
-                        databaseManagerWrapper.notifyDatabasesChanged()
+                        databaseManager.notifyDatabasesChanged()
                         try FileManager.default.removeItem(atPath: oldDatabasePath)
                     }
                     catch
@@ -207,7 +207,7 @@ struct DatabaseListToolbar: View
                     }
                 }
             })
-            .disabled(lastSelectedDatabaseManager == "Redewendungen")
+            .disabled(lastSelectedDatabase == "Redewendungen")
             
             Divider()
             
@@ -219,14 +219,14 @@ struct DatabaseListToolbar: View
 
 struct DatabaseSelector: View
 {
-    @Binding var lastSelectedDatabaseManager: String?
+    @Binding var lastSelectedDatabase: String?
     
     var body: some View
     {
         VStack(spacing: 0)
         {
-            DatabaseList(lastSelectedDatabaseManager: $lastSelectedDatabaseManager)
-            DatabaseListToolbar(lastSelectedDatabaseManager: $lastSelectedDatabaseManager)
+            DatabaseList(lastSelectedDatabase: $lastSelectedDatabase)
+            DatabaseListToolbar(lastSelectedDatabase: $lastSelectedDatabase)
         }
         .border(Color(NSColor.gridColor), width: 1)
     }
@@ -234,10 +234,10 @@ struct DatabaseSelector: View
 
 struct AddNewDatabaseHelper: View
 {
-    @EnvironmentObject var databaseManagerWrapper: DatabaseManagerWrapper
+    @EnvironmentObject var databaseManager: DatabaseManager
     @State var newDatabaseName: String = ""
     
-    @Binding var lastSelectedDatabaseManager: String?
+    @Binding var lastSelectedDatabase: String?
     @State var newDatabaseEntryExpression: String = ""
     @State var newDatabaseEntryExplanation: String = ""
     @State var newDatabaseEntryElaboration: String = ""
@@ -257,7 +257,7 @@ struct AddNewDatabaseHelper: View
                 {
                     Spacer()
                     
-                    if databaseManagerWrapper.toAddNewDatabase
+                    if databaseManager.toAddNewDatabase
                     {
                         TextField("Name of database", text: $newDatabaseName)
                         
@@ -284,37 +284,37 @@ struct AddNewDatabaseHelper: View
                                 }
                                 else
                                 {
-                                    databaseManagerWrapper.databaseManager = DatabaseManagerGeneralIdiomsImpl(newDatabaseName)
+                                    databaseManager.database = DatabaseGeneralIdiomsImpl(newDatabaseName)
                                 }
                                 
                                 newDatabaseName = ""
-                                databaseManagerWrapper.toAddNewDatabase = false
+                                databaseManager.toAddNewDatabase = false
                             }
                             .disabled(newDatabaseName == "")
                             
                             Button("Back")
                             {
                                 newDatabaseName = ""
-                                databaseManagerWrapper.toAddNewDatabase = false
+                                databaseManager.toAddNewDatabase = false
                             }
                         }
                     }
                     else
                     {
-                        if lastSelectedDatabaseManager == "Redewendungen"
+                        if lastSelectedDatabase == "Redewendungen"
                         {
                             Text("Click Add (+) to add a new Database.")
                         }
-                        else if lastSelectedDatabaseManager != nil
+                        else if lastSelectedDatabase != nil
                         {
-                            Text("Add new entry to database \(lastSelectedDatabaseManager!):")
+                            Text("Add new entry to database \(lastSelectedDatabase!):")
                             TextField("Expression", text: $newDatabaseEntryExpression)
                             TextField("Explanation", text: $newDatabaseEntryExplanation)
                             TextField("Elaboration", text: $newDatabaseEntryElaboration)
                             Button("Add")
                             {
-                                addRowToDatabase(databaseManagerWrapper.databaseManager,
-                                                 lastSelectedDatabaseManager!,
+                                addRowToDatabase(databaseManager.database,
+                                                 lastSelectedDatabase!,
                                                  DataModel(Expression: newDatabaseEntryExpression,
                                                            Explanation: newDatabaseEntryExplanation,
                                                            Elaboration: newDatabaseEntryElaboration))
@@ -323,24 +323,24 @@ struct AddNewDatabaseHelper: View
                                 newDatabaseEntryExplanation = ""
                                 newDatabaseEntryElaboration = ""
                                 
-                                if databaseManagerWrapper.getDatabaseEntryCount() == 1
+                                if databaseManager.getDatabaseEntryCount() == 1
                                 {
-                                    databaseManagerWrapper.notifyDatabasesChanged()
+                                    databaseManager.notifyDatabasesChanged()
                                 }
                             }
                             .disabled(newDatabaseEntryExpression == "")
                             
-                            Text("Remove entry from database \(lastSelectedDatabaseManager!):")
+                            Text("Remove entry from database \(lastSelectedDatabase!):")
                             TextField("Expression", text: $oldDatabaseEntryExpression)
                             Button("Remove")
                             {
-                                removeRowFromDatabase(databaseManagerWrapper.databaseManager,
-                                                      lastSelectedDatabaseManager!,
+                                removeRowFromDatabase(databaseManager.database,
+                                                      lastSelectedDatabase!,
                                                       oldDatabaseEntryExpression)
                                 
                                 oldDatabaseEntryExpression = ""
                                 
-                                databaseManagerWrapper.notifyDatabasesChanged()
+                                databaseManager.notifyDatabasesChanged()
                             }
                             .disabled(oldDatabaseEntryExpression == "")
                         }
@@ -363,7 +363,7 @@ struct AddNewDatabaseHelper: View
 
 struct DatabaseSelectionView: View
 {
-    @State var lastSelectedDatabaseManager: String? = "Redewendungen"
+    @State var lastSelectedDatabase: String? = "Redewendungen"
     
     let centerSpacing: CGFloat = 20
     
@@ -371,10 +371,10 @@ struct DatabaseSelectionView: View
     {
         HStack(spacing: centerSpacing)
         {
-            DatabaseSelector(lastSelectedDatabaseManager: $lastSelectedDatabaseManager)
+            DatabaseSelector(lastSelectedDatabase: $lastSelectedDatabase)
             .frame(width: (CGFloat(SettingsButton.SettingsWindowWidth) - centerSpacing) * 3.0/10.0)
             
-            AddNewDatabaseHelper(lastSelectedDatabaseManager: $lastSelectedDatabaseManager)
+            AddNewDatabaseHelper(lastSelectedDatabase: $lastSelectedDatabase)
             .frame(width: (CGFloat(SettingsButton.SettingsWindowWidth) - centerSpacing) * 7.0/10.0)
         }
         .padding()
@@ -404,7 +404,7 @@ struct AllSettingsView: View
 
 struct SettingsButton: View
 {
-    @EnvironmentObject var databaseManagerWrapper: DatabaseManagerWrapper
+    @EnvironmentObject var databaseManager: DatabaseManager
     @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
     @EnvironmentObject var timeoutActivityOptions: TimeoutActivityOptions
@@ -421,7 +421,7 @@ struct SettingsButton: View
     {
         Button(action: {
             let allSettingsView = AllSettingsView()
-                .environmentObject(databaseManagerWrapper)
+                .environmentObject(databaseManager)
                 .environmentObject(countdownTimerWrapper)
                 .environmentObject(additionalToggableTextOptions)
                 .environmentObject(timeoutActivityOptions)

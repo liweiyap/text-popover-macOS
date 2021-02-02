@@ -16,7 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
     let popover = NSPopover()
     var eventMonitor: EventMonitor?
     
-    let databaseManagerWrapper = DatabaseManagerWrapper()
+    let databaseManager = DatabaseManager()
     let countdownTimerWrapper = CountdownTimerWrapper()
     let additionalToggableTextOptions = AdditionalToggableTextOptions()
     let timeoutActivityOptions = TimeoutActivityOptions()
@@ -45,7 +45,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
         }
         
         let contentView = ContentView()
-            .environmentObject(databaseManagerWrapper)
+            .environmentObject(databaseManager)
             .environmentObject(countdownTimerWrapper)
             .environmentObject(additionalToggableTextOptions)
             .environmentObject(timeoutActivityOptions)

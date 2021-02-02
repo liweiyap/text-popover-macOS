@@ -15,7 +15,7 @@ struct ContentView: View
     @State var Elaboration: String = ""
     @State var elaborationIsViewed: Bool = false
     
-    @EnvironmentObject var databaseManagerWrapper: DatabaseManagerWrapper
+    @EnvironmentObject var databaseManager: DatabaseManager
     @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
     @EnvironmentObject var timeoutActivityOptions: TimeoutActivityOptions
@@ -31,10 +31,10 @@ struct ContentView: View
     
     func update() -> Void
     {
-        var randomDatabaseEntry = databaseManagerWrapper.getRandomDatabaseEntry()
+        var randomDatabaseEntry = databaseManager.getRandomDatabaseEntry()
         while (Expression == randomDatabaseEntry.Expression)
         {
-            randomDatabaseEntry = databaseManagerWrapper.getRandomDatabaseEntry()
+            randomDatabaseEntry = databaseManager.getRandomDatabaseEntry()
         }
         update(randomDatabaseEntry)
     }
@@ -115,7 +115,7 @@ struct ContentView: View
                 countdownTimerWrapper.timeRemaining = countdownTimerWrapper.interval
             }
         }
-        .onReceive(databaseManagerWrapper.databasesChanged)
+        .onReceive(databaseManager.databasesChanged)
         {
             _ in
             
