@@ -105,6 +105,7 @@ struct DatabaseList: View
                 {
                     if lastSelectedDatabaseManager != databaseName
                     {
+                        print("New database selected: \(databaseName)")
                         databaseManagerWrapper.databaseManager = DatabaseManagerGermanIdiomsImpl(
                             URL(fileURLWithPath: #file).deletingLastPathComponent().path +
                             "/../text-popover-macOSUtils/german-idioms.db", false)
@@ -119,6 +120,7 @@ struct DatabaseList: View
                 {
                     if lastSelectedDatabaseManager != databaseName
                     {
+                        print("New database selected: \(databaseName)")
                         databaseManagerWrapper.databaseManager = DatabaseManagerGeneralIdiomsImpl(databaseName)
                     }
                     
@@ -287,8 +289,17 @@ struct AddNewDatabaseHelper: View
                             TextField("Elaboration", text: $newDatabaseEntryElaboration)
                             Button("Add")
                             {
+                                addRowToDatabase(databaseManagerWrapper.databaseManager,
+                                                 lastSelectedDatabaseManager!,
+                                                 DataModel(Expression: newDatabaseEntryExpression,
+                                                           Explanation: newDatabaseEntryExplanation,
+                                                           Elaboration: newDatabaseEntryElaboration))
                                 
+                                newDatabaseEntryExpression = ""
+                                newDatabaseEntryExplanation = ""
+                                newDatabaseEntryElaboration = ""
                             }
+                            .disabled(newDatabaseEntryExpression == "")
                             
                             Text("Remove entry from database \(lastSelectedDatabaseManager!):")
                             TextField("Expression", text: $oldDatabaseEntryExpression)
@@ -296,6 +307,7 @@ struct AddNewDatabaseHelper: View
                             {
                                 
                             }
+                            .disabled(oldDatabaseEntryExpression == "")
                         }
                     }
                     

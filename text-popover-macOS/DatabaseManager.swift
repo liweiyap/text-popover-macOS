@@ -20,13 +20,51 @@ struct DataModel: Hashable
  */
 protocol DatabaseManager
 {
+    func createDatabase(_ database_path: String) -> Void
+    func connectDatabase(_ database_path: String) -> Void
+    func readDatabase() -> Void
     func getRandomDatabaseEntry() -> DataModel
+    func getDatabaseConnection() -> Connection!
+}
+
+/*
+ * SQLite cannot be imported into any .swift files that contain SwiftUI Views.
+ * (https://github.com/stephencelis/SQLite.swift/issues/980)
+ * Since I don't want DatabaseManagerGermanIdiomsImpl to have this function,
+ * I have no choice but to have this function as a stand-alone (outside a class/protocol)
+ * in this very file.
+ */
+func addRowToDatabase(_ databaseManager: DatabaseManager, _ databaseName: String, _ entry: DataModel) -> Void
+{
+    assert(databaseName != "Redewendungen",
+           "DatabaseManagerGermanIdiomsImpl designed to be non-editable by user.")
+    
+    let databaseTable = Table(databaseName)
+    let expression = Expression<String>("Expression")
+    let explanation = Expression<String>("Explanation")
+    let elaboration = Expression<String>("Elaboration")
+    
+    let row = databaseTable.insert(
+        expression <- entry.Expression,
+        explanation <- entry.Explanation,
+        elaboration <- entry.Elaboration)
+    
+    do
+    {
+        try databaseManager.getDatabaseConnection().run(row)
+        print("New entry with expression added to database \(databaseName).")
+        databaseManager.readDatabase()
+    }
+    catch
+    {
+        print("addRowToDatabase():\n", error)
+    }
 }
 
 final class DatabaseManagerGeneralIdiomsImpl: DatabaseManager
 {
     var database_connection: Connection!
-    let database_table = Table("Idioms")
+    let database_name: String
     let expression = Expression<String>("Expression")
     let explanation = Expression<String>("Explanation")
     let elaboration = Expression<String>("Elaboration")
@@ -35,9 +73,9 @@ final class DatabaseManagerGeneralIdiomsImpl: DatabaseManager
     
     init(_ database_name: String)
     {
+        self.database_name = database_name
         createDatabase(database_name)
-//        connectDatabase(database_path)
-//        readDatabase()
+        readDatabase()
     }
     
     func createDatabase(_ database_name: String) -> Void
@@ -46,7 +84,7 @@ final class DatabaseManagerGeneralIdiomsImpl: DatabaseManager
         {
             let database_path: String = URL(fileURLWithPath: #file).deletingLastPathComponent().path +
                 "/../text-popover-macOSUtils/" + database_name + ".db"
-            let database_connection = try Connection(database_path)
+            connectDatabase(database_path)
             let database_table = Table(database_name)
             
             for tableNames in try database_connection.prepare("SELECT name FROM sqlite_master WHERE type='table';")
@@ -89,7 +127,10 @@ final class DatabaseManagerGeneralIdiomsImpl: DatabaseManager
     {
         do
         {
+            let database_table = Table(database_name)
             let database_entries = try database_connection.prepare(database_table)
+            
+            DatabaseEntryArray.removeAll()
             
             for entry in database_entries
             {
@@ -117,6 +158,11 @@ final class DatabaseManagerGeneralIdiomsImpl: DatabaseManager
         }
         
         return DataModel(Expression: "", Explanation: "", Elaboration: "")
+    }
+    
+    func getDatabaseConnection() -> Connection!
+    {
+        return database_connection
     }
 }
 
@@ -212,5 +258,10 @@ final class DatabaseManagerGermanIdiomsImpl: DatabaseManager
         }
         
         return DataModel(Expression: "", Explanation: "", Elaboration: "")
+    }
+    
+    func getDatabaseConnection() -> Connection!
+    {
+        return database_connection
     }
 }
