@@ -162,6 +162,7 @@ struct DatabaseListToolbarButton: View
                height: DatabaseListToolbarButton.DatabaseListToolbarButtonDimensions)
         /*
          * .contentShape(Rectangle()) does not work, for some reason
+         * thus, we can't make the whole rectangular area outside the image tappable
          */
     }
 }
@@ -305,7 +306,11 @@ struct AddNewDatabaseHelper: View
                             TextField("Expression", text: $oldDatabaseEntryExpression)
                             Button("Remove")
                             {
+                                removeRowFromDatabase(databaseManagerWrapper.databaseManager,
+                                                      lastSelectedDatabaseManager!,
+                                                      oldDatabaseEntryExpression)
                                 
+                                oldDatabaseEntryExpression = ""
                             }
                             .disabled(oldDatabaseEntryExpression == "")
                         }

@@ -52,12 +52,48 @@ func addRowToDatabase(_ databaseManager: DatabaseManager, _ databaseName: String
     do
     {
         try databaseManager.getDatabaseConnection().run(row)
-        print("New entry with expression added to database \(databaseName).")
+        print("New entry added to database \(databaseName).")
         databaseManager.readDatabase()
     }
     catch
     {
         print("addRowToDatabase():\n", error)
+    }
+}
+
+/*
+ * SQLite cannot be imported into any .swift files that contain SwiftUI Views.
+ * (https://github.com/stephencelis/SQLite.swift/issues/980)
+ * Since I don't want DatabaseManagerGermanIdiomsImpl to have this function,
+ * I have no choice but to have this function as a stand-alone (outside a class/protocol)
+ * in this very file.
+ */
+func removeRowFromDatabase(_ databaseManager: DatabaseManager, _ databaseName: String, _ expr: String) -> Void
+{
+    assert(databaseName != "Redewendungen",
+           "DatabaseManagerGermanIdiomsImpl designed to be non-editable by user.")
+    
+    let databaseTable = Table(databaseName)
+    let expression = Expression<String>("Expression")
+    
+    do
+    {
+        _ = try databaseManager.getDatabaseConnection().prepare(databaseTable)
+        let databaseEntries = databaseTable.filter(expression == expr)
+        
+        if try databaseManager.getDatabaseConnection().scalar(databaseEntries.count) == 0
+        {
+            print("Entry not found in database \(databaseName).")
+            return
+        }
+        
+        try databaseManager.getDatabaseConnection().run(databaseEntries.delete())
+        print("Old entry removed from database \(databaseName).")
+        databaseManager.readDatabase()
+    }
+    catch
+    {
+        print("removeRowFromDatabase():\n", error)
     }
 }
 
