@@ -1,3 +1,7 @@
+# Tests
+text-popover-macOSTests/**
+text-popover-macOSUITests/**
+
 # Personal databases
 text-popover-macOSUtils/*.db
 

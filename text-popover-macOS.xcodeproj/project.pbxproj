@@ -27,6 +27,7 @@
 		E283C56624F0456F00E4E1CE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E283C56524F0456F00E4E1CE /* Extensions.swift */; };
 		E2A6CE6E25BF567100F28A8E /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E26056F324BF5C2200B24D05 /* SQLite.framework */; };
 		E2A6CE6F25BF567100F28A8E /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E26056F324BF5C2200B24D05 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E2AD86C725CA090A00B0A975 /* DatabaseSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AD86C625CA090A00B0A975 /* DatabaseSelectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		E276B68E24E1FF0C00FF0BAA /* AdditionalToggableTextSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalToggableTextSettingsView.swift; sourceTree = "<group>"; };
 		E283C56324EDD4B600E4E1CE /* CountdownTimerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimerWrapper.swift; sourceTree = "<group>"; };
 		E283C56524F0456F00E4E1CE /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E2AD86C625CA090A00B0A975 /* DatabaseSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseSelectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 				E216E6CD2503E9D1000E02B0 /* TimeoutActivitySettingsView.swift */,
 				E276B68E24E1FF0C00FF0BAA /* AdditionalToggableTextSettingsView.swift */,
 				E2396B56251AC2F10072111D /* BackgroundSettingsView.swift */,
+				E2AD86C625CA090A00B0A975 /* DatabaseSelectionView.swift */,
 				E283C56324EDD4B600E4E1CE /* CountdownTimerWrapper.swift */,
 				E26056F024BF372A00B24D05 /* Database.swift */,
 				E26056FB24C3AFCA00B24D05 /* DatabaseManager.swift */,
@@ -359,6 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2AD86C725CA090A00B0A975 /* DatabaseSelectionView.swift in Sources */,
 				E26056F124BF372A00B24D05 /* Database.swift in Sources */,
 				E26056ED24BF2F2A00B24D05 /* EventMonitor.swift in Sources */,
 				E26056B824BCD49900B24D05 /* ContentView.swift in Sources */,
