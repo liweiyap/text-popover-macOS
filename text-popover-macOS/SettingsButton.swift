@@ -109,6 +109,7 @@ struct DatabaseList: View
                         databaseManagerWrapper.databaseManager = DatabaseManagerGermanIdiomsImpl(
                             URL(fileURLWithPath: #file).deletingLastPathComponent().path +
                             "/../text-popover-macOSUtils/german-idioms.db", false)
+                        databaseManagerWrapper.notifyDatabasesChanged()
                     }
                     
                     lastSelectedDatabaseManager = databaseName
@@ -122,6 +123,7 @@ struct DatabaseList: View
                     {
                         print("New database selected: \(databaseName)")
                         databaseManagerWrapper.databaseManager = DatabaseManagerGeneralIdiomsImpl(databaseName)
+                        databaseManagerWrapper.notifyDatabasesChanged()
                     }
                     
                     lastSelectedDatabaseManager = databaseName

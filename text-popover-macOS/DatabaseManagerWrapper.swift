@@ -8,6 +8,7 @@
 
 import Foundation
 import SQLite
+import Combine
 
 final class DatabaseManagerWrapper: ObservableObject
 {
@@ -16,6 +17,13 @@ final class DatabaseManagerWrapper: ObservableObject
         "/../text-popover-macOSUtils/german-idioms.db", true)
     
     @Published var toAddNewDatabase: Bool = false
+    
+    let databasesChanged = PassthroughSubject<Void, Never>()
+    
+    func notifyDatabasesChanged() -> Void
+    {
+        databasesChanged.send()
+    }
     
     enum DatabaseManagerWrapperError: Error
     {

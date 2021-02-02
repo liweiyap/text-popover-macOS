@@ -115,6 +115,12 @@ struct ContentView: View
                 countdownTimerWrapper.timeRemaining = countdownTimerWrapper.interval
             }
         }
+        .onReceive(databaseManagerWrapper.databasesChanged)
+        {
+            _ in
+            
+            update()
+        }
     }  // body
 }
 
