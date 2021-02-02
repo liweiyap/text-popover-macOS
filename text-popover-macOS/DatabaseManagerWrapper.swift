@@ -35,6 +35,11 @@ final class DatabaseManagerWrapper: ObservableObject
         return databaseManager.getRandomDatabaseEntry()
     }
     
+    func getDatabaseEntryCount() -> Int
+    {
+        return databaseManager.getDatabaseEntryCount()
+    }
+    
     func getDatabaseNames() -> [String]
     {
         var databases = [String]()

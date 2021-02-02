@@ -185,7 +185,28 @@ struct DatabaseListToolbar: View
             
             Divider()
             
-            DatabaseListToolbarButton(imageName: NSImage.removeTemplateName, buttonActivity: {})
+            DatabaseListToolbarButton(imageName: NSImage.removeTemplateName, buttonActivity: {
+                if lastSelectedDatabaseManager != nil
+                {
+                    let oldDatabasePath: String = URL(fileURLWithPath: #file).deletingLastPathComponent().path +
+                        "/../text-popover-macOSUtils/" + lastSelectedDatabaseManager! + ".db"
+                    
+                    do
+                    {
+                        lastSelectedDatabaseManager = "Redewendungen"
+                        print("New database selected: Redewendungen")
+                        databaseManagerWrapper.databaseManager = DatabaseManagerGermanIdiomsImpl(
+                            URL(fileURLWithPath: #file).deletingLastPathComponent().path +
+                            "/../text-popover-macOSUtils/german-idioms.db", false)
+                        databaseManagerWrapper.notifyDatabasesChanged()
+                        try FileManager.default.removeItem(atPath: oldDatabasePath)
+                    }
+                    catch
+                    {
+                        print("DatabaseListToolbarButton.buttonActivity:\n", error)
+                    }
+                }
+            })
             .disabled(lastSelectedDatabaseManager == "Redewendungen")
             
             Divider()
@@ -284,7 +305,7 @@ struct AddNewDatabaseHelper: View
                         {
                             Text("Click Add (+) to add a new Database.")
                         }
-                        else
+                        else if lastSelectedDatabaseManager != nil
                         {
                             Text("Add new entry to database \(lastSelectedDatabaseManager!):")
                             TextField("Expression", text: $newDatabaseEntryExpression)
@@ -301,6 +322,11 @@ struct AddNewDatabaseHelper: View
                                 newDatabaseEntryExpression = ""
                                 newDatabaseEntryExplanation = ""
                                 newDatabaseEntryElaboration = ""
+                                
+                                if databaseManagerWrapper.getDatabaseEntryCount() == 1
+                                {
+                                    databaseManagerWrapper.notifyDatabasesChanged()
+                                }
                             }
                             .disabled(newDatabaseEntryExpression == "")
                             
@@ -313,6 +339,8 @@ struct AddNewDatabaseHelper: View
                                                       oldDatabaseEntryExpression)
                                 
                                 oldDatabaseEntryExpression = ""
+                                
+                                databaseManagerWrapper.notifyDatabasesChanged()
                             }
                             .disabled(oldDatabaseEntryExpression == "")
                         }

@@ -24,6 +24,7 @@ protocol DatabaseManager
     func connectDatabase(_ database_path: String) -> Void
     func readDatabase() -> Void
     func getRandomDatabaseEntry() -> DataModel
+    func getDatabaseEntryCount() -> Int
     func getDatabaseConnection() -> Connection!
 }
 
@@ -184,7 +185,7 @@ final class DatabaseManagerGeneralIdiomsImpl: DatabaseManager
     
     func getRandomDatabaseEntry() -> DataModel
     {
-        let nEntries: Int = DatabaseEntryArray.count
+        let nEntries: Int = getDatabaseEntryCount()
         
         if nEntries > 0
         {
@@ -194,6 +195,11 @@ final class DatabaseManagerGeneralIdiomsImpl: DatabaseManager
         }
         
         return DataModel(Expression: "", Explanation: "", Elaboration: "")
+    }
+    
+    func getDatabaseEntryCount() -> Int
+    {
+        return DatabaseEntryArray.count
     }
     
     func getDatabaseConnection() -> Connection!
@@ -284,7 +290,7 @@ final class DatabaseManagerGermanIdiomsImpl: DatabaseManager
     
     func getRandomDatabaseEntry() -> DataModel
     {
-        let nEntries: Int = DatabaseEntryArray.count
+        let nEntries: Int = getDatabaseEntryCount()
         
         if nEntries > 0
         {
@@ -294,6 +300,11 @@ final class DatabaseManagerGermanIdiomsImpl: DatabaseManager
         }
         
         return DataModel(Expression: "", Explanation: "", Elaboration: "")
+    }
+    
+    func getDatabaseEntryCount() -> Int
+    {
+        return DatabaseEntryArray.count
     }
     
     func getDatabaseConnection() -> Connection!
