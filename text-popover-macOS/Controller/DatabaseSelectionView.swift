@@ -60,6 +60,13 @@ struct DatabaseList: View
                     }
                     
                     lastSelectedDatabase = databaseName
+                    
+                    /*
+                     * Reset databaseManager.toRemoveOldDatabase in case it could not previously be reset,
+                     * which would have happened if we had previously clicked somewhere that caused
+                     * lastSelectedDatabase to be formerly nil
+                     */
+                    databaseManager.toRemoveOldDatabase = false
                 })
             }
             else
@@ -74,6 +81,13 @@ struct DatabaseList: View
                     }
                     
                     lastSelectedDatabase = databaseName
+                    
+                    /*
+                     * Reset databaseManager.toRemoveOldDatabase in case it could not previously be reset,
+                     * which would have happened if we had previously clicked somewhere that caused
+                     * lastSelectedDatabase to be formerly nil
+                     */
+                    databaseManager.toRemoveOldDatabase = false
                 })
             }
         }
@@ -133,28 +147,9 @@ struct DatabaseListToolbar: View
             Divider()
             
             DatabaseListToolbarButton(imageName: NSImage.removeTemplateName, buttonActivity: {
-                if lastSelectedDatabase != nil
-                {
-                    let oldDatabasePath: String = URL(fileURLWithPath: #file).deletingLastPathComponent().path +
-                        "/../../text-popover-macOSDatabaseFiles/" + lastSelectedDatabase! + ".db"
-                    
-                    do
-                    {
-                        lastSelectedDatabase = "Redewendungen"
-                        print("New database selected: Redewendungen")
-                        databaseManager.database = DatabaseGermanIdiomsImpl(
-                            URL(fileURLWithPath: #file).deletingLastPathComponent().path +
-                            "/../../text-popover-macOSDatabaseFiles/german-idioms.db", false)
-                        databaseManager.notifyDatabasesChanged()
-                        try FileManager.default.removeItem(atPath: oldDatabasePath)
-                    }
-                    catch
-                    {
-                        print("DatabaseListToolbarButton.buttonActivity:\n", error)
-                    }
-                }
+                databaseManager.toRemoveOldDatabase = true
             })
-            .disabled(lastSelectedDatabase == "Redewendungen")
+            .disabled((lastSelectedDatabase == nil) || (lastSelectedDatabase == "Redewendungen"))
             
             Divider()
             
@@ -193,44 +188,57 @@ struct DatabaseEntryAdderAndRemover: View
     {
         VStack
         {
-            Text("Add new entry to database \(lastSelectedDatabase!):")
-            TextField("Expression", text: $newDatabaseEntryExpression)
-            TextField("Explanation", text: $newDatabaseEntryExplanation)
-            TextField("Elaboration", text: $newDatabaseEntryElaboration)
-            Button("Add")
+            if ( (lastSelectedDatabase != nil) && (lastSelectedDatabase != "Redewendungen") )
             {
-                addRowToDatabase(databaseManager.database,
-                                 lastSelectedDatabase!,
-                                 DataModel(Expression: newDatabaseEntryExpression,
-                                           Explanation: newDatabaseEntryExplanation,
-                                           Elaboration: newDatabaseEntryElaboration))
-                
-                newDatabaseEntryExpression = ""
-                newDatabaseEntryExplanation = ""
-                newDatabaseEntryElaboration = ""
-                
-                if databaseManager.getDatabaseEntryCount() == 1
+                Text("Add new entry to database \(lastSelectedDatabase!):")
+                TextField("Expression", text: $newDatabaseEntryExpression)
+                TextField("Explanation", text: $newDatabaseEntryExplanation)
+                TextField("Elaboration", text: $newDatabaseEntryElaboration)
+                Button("Add")
                 {
-                    databaseManager.notifyDatabasesChanged()
+                    addRowToDatabase(databaseManager.database,
+                                     lastSelectedDatabase!,
+                                     DataModel(Expression: newDatabaseEntryExpression,
+                                               Explanation: newDatabaseEntryExplanation,
+                                               Elaboration: newDatabaseEntryElaboration))
+                    
+                    newDatabaseEntryExpression = ""
+                    newDatabaseEntryExplanation = ""
+                    newDatabaseEntryElaboration = ""
+                    
+                    if databaseManager.getDatabaseEntryCount() == 1
+                    {
+                        databaseManager.notifyDatabasesChanged()
+                    }
+                    
+                    /*
+                     * Just a precaution
+                     */
+                    databaseManager.toRemoveOldDatabase = false
                 }
-            }
-            .disabled(newDatabaseEntryExpression == "")
-            
-            Spacer()
-            
-            Text("Remove entry from database \(lastSelectedDatabase!):")
-            TextField("Expression", text: $oldDatabaseEntryExpression)
-            Button("Remove")
-            {
-                removeRowFromDatabase(databaseManager.database,
-                                      lastSelectedDatabase!,
-                                      oldDatabaseEntryExpression)
+                .disabled(newDatabaseEntryExpression == "")
                 
-                oldDatabaseEntryExpression = ""
+                Spacer()
                 
-                databaseManager.notifyDatabasesChanged()
+                Text("Remove entry from database \(lastSelectedDatabase!):")
+                TextField("Expression", text: $oldDatabaseEntryExpression)
+                Button("Remove")
+                {
+                    removeRowFromDatabase(databaseManager.database,
+                                          lastSelectedDatabase!,
+                                          oldDatabaseEntryExpression)
+                    
+                    oldDatabaseEntryExpression = ""
+                    
+                    databaseManager.notifyDatabasesChanged()
+                    
+                    /*
+                     * Just a precaution
+                     */
+                    databaseManager.toRemoveOldDatabase = false
+                }
+                .disabled(oldDatabaseEntryExpression == "")
             }
-            .disabled(oldDatabaseEntryExpression == "")
         }
     }
 }
@@ -288,6 +296,13 @@ struct DatabaseAdderAndRemover: View
                                 
                                 newDatabaseName = ""
                                 databaseManager.toAddNewDatabase = false
+                                
+                                /*
+                                 * Reset databaseManager.toRemoveOldDatabase in case it could not previously be reset,
+                                 * which would have happened if we had previously clicked somewhere that caused
+                                 * lastSelectedDatabase to be formerly nil
+                                 */
+                                databaseManager.toRemoveOldDatabase = false
                             }
                             .disabled(newDatabaseName == "")
                             
@@ -295,6 +310,53 @@ struct DatabaseAdderAndRemover: View
                             {
                                 newDatabaseName = ""
                                 databaseManager.toAddNewDatabase = false
+                                
+                                /*
+                                 * Reset databaseManager.toRemoveOldDatabase in case it could not previously be reset,
+                                 * which would have happened if we had previously clicked somewhere that caused
+                                 * lastSelectedDatabase to be formerly nil
+                                 */
+                                databaseManager.toRemoveOldDatabase = false
+                            }
+                        }
+                    }
+                    else if ( (databaseManager.toRemoveOldDatabase) &&
+                              (lastSelectedDatabase != nil) &&
+                              (lastSelectedDatabase != "Redewendungen") )
+                    {
+                        Text("Confirm deletion of database \(lastSelectedDatabase!)?")
+                        
+                        Spacer()
+                        .frame(height: geometry.size.height * 1.0/8.0)
+                        
+                        HStack
+                        {
+                            Button("Yes")
+                            {
+                                let oldDatabasePath: String = URL(fileURLWithPath: #file).deletingLastPathComponent().path +
+                                    "/../../text-popover-macOSDatabaseFiles/" + lastSelectedDatabase! + ".db"
+                                
+                                do
+                                {
+                                    lastSelectedDatabase = "Redewendungen"
+                                    print("New database selected: Redewendungen")
+                                    databaseManager.database = DatabaseGermanIdiomsImpl(
+                                        URL(fileURLWithPath: #file).deletingLastPathComponent().path +
+                                        "/../../text-popover-macOSDatabaseFiles/german-idioms.db", false)
+                                    databaseManager.notifyDatabasesChanged()
+                                    try FileManager.default.removeItem(atPath: oldDatabasePath)
+                                }
+                                catch
+                                {
+                                    print("DatabaseAdderAndRemover:\n", error)
+                                }
+                                
+                                databaseManager.toRemoveOldDatabase = false
+                            }
+                            
+                            Button("No")
+                            {
+                                databaseManager.toRemoveOldDatabase = false
                             }
                         }
                     }

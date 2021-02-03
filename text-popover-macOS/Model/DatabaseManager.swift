@@ -17,6 +17,7 @@ final class DatabaseManager: ObservableObject
         "/../../text-popover-macOSDatabaseFiles/german-idioms.db", true)
     
     @Published var toAddNewDatabase: Bool = false
+    @Published var toRemoveOldDatabase: Bool = false
     
     let databasesChanged = PassthroughSubject<Void, Never>()
     
