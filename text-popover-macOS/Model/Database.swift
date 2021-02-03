@@ -120,7 +120,7 @@ final class DatabaseGeneralIdiomsImpl: Database
         do
         {
             let database_path: String = URL(fileURLWithPath: #file).deletingLastPathComponent().path +
-                "/../text-popover-macOSUtils/" + database_name + ".db"
+                "/../../text-popover-macOSDatabaseFiles/" + database_name + ".db"
             connectDBFile(database_path)
             let database_table = Table(database_name)
             
@@ -232,7 +232,7 @@ final class DatabaseGermanIdiomsImpl: Database
     {
         let fileUrl = URL(fileURLWithPath: #file)
         let dirUrl = fileUrl.deletingLastPathComponent()
-        let python_script_path = dirUrl.path + "/../text-popover-macOSUtils/create_database_german_idioms_impl.py"
+        let python_script_path = dirUrl.path + "/../../text-popover-macOSDatabaseFiles/create_database_german_idioms_impl.py"
         
         /*
          * Using Process() to find `which python3` returns only:

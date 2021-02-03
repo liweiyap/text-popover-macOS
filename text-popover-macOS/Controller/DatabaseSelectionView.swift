@@ -43,7 +43,7 @@ struct DatabaseList: View
             
             /*
              * `german-idioms.db` is the default database that will
-             * always be present in text-popover-macOSUtils/,
+             * always be present in text-popover-macOSDatabaseFiles/,
              * hence the decision to hard-code the logic upon selection in DatabaseList
              */
             if (databaseName == "Redewendungen")
@@ -55,7 +55,7 @@ struct DatabaseList: View
                         print("New database selected: \(databaseName)")
                         databaseManager.database = DatabaseGermanIdiomsImpl(
                             URL(fileURLWithPath: #file).deletingLastPathComponent().path +
-                            "/../text-popover-macOSUtils/german-idioms.db", false)
+                            "/../../text-popover-macOSDatabaseFiles/german-idioms.db", false)
                         databaseManager.notifyDatabasesChanged()
                     }
                     
@@ -136,7 +136,7 @@ struct DatabaseListToolbar: View
                 if lastSelectedDatabase != nil
                 {
                     let oldDatabasePath: String = URL(fileURLWithPath: #file).deletingLastPathComponent().path +
-                        "/../text-popover-macOSUtils/" + lastSelectedDatabase! + ".db"
+                        "/../../text-popover-macOSDatabaseFiles/" + lastSelectedDatabase! + ".db"
                     
                     do
                     {
@@ -144,7 +144,7 @@ struct DatabaseListToolbar: View
                         print("New database selected: Redewendungen")
                         databaseManager.database = DatabaseGermanIdiomsImpl(
                             URL(fileURLWithPath: #file).deletingLastPathComponent().path +
-                            "/../text-popover-macOSUtils/german-idioms.db", false)
+                            "/../../text-popover-macOSDatabaseFiles/german-idioms.db", false)
                         databaseManager.notifyDatabasesChanged()
                         try FileManager.default.removeItem(atPath: oldDatabasePath)
                     }
@@ -222,7 +222,7 @@ struct AddNewDatabaseHelper: View
                                 }
                                 
                                 let newDatabasePath: String = URL(fileURLWithPath: #file).deletingLastPathComponent().path +
-                                    "/../text-popover-macOSUtils/" + newDatabaseName + ".db"
+                                    "/../../text-popover-macOSDatabaseFiles/" + newDatabaseName + ".db"
                                 
                                 if (FileManager.default.fileExists(atPath: newDatabasePath))
                                 {

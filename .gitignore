@@ -1,9 +1,12 @@
+# Preview Content
+text-popover-macOS/Preview Content/**
+
 # Tests
 text-popover-macOSTests/**
 text-popover-macOSUITests/**
 
 # Personal databases
-text-popover-macOSUtils/*.db
+text-popover-macOSDatabaseFiles/*.db
 
 .DS_Store
 

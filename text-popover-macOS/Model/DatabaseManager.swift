@@ -14,7 +14,7 @@ final class DatabaseManager: ObservableObject
 {
     @Published var database: Database = DatabaseGermanIdiomsImpl(
         URL(fileURLWithPath: #file).deletingLastPathComponent().path +
-        "/../text-popover-macOSUtils/german-idioms.db", true)
+        "/../../text-popover-macOSDatabaseFiles/german-idioms.db", true)
     
     @Published var toAddNewDatabase: Bool = false
     
@@ -46,7 +46,7 @@ final class DatabaseManager: ObservableObject
         
         let fileManager = FileManager.default
         let enumerator: FileManager.DirectoryEnumerator = fileManager.enumerator(
-            at: URL(string: URL(fileURLWithPath: #file).deletingLastPathComponent().path + "/../text-popover-macOSUtils")!,
+            at: URL(string: URL(fileURLWithPath: #file).deletingLastPathComponent().path + "/../../text-popover-macOSDatabaseFiles")!,
             includingPropertiesForKeys: nil,
             options: .skipsHiddenFiles)!
         

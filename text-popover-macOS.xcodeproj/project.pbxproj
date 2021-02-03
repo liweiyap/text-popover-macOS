@@ -151,19 +151,10 @@
 			isa = PBXGroup;
 			children = (
 				E26056B524BCD49900B24D05 /* AppDelegate.swift */,
-				E26056B724BCD49900B24D05 /* ContentView.swift */,
-				E216E6D1250473FD000E02B0 /* ContentViewToolbar.swift */,
-				E276B68A24D37EBE00FF0BAA /* SettingsButton.swift */,
-				E276B68C24DF0BE500FF0BAA /* IntervalSettingsView.swift */,
-				E216E6CD2503E9D1000E02B0 /* TimeoutActivitySettingsView.swift */,
-				E276B68E24E1FF0C00FF0BAA /* AdditionalToggableTextSettingsView.swift */,
-				E2396B56251AC2F10072111D /* BackgroundSettingsView.swift */,
-				E2AD86C625CA090A00B0A975 /* DatabaseSelectionView.swift */,
-				E283C56324EDD4B600E4E1CE /* CountdownTimerWrapper.swift */,
-				E26056F024BF372A00B24D05 /* Database.swift */,
-				E26056FB24C3AFCA00B24D05 /* DatabaseManager.swift */,
-				E26056EC24BF2F2A00B24D05 /* EventMonitor.swift */,
-				E283C56524F0456F00E4E1CE /* Extensions.swift */,
+				E2AD86E225CA2D4600B0A975 /* Model */,
+				E2AD86E525CA2F6E00B0A975 /* View */,
+				E2AD86E825CA2F8300B0A975 /* Controller */,
+				E2AD86ED25CA30A200B0A975 /* Utility */,
 				E26056B924BCD49A00B24D05 /* Assets.xcassets */,
 				E26056BE24BCD49A00B24D05 /* Main.storyboard */,
 				E26056C124BCD49A00B24D05 /* Info.plist */,
@@ -205,6 +196,47 @@
 				E26056F324BF5C2200B24D05 /* SQLite.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E2AD86E225CA2D4600B0A975 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E283C56324EDD4B600E4E1CE /* CountdownTimerWrapper.swift */,
+				E26056F024BF372A00B24D05 /* Database.swift */,
+				E26056FB24C3AFCA00B24D05 /* DatabaseManager.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E2AD86E525CA2F6E00B0A975 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E26056B724BCD49900B24D05 /* ContentView.swift */,
+				E216E6D1250473FD000E02B0 /* ContentViewToolbar.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E2AD86E825CA2F8300B0A975 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E276B68A24D37EBE00FF0BAA /* SettingsButton.swift */,
+				E276B68C24DF0BE500FF0BAA /* IntervalSettingsView.swift */,
+				E216E6CD2503E9D1000E02B0 /* TimeoutActivitySettingsView.swift */,
+				E276B68E24E1FF0C00FF0BAA /* AdditionalToggableTextSettingsView.swift */,
+				E2396B56251AC2F10072111D /* BackgroundSettingsView.swift */,
+				E2AD86C625CA090A00B0A975 /* DatabaseSelectionView.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E2AD86ED25CA30A200B0A975 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				E26056EC24BF2F2A00B24D05 /* EventMonitor.swift */,
+				E283C56524F0456F00E4E1CE /* Extensions.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -456,6 +488,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = text_popover_macOS/text_popover_macOS.entitlements;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -519,6 +552,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = text_popover_macOS/text_popover_macOS.entitlements;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -546,7 +580,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CODE_SIGN_ENTITLEMENTS = text_popover_macOS.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -575,7 +609,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CODE_SIGN_ENTITLEMENTS = text_popover_macOS.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -604,6 +638,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "text-popover-macOSTests/Info.plist";
@@ -625,6 +660,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "text-popover-macOSTests/Info.plist";
@@ -645,6 +681,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "text-popover-macOSUITests/Info.plist";
@@ -664,6 +701,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "text-popover-macOSUITests/Info.plist";
