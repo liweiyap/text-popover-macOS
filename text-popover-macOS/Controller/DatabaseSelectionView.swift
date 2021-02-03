@@ -179,16 +179,68 @@ struct DatabaseSelector: View
     }
 }
 
-struct AddNewDatabaseHelper: View
+struct DatabaseEntryAdderAndRemover: View
 {
     @EnvironmentObject var databaseManager: DatabaseManager
-    @State var newDatabaseName: String = ""
     
     @Binding var lastSelectedDatabase: String?
     @State var newDatabaseEntryExpression: String = ""
     @State var newDatabaseEntryExplanation: String = ""
     @State var newDatabaseEntryElaboration: String = ""
     @State var oldDatabaseEntryExpression: String = ""
+    
+    var body: some View
+    {
+        VStack
+        {
+            Text("Add new entry to database \(lastSelectedDatabase!):")
+            TextField("Expression", text: $newDatabaseEntryExpression)
+            TextField("Explanation", text: $newDatabaseEntryExplanation)
+            TextField("Elaboration", text: $newDatabaseEntryElaboration)
+            Button("Add")
+            {
+                addRowToDatabase(databaseManager.database,
+                                 lastSelectedDatabase!,
+                                 DataModel(Expression: newDatabaseEntryExpression,
+                                           Explanation: newDatabaseEntryExplanation,
+                                           Elaboration: newDatabaseEntryElaboration))
+                
+                newDatabaseEntryExpression = ""
+                newDatabaseEntryExplanation = ""
+                newDatabaseEntryElaboration = ""
+                
+                if databaseManager.getDatabaseEntryCount() == 1
+                {
+                    databaseManager.notifyDatabasesChanged()
+                }
+            }
+            .disabled(newDatabaseEntryExpression == "")
+            
+            Spacer()
+            
+            Text("Remove entry from database \(lastSelectedDatabase!):")
+            TextField("Expression", text: $oldDatabaseEntryExpression)
+            Button("Remove")
+            {
+                removeRowFromDatabase(databaseManager.database,
+                                      lastSelectedDatabase!,
+                                      oldDatabaseEntryExpression)
+                
+                oldDatabaseEntryExpression = ""
+                
+                databaseManager.notifyDatabasesChanged()
+            }
+            .disabled(oldDatabaseEntryExpression == "")
+        }
+    }
+}
+
+struct DatabaseAdderAndRemover: View
+{
+    @EnvironmentObject var databaseManager: DatabaseManager
+    @State var newDatabaseName: String = ""
+    
+    @Binding var lastSelectedDatabase: String?
     
     var body: some View
     {
@@ -254,42 +306,8 @@ struct AddNewDatabaseHelper: View
                         }
                         else if lastSelectedDatabase != nil
                         {
-                            Text("Add new entry to database \(lastSelectedDatabase!):")
-                            TextField("Expression", text: $newDatabaseEntryExpression)
-                            TextField("Explanation", text: $newDatabaseEntryExplanation)
-                            TextField("Elaboration", text: $newDatabaseEntryElaboration)
-                            Button("Add")
-                            {
-                                addRowToDatabase(databaseManager.database,
-                                                 lastSelectedDatabase!,
-                                                 DataModel(Expression: newDatabaseEntryExpression,
-                                                           Explanation: newDatabaseEntryExplanation,
-                                                           Elaboration: newDatabaseEntryElaboration))
-                                
-                                newDatabaseEntryExpression = ""
-                                newDatabaseEntryExplanation = ""
-                                newDatabaseEntryElaboration = ""
-                                
-                                if databaseManager.getDatabaseEntryCount() == 1
-                                {
-                                    databaseManager.notifyDatabasesChanged()
-                                }
-                            }
-                            .disabled(newDatabaseEntryExpression == "")
-                            
-                            Text("Remove entry from database \(lastSelectedDatabase!):")
-                            TextField("Expression", text: $oldDatabaseEntryExpression)
-                            Button("Remove")
-                            {
-                                removeRowFromDatabase(databaseManager.database,
-                                                      lastSelectedDatabase!,
-                                                      oldDatabaseEntryExpression)
-                                
-                                oldDatabaseEntryExpression = ""
-                                
-                                databaseManager.notifyDatabasesChanged()
-                            }
-                            .disabled(oldDatabaseEntryExpression == "")
+                            DatabaseEntryAdderAndRemover(lastSelectedDatabase: $lastSelectedDatabase)
+                            .font(.body)
                         }
                     }
                     
@@ -321,7 +339,7 @@ struct DatabaseSelectionView: View
             DatabaseSelector(lastSelectedDatabase: $lastSelectedDatabase)
             .frame(width: (CGFloat(SettingsButton.SettingsWindowWidth) - centerSpacing) * 3.0/10.0)
             
-            AddNewDatabaseHelper(lastSelectedDatabase: $lastSelectedDatabase)
+            DatabaseAdderAndRemover(lastSelectedDatabase: $lastSelectedDatabase)
             .frame(width: (CGFloat(SettingsButton.SettingsWindowWidth) - centerSpacing) * 7.0/10.0)
         }
         .padding()
