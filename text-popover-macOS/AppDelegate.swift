@@ -52,7 +52,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
             .environmentObject(backgroundOptions)
             .environmentObject(intervalMenuButtonNames)
         
-        popover.contentSize = NSSize(width: 400, height: 200)
+        popover.contentSize = NSSize(width: 425, height: 225)
         popover.contentViewController = NSHostingController(rootView: contentView)
         
         statusItem.button?.title = "Text-PopOver"

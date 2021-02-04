@@ -1,0 +1,1 @@
+This is the directory where all .db files used by the app are stored. All .db files can be created, modified, or deleted from within the app. There should not be any need for us to navigate to this directory in Finder and open the .db files whilst the app is running, or edit the .db files from outside the app altogether.

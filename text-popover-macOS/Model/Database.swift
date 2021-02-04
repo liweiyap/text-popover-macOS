@@ -69,7 +69,7 @@ func addRowToDatabase(_ database: Database, _ databaseName: String, _ entry: Dat
  * I have no choice but to have this function as a stand-alone (outside a class/protocol)
  * in this very file.
  */
-func removeRowFromDatabase(_ database: Database, _ databaseName: String, _ expr: String) -> Void
+func removeRowFromDatabase(_ database: Database, _ databaseName: String, _ expr: String) -> Int
 {
     assert(databaseName != "Redewendungen",
            "DatabaseGermanIdiomsImpl designed to be non-editable by user.")
@@ -85,16 +85,18 @@ func removeRowFromDatabase(_ database: Database, _ databaseName: String, _ expr:
         if try database.getDBFileConnection().scalar(databaseEntries.count) == 0
         {
             print("Entry not found in database \(databaseName).")
-            return
+            return -1
         }
         
         try database.getDBFileConnection().run(databaseEntries.delete())
         print("Old entry removed from database \(databaseName).")
         database.readDBFile()
+        return 0
     }
     catch
     {
         print("removeRowFromDatabase():\n", error)
+        return -1
     }
 }
 

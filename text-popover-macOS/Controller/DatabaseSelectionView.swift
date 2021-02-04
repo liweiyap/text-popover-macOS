@@ -18,9 +18,9 @@ struct DatabaseListText: View
     {
         Text(databaseName)
         /*
-         * Allows us to make the whole area (not just the text) tappable
+         * .contentShape(Rectangle()) does not work, for some reason
+         * thus, we can't make the whole rectangular area outside the text tappable
          */
-        .contentShape(Rectangle())
         .onTapGesture {
             onTapActivity()
         }
@@ -46,9 +46,9 @@ struct DatabaseList: View
              * always be present in text-popover-macOSDatabaseFiles/,
              * hence the decision to hard-code the logic upon selection in DatabaseList
              */
-            if (databaseName == "Redewendungen")
+            DatabaseListText(databaseName: databaseName, onTapActivity:
             {
-                DatabaseListText(databaseName: databaseName, onTapActivity:
+                if (databaseName == "Redewendungen")
                 {
                     if lastSelectedDatabase != databaseName
                     {
@@ -67,11 +67,8 @@ struct DatabaseList: View
                      * lastSelectedDatabase to be formerly nil
                      */
                     databaseManager.toRemoveOldDatabase = false
-                })
-            }
-            else
-            {
-                DatabaseListText(databaseName: databaseName, onTapActivity:
+                }
+                else
                 {
                     if lastSelectedDatabase != databaseName
                     {
@@ -88,9 +85,9 @@ struct DatabaseList: View
                      * lastSelectedDatabase to be formerly nil
                      */
                     databaseManager.toRemoveOldDatabase = false
-                })
+                }
             }
-        }
+        )}
         /*
          * The following allows List to be an alternative to
          * `ScrollView(.vertical, showsIndicators: false) {}`
@@ -224,13 +221,16 @@ struct DatabaseEntryAdderAndRemover: View
                 TextField("Expression", text: $oldDatabaseEntryExpression)
                 Button("Remove")
                 {
-                    removeRowFromDatabase(databaseManager.database,
-                                          lastSelectedDatabase!,
-                                          oldDatabaseEntryExpression)
+                    let errNo: Int = removeRowFromDatabase(databaseManager.database,
+                                                           lastSelectedDatabase!,
+                                                           oldDatabaseEntryExpression)
                     
                     oldDatabaseEntryExpression = ""
                     
-                    databaseManager.notifyDatabasesChanged()
+                    if errNo == 0
+                    {
+                        databaseManager.notifyDatabasesChanged()
+                    }
                     
                     /*
                      * Just a precaution

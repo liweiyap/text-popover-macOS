@@ -14,6 +14,7 @@ struct ContentView: View
     @State var Explanation: String = ""
     @State var Elaboration: String = ""
     @State var elaborationIsViewed: Bool = false
+    let displayTextFontStyle: String = "Papyrus"
     
     @EnvironmentObject var databaseManager: DatabaseManager
     @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
@@ -72,22 +73,26 @@ struct ContentView: View
             VStack
             {
                 ContentViewToolbar(elaborationIsViewed: $elaborationIsViewed)
+                .font(.custom(displayTextFontStyle, size: 15))
                 
                 Spacer()
                 
                 if elaborationIsViewed
                 {
                     Text(Elaboration)
+                    .font(.custom(displayTextFontStyle, size: 10))
                 }
                 else
                 {
                     Text(Expression)
+                    .font(.custom(displayTextFontStyle, size: 15))
                     
                     Spacer()
                     
                     if additionalToggableTextOptions.displayExplanation
                     {
                         Text(Explanation)
+                        .font(.custom(displayTextFontStyle, size: 12))
                     }
                 }
                 
