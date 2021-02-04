@@ -76,6 +76,11 @@ class AppDelegate: NSObject, NSApplicationDelegate
             }
         }
         eventMonitor?.start()
+        
+        DistributedNotificationCenter.default.addObserver(self,
+                                                          selector: #selector(systemInterfaceModeChanged(sender:)),
+                                                          name: NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification"),
+                                                          object: nil)
     }
 
     func applicationWillTerminate(_ aNotification: Notification)
@@ -98,5 +103,10 @@ class AppDelegate: NSObject, NSApplicationDelegate
                 eventMonitor?.start()
             }
         }
+    }
+    
+    @objc func systemInterfaceModeChanged(sender: NSNotification)
+    {
+        backgroundOptions.darkMode = !backgroundOptions.darkMode
     }
 }
