@@ -61,23 +61,61 @@ struct GeneralSettingsView: View
     }
 }
 
-struct AllSettingsView: View
+struct AuthorView: View
 {
+    @EnvironmentObject var backgroundOptions: BackgroundOptions
+    
     var body: some View
     {
-        TabView
+        VStack
         {
+            if backgroundOptions.darkMode
+            {
+                Image("logo-grey-background-black")
+                .resizable()
+                .scaledToFit()
+            }
+            else
+            {
+                Image("logo-black-background-grey")
+                .resizable()
+                .scaledToFit()
+            }
+            
+            Text("Made with ❤️. Copyright © 2021 Li-Wei Yap")
+            
+            Spacer()
+        }
+    }
+}
+
+struct AllSettingsView: View
+{
+    @State var defaultViewIdx = 1
+    
+    var body: some View
+    {
+        TabView(selection: $defaultViewIdx)
+        {
+            AuthorView()
+            .tabItem{
+                Text("Author")
+            }
+            .tag(0)
+            
             GeneralSettingsView()
             .tabItem
             {
                 Text("General")
             }
+            .tag(1)
             
             DatabaseSelectionView()
             .tabItem
             {
                 Text("Databases")
             }
+            .tag(2)
         }
     }
 }
