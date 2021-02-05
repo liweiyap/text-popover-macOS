@@ -55,7 +55,11 @@ class AppDelegate: NSObject, NSApplicationDelegate
         popover.contentSize = NSSize(width: 425, height: 225)
         popover.contentViewController = NSHostingController(rootView: contentView)
         
-        statusItem.button?.title = "Text-PopOver"
+        /*
+         * cannot resize NSImage using resized() from Extensions.swift,
+         * because the whole graphics state of the image is saved
+         */
+        statusItem.button?.image = NSImage(named:NSImage.Name("StatusBarButtonImage"))
         statusItem.button?.target = self
         statusItem.button?.action = #selector(togglePopover(_:))
         
