@@ -11,10 +11,9 @@ If the .db files are edited whilst the app is still running, it might cause the 
 
 Note: the default database `german-idioms.db` is always generated anew every time the app is started. The title of its table is "Redewendungen". Do __not__ change it.
 
-## `run_create_database_german_idioms_impl.sh`
+## `create_database_german_idioms_impl.py`
 
-This script is called from within the app to create the default database `german-idioms.db` using `create_database_german_idioms_impl.py`. Before running the app, make sure to first change the value of `EXTERNAL_PYTHON_EXEC` in the script to the correct path to your Python executable.
+This script is called from within the app to create the default database `german-idioms.db`. Do __not__ remove!!
 
-To check the correct path, run `which python3` on the Terminal (i.e. from outside Xcode).
-
-Make sure that your Python executable has already had the library [`Beautiful Soup`](https://pypi.org/project/beautifulsoup4/) installed.
+Make sure that you already have the library [`Beautiful Soup`](https://pypi.org/project/beautifulsoup4/) installed.
+To check the path to your Python executable, run `which python3` on the Terminal (i.e. from outside Xcode).

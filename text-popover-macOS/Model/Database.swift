@@ -219,6 +219,11 @@ final class DatabaseGermanIdiomsImpl: Database
     let elaboration = Expression<String>("Elaboration")
     
     var DatabaseEntryArray = [DataModel]()
+    
+    enum DatabaseGermanIdiomsImplError: Error
+    {
+        case PythonNotFound
+    }
 
     init(_ database_path: String, _ do_create_database: Bool)
     {
@@ -232,20 +237,40 @@ final class DatabaseGermanIdiomsImpl: Database
     
     func createDBFile(_ database_path: String) -> Void
     {
-        let fileUrl = URL(fileURLWithPath: #file)
-        let dirUrl = fileUrl.deletingLastPathComponent()
-        
-        let python_script_path = dirUrl.path + "/../../text-popover-macOSDatabaseFiles/create_database_german_idioms_impl.py"
-        let bash_script_path = dirUrl.path + "/../../text-popover-macOSDatabaseFiles/run_create_database_german_idioms_impl.sh"
-        let bash_env_launch_path = "/bin/bash"
-        
-        let process = Process()
-        process.arguments = [bash_script_path, python_script_path, database_path]
-        process.executableURL = URL(fileURLWithPath: bash_env_launch_path)
-        
         do
         {
-            try process.run()
+            let fileUrl = URL(fileURLWithPath: #file)
+            let dirUrl = fileUrl.deletingLastPathComponent()
+            let python_script_path = dirUrl.path + "/../../text-popover-macOSDatabaseFiles/create_database_german_idioms_impl.py"
+            let bash_env_launch_path = "/bin/bash"
+            
+            let enquiryProcess = Process()
+            enquiryProcess.arguments = ["-l", "-c", "which python3"]
+            enquiryProcess.launchPath = bash_env_launch_path
+            let pipe = Pipe()
+            enquiryProcess.standardOutput = pipe
+            try enquiryProcess.run()
+            
+            /*
+             * Strip newline char from the end of the output
+             */
+            let pipeOutput = pipe.fileHandleForReading.readDataToEndOfFile()
+            let tmpOptional = String(data: pipeOutput, encoding: .utf8)
+            if tmpOptional == nil
+            {
+                throw DatabaseGermanIdiomsImplError.PythonNotFound
+            }
+            let tmp = tmpOptional!.trimmingCharacters(in: .newlines)
+            let python_env_launch_path = tmp.components(separatedBy: "\n")[0]
+            
+            let runProcess = Process()
+            runProcess.arguments = [python_script_path, database_path]
+            runProcess.launchPath = python_env_launch_path
+            try runProcess.run()
+        }
+        catch DatabaseGermanIdiomsImplError.PythonNotFound
+        {
+            print("DatabaseGermanIdiomsImpl::createDBFile(): External Python executable not found. Please check that one has been installed.\n")
         }
         catch
         {
