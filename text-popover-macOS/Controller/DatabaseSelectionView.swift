@@ -40,51 +40,39 @@ struct DatabaseList: View
         {
             databaseName in
             
-            /*
-             * `german-idioms.db` is the default database that will
-             * always be present in text-popover-macOSDatabaseFiles/,
-             * hence the decision to hard-code the logic upon selection in DatabaseList
-             */
             DatabaseListText(databaseName: databaseName, onTapActivity:
             {
-                if (databaseName == "Redewendungen")
+                if lastSelectedDatabase != databaseName
                 {
-                    if lastSelectedDatabase != databaseName
+                    print("New database selected: \(databaseName)")
+                    
+                    /*
+                     * `german-idioms.db` is the default database that will
+                     * always be present in text-popover-macOSDatabaseFiles/,
+                     * hence the decision to hard-code the logic upon selection in DatabaseList
+                     */
+                    if databaseName == "Redewendungen"
                     {
-                        print("New database selected: \(databaseName)")
                         databaseManager.database = DatabaseGermanIdiomsImpl(
                             URL(fileURLWithPath: #file).deletingLastPathComponent().path +
                             "/../../text-popover-macOSDatabaseFiles/german-idioms.db", false)
-                        databaseManager.notifyDatabasesChanged()
                     }
-                    
-                    lastSelectedDatabase = databaseName
-                    
-                    /*
-                     * Reset databaseManager.toRemoveOldDatabase in case it could not previously be reset,
-                     * which would have happened if we had previously clicked somewhere that caused
-                     * lastSelectedDatabase to be formerly nil
-                     */
-                    databaseManager.toRemoveOldDatabase = false
-                }
-                else
-                {
-                    if lastSelectedDatabase != databaseName
+                    else
                     {
-                        print("New database selected: \(databaseName)")
                         databaseManager.database = DatabaseGeneralIdiomsImpl(databaseName)
-                        databaseManager.notifyDatabasesChanged()
                     }
                     
-                    lastSelectedDatabase = databaseName
-                    
-                    /*
-                     * Reset databaseManager.toRemoveOldDatabase in case it could not previously be reset,
-                     * which would have happened if we had previously clicked somewhere that caused
-                     * lastSelectedDatabase to be formerly nil
-                     */
-                    databaseManager.toRemoveOldDatabase = false
+                    databaseManager.notifyDatabasesChanged()
                 }
+                
+                lastSelectedDatabase = databaseName
+                
+                /*
+                 * Reset databaseManager.toRemoveOldDatabase in case it could not previously be reset,
+                 * which would have happened if we had previously clicked somewhere that caused
+                 * lastSelectedDatabase to be formerly nil
+                 */
+                databaseManager.toRemoveOldDatabase = false
             }
         )}
         /*
