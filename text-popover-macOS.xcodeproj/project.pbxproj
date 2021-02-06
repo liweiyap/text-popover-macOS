@@ -74,7 +74,7 @@
 		E216E6CD2503E9D1000E02B0 /* TimeoutActivitySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeoutActivitySettingsView.swift; sourceTree = "<group>"; };
 		E216E6D1250473FD000E02B0 /* ContentViewToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewToolbar.swift; sourceTree = "<group>"; };
 		E2396B56251AC2F10072111D /* BackgroundSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSettingsView.swift; sourceTree = "<group>"; };
-		E26056B224BCD49900B24D05 /* text-popover-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "text-popover-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E26056B224BCD49900B24D05 /* Text-Popover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Text-Popover.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E26056B524BCD49900B24D05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E26056B724BCD49900B24D05 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E26056B924BCD49A00B24D05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 		E26056B324BCD49900B24D05 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E26056B224BCD49900B24D05 /* text-popover-macOS.app */,
+				E26056B224BCD49900B24D05 /* Text-Popover.app */,
 				E26056C724BCD49B00B24D05 /* text-popover-macOSTests.xctest */,
 				E26056D224BCD49B00B24D05 /* text-popover-macOSUITests.xctest */,
 			);
@@ -259,7 +259,7 @@
 			);
 			name = "text-popover-macOS";
 			productName = "text-popover-macOS";
-			productReference = E26056B224BCD49900B24D05 /* text-popover-macOS.app */;
+			productReference = E26056B224BCD49900B24D05 /* Text-Popover.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E26056C624BCD49B00B24D05 /* text-popover-macOSTests */ = {
@@ -599,7 +599,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.liweiyap.text-popover-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Text-Popover";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -628,7 +628,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.liweiyap.text-popover-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Text-Popover";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
