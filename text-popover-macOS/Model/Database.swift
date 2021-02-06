@@ -234,18 +234,14 @@ final class DatabaseGermanIdiomsImpl: Database
     {
         let fileUrl = URL(fileURLWithPath: #file)
         let dirUrl = fileUrl.deletingLastPathComponent()
-        let python_script_path = dirUrl.path + "/../../text-popover-macOSDatabaseFiles/create_database_german_idioms_impl.py"
         
-        /*
-         * Using Process() to find `which python3` returns only:
-         * `/Applications/Xcode.app/Contents/Developer/usr/bin/python3`
-         * But modules like Beautiful Soup might be installed in other versions of Python located elsewhere
-         */
-        let python_env_launch_path = "/Users/leewayleaf/opt/anaconda3/bin/python3"
+        let python_script_path = dirUrl.path + "/../../text-popover-macOSDatabaseFiles/create_database_german_idioms_impl.py"
+        let bash_script_path = dirUrl.path + "/../../text-popover-macOSDatabaseFiles/run_create_database_german_idioms_impl.sh"
+        let bash_env_launch_path = "/bin/bash"
         
         let process = Process()
-        process.arguments = [python_script_path, database_path]
-        process.executableURL = URL(fileURLWithPath: python_env_launch_path)
+        process.arguments = [bash_script_path, python_script_path, database_path]
+        process.executableURL = URL(fileURLWithPath: bash_env_launch_path)
         
         do
         {
