@@ -102,13 +102,13 @@ func removeRowFromDatabase(_ database: Database, _ databaseName: String, _ expr:
 
 final class DatabaseGeneralIdiomsImpl: Database
 {
-    var database_connection: Connection!
-    let database_name: String
-    let expression = Expression<String>("Expression")
-    let explanation = Expression<String>("Explanation")
-    let elaboration = Expression<String>("Elaboration")
+    private var database_connection: Connection!
+    private let database_name: String
+    private let expression = Expression<String>("Expression")
+    private let explanation = Expression<String>("Explanation")
+    private let elaboration = Expression<String>("Elaboration")
     
-    var DatabaseEntryArray = [DataModel]()
+    private var DatabaseEntryArray = [DataModel]()
     
     init(_ database_name: String)
     {
@@ -212,15 +212,15 @@ final class DatabaseGeneralIdiomsImpl: Database
 
 final class DatabaseGermanIdiomsImpl: Database
 {
-    var database_connection: Connection!
-    let database_table = Table("Redewendungen")
-    let expression = Expression<String>("Expression")
-    let explanation = Expression<String>("Explanation")
-    let elaboration = Expression<String>("Elaboration")
+    private var database_connection: Connection!
+    private let database_table = Table("Redewendungen")
+    private let expression = Expression<String>("Expression")
+    private let explanation = Expression<String>("Explanation")
+    private let elaboration = Expression<String>("Elaboration")
     
-    var DatabaseEntryArray = [DataModel]()
+    private var DatabaseEntryArray = [DataModel]()
     
-    enum DatabaseGermanIdiomsImplError: Error
+    private enum DatabaseGermanIdiomsImplError: Error
     {
         case PythonNotFound
     }

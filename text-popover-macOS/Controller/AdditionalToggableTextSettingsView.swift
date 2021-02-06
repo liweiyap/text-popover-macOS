@@ -16,7 +16,7 @@ final class AdditionalToggableTextOptions: ObservableObject
 
 struct AdditionalToggableTextSettingsView: View
 {
-    @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
+    @EnvironmentObject private var additionalToggableTextOptions: AdditionalToggableTextOptions
     
     var body: some View
     {

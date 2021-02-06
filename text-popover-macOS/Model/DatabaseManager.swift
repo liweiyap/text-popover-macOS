@@ -26,7 +26,7 @@ final class DatabaseManager: ObservableObject
         databasesChanged.send()
     }
     
-    enum DatabaseManagerError: Error
+    private enum DatabaseManagerError: Error
     {
         case moreThanOneTableInDBFile
     }

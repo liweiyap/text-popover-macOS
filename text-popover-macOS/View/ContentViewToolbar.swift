@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ElaborationButton: View
+fileprivate struct ElaborationButton: View
 {
     @Binding var elaborationIsViewed: Bool
     
@@ -29,7 +29,7 @@ struct ElaborationButton: View
     }
 }
 
-struct BackButton: View
+fileprivate struct BackButton: View
 {
     @Binding var elaborationIsViewed: Bool
     
@@ -53,7 +53,7 @@ struct BackButton: View
     }
 }
 
-struct CloseButtonStyle: ButtonStyle
+fileprivate struct CloseButtonStyle: ButtonStyle
 {
     @Binding var isHovering: Bool
     
@@ -87,9 +87,9 @@ struct CloseButtonStyle: ButtonStyle
     }
 }
 
-struct CloseButton: View
+fileprivate struct CloseButton: View
 {
-    @State var isHovering: Bool = false
+    @State private var isHovering: Bool = false
     
     var body: some View
     {
@@ -111,12 +111,12 @@ struct CloseButton: View
 
 struct ContentViewToolbar: View
 {
-    @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
-    @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
+    @EnvironmentObject private var countdownTimerWrapper: CountdownTimerWrapper
+    @EnvironmentObject private var additionalToggableTextOptions: AdditionalToggableTextOptions
     
     @Binding var elaborationIsViewed: Bool
     
-    func getTimeRemaining() -> CountdownTimerWrapper.Time
+    private func getTimeRemaining() -> CountdownTimerWrapper.Time
     {
         return countdownTimerWrapper.getTimeRemaining()
     }

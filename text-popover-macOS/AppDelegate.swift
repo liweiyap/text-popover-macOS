@@ -16,12 +16,12 @@ class AppDelegate: NSObject, NSApplicationDelegate
     let popover = NSPopover()
     var eventMonitor: EventMonitor?
     
-    let databaseManager = DatabaseManager()
-    let countdownTimerWrapper = CountdownTimerWrapper()
-    let additionalToggableTextOptions = AdditionalToggableTextOptions()
-    let timeoutActivityOptions = TimeoutActivityOptions()
-    let backgroundOptions = BackgroundOptions()
-    let intervalMenuButtonNames = IntervalMenuButtonNames()
+    private let databaseManager = DatabaseManager()
+    private let countdownTimerWrapper = CountdownTimerWrapper()
+    private let additionalToggableTextOptions = AdditionalToggableTextOptions()
+    private let timeoutActivityOptions = TimeoutActivityOptions()
+    private let backgroundOptions = BackgroundOptions()
+    private let intervalMenuButtonNames = IntervalMenuButtonNames()
     
     static var selfInstance: AppDelegate?
     
@@ -92,7 +92,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
         // Insert code here to tear down your application
     }
 
-    @objc func togglePopover(_ sender: AnyObject?)
+    @objc private func togglePopover(_ sender: AnyObject?)
     {
         if popover.isShown
         {
@@ -109,7 +109,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
         }
     }
     
-    @objc func systemInterfaceModeChanged(sender: NSNotification)
+    @objc private func systemInterfaceModeChanged(sender: NSNotification)
     {
         backgroundOptions.darkMode = !backgroundOptions.darkMode
     }

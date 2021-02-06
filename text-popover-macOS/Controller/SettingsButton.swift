@@ -8,13 +8,13 @@
 
 import SwiftUI
 
-struct SingleGeneralSettingView<Content:View>: View
+fileprivate struct SingleGeneralSettingView<Content:View>: View
 {
-    var label: String
-    var labelWidthProportion: CGFloat
+    private var label: String
+    private var labelWidthProportion: CGFloat
     
-    var view: Content
-    var viewWidthProportion: CGFloat
+    private var view: Content
+    private var viewWidthProportion: CGFloat
     
     init(label: String, view: Content)
     {
@@ -43,7 +43,7 @@ struct SingleGeneralSettingView<Content:View>: View
     }
 }
 
-struct GeneralSettingsView: View
+fileprivate struct GeneralSettingsView: View
 {
     var body: some View
     {
@@ -61,9 +61,9 @@ struct GeneralSettingsView: View
     }
 }
 
-struct AuthorView: View
+fileprivate struct AuthorView: View
 {
-    @EnvironmentObject var backgroundOptions: BackgroundOptions
+    @EnvironmentObject private var backgroundOptions: BackgroundOptions
     
     var body: some View
     {
@@ -89,9 +89,9 @@ struct AuthorView: View
     }
 }
 
-struct AllSettingsView: View
+fileprivate struct AllSettingsView: View
 {
-    @State var defaultViewIdx = 1
+    @State private var defaultViewIdx = 1
     
     var body: some View
     {
@@ -123,14 +123,14 @@ struct AllSettingsView: View
 
 struct SettingsButton: View
 {
-    @EnvironmentObject var databaseManager: DatabaseManager
-    @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
-    @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
-    @EnvironmentObject var timeoutActivityOptions: TimeoutActivityOptions
-    @EnvironmentObject var backgroundOptions: BackgroundOptions
-    @EnvironmentObject var intervalMenuButtonNames: IntervalMenuButtonNames
+    @EnvironmentObject private var databaseManager: DatabaseManager
+    @EnvironmentObject private var countdownTimerWrapper: CountdownTimerWrapper
+    @EnvironmentObject private var additionalToggableTextOptions: AdditionalToggableTextOptions
+    @EnvironmentObject private var timeoutActivityOptions: TimeoutActivityOptions
+    @EnvironmentObject private var backgroundOptions: BackgroundOptions
+    @EnvironmentObject private var intervalMenuButtonNames: IntervalMenuButtonNames
     
-    @State var window: NSWindow?
+    @State private var window: NSWindow?
     
     static let SettingsButtonDimensions: Int = 20
     static let SettingsWindowWidth: Int = 480

@@ -17,9 +17,9 @@ final class TimeoutActivityOptions: ObservableObject
     @Published var soundVolume: Float = 1.0
 }
 
-struct SoundVolumeSlider: View
+fileprivate struct SoundVolumeSlider: View
 {
-    @EnvironmentObject var timeoutActivityOptions: TimeoutActivityOptions
+    @EnvironmentObject private var timeoutActivityOptions: TimeoutActivityOptions
     
     var body: some View
     {
@@ -32,7 +32,7 @@ struct SoundVolumeSlider: View
     }
 }
 
-struct SoundVolumeSliderBox: View
+fileprivate struct SoundVolumeSliderBox: View
 {
     var body: some View
     {
@@ -47,12 +47,12 @@ struct SoundVolumeSliderBox: View
 
 struct TimeoutActivitySettingsView: View
 {
-    @EnvironmentObject var timeoutActivityOptions: TimeoutActivityOptions
-    let sounds = ["Basso", "Blow", "Bottle", "Frog", "Funk", "Glass", "Hero",
-                  "Morse", "Ping", "Pop", "Purr", "Sosumi", "Submarine", "Tink"]
+    @EnvironmentObject private var timeoutActivityOptions: TimeoutActivityOptions
+    private let sounds = ["Basso", "Blow", "Bottle", "Frog", "Funk", "Glass", "Hero",
+                          "Morse", "Ping", "Pop", "Purr", "Sosumi", "Submarine", "Tink"]
     
-    static let soundMenuButtonWidth: CGFloat = 110.0
-    static let soundVolumeSliderBoxWidth: CGFloat = 110.0
+    static fileprivate let soundMenuButtonWidth: CGFloat = 110.0
+    static fileprivate let soundVolumeSliderBoxWidth: CGFloat = 110.0
     
     var body: some View
     {

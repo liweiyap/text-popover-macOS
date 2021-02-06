@@ -10,27 +10,27 @@ import SwiftUI
 
 struct ContentView: View
 {
-    @State var Expression: String = ""
-    @State var Explanation: String = ""
-    @State var Elaboration: String = ""
-    @State var elaborationIsViewed: Bool = false
-    let displayTextFontStyle: String = "Papyrus"
+    @State private var Expression: String = ""
+    @State private var Explanation: String = ""
+    @State private var Elaboration: String = ""
+    @State private var elaborationIsViewed: Bool = false
+    private let displayTextFontStyle: String = "Papyrus"
     
-    @EnvironmentObject var databaseManager: DatabaseManager
-    @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
-    @EnvironmentObject var additionalToggableTextOptions: AdditionalToggableTextOptions
-    @EnvironmentObject var timeoutActivityOptions: TimeoutActivityOptions
-    @EnvironmentObject var backgroundOptions: BackgroundOptions
-    @Environment(\.colorScheme) var colorScheme: ColorScheme
+    @EnvironmentObject private var databaseManager: DatabaseManager
+    @EnvironmentObject private var countdownTimerWrapper: CountdownTimerWrapper
+    @EnvironmentObject private var additionalToggableTextOptions: AdditionalToggableTextOptions
+    @EnvironmentObject private var timeoutActivityOptions: TimeoutActivityOptions
+    @EnvironmentObject private var backgroundOptions: BackgroundOptions
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
-    func update(_ randomDatabaseEntry: DataModel) -> Void
+    private func update(_ randomDatabaseEntry: DataModel) -> Void
     {
         Expression = randomDatabaseEntry.Expression
         Explanation = randomDatabaseEntry.Explanation
         Elaboration = randomDatabaseEntry.Elaboration
     }
     
-    func update() -> Void
+    private func update() -> Void
     {
         var randomDatabaseEntry = databaseManager.getRandomDatabaseEntry()
         while (Expression == randomDatabaseEntry.Expression)
@@ -40,7 +40,7 @@ struct ContentView: View
         update(randomDatabaseEntry)
     }
     
-    func togglePopover() -> Void
+    private func togglePopover() -> Void
     {
         if ( timeoutActivityOptions.showPopoverOnTimeout && (!(AppDelegate.selfInstance?.popover.isShown)!) )
         {
@@ -53,12 +53,12 @@ struct ContentView: View
         }
     }
     
-    func playSound() -> Void
+    private func playSound() -> Void
     {
         timeoutActivityOptions.soundOnTimeout?.play()
     }
     
-    func toggleBackgroundColour() -> Void
+    private func toggleBackgroundColour() -> Void
     {
         backgroundOptions.darkMode = (colorScheme == .dark)
     }

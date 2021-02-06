@@ -21,7 +21,7 @@ final class IntervalMenuButtonNames: ObservableObject
     }
 }
 
-struct IntervalHashable: Hashable
+fileprivate struct IntervalHashable: Hashable
 {
     let name: String
     let value: Int
@@ -30,12 +30,12 @@ struct IntervalHashable: Hashable
 /*
  * Base abstract class / Interface
  */
-protocol Interval
+fileprivate protocol Interval
 {
     func getIntervals() -> [IntervalHashable]
 }
 
-final class MinutesInterval: Interval
+fileprivate final class MinutesInterval: Interval
 {
     let intervals =
         [
@@ -53,7 +53,7 @@ final class MinutesInterval: Interval
     }
 }
 
-final class HoursIntervalShort: Interval
+fileprivate final class HoursIntervalShort: Interval
 {
     let intervals =
         [
@@ -71,7 +71,7 @@ final class HoursIntervalShort: Interval
     }
 }
 
-final class HoursIntervalLong: Interval
+fileprivate final class HoursIntervalLong: Interval
 {
     let intervals =
         [
@@ -86,7 +86,7 @@ final class HoursIntervalLong: Interval
     }
 }
 
-struct IntervalMenuItemButton: View
+fileprivate struct IntervalMenuItemButton: View
 {
     @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
     @EnvironmentObject var intervalMenuButtonNames: IntervalMenuButtonNames
@@ -122,7 +122,7 @@ struct IntervalMenuItemButton: View
     }
 }
 
-struct IntervalMenuItemButtonArray: View
+fileprivate struct IntervalMenuItemButtonArray: View
 {
     let intervals: [IntervalHashable]
     @Binding var parentMenuButtonName: String
@@ -141,12 +141,12 @@ struct IntervalMenuItemButtonArray: View
 
 struct IntervalSettingsView: View
 {
-    @EnvironmentObject var countdownTimerWrapper: CountdownTimerWrapper
-    @EnvironmentObject var intervalMenuButtonNames: IntervalMenuButtonNames
+    @EnvironmentObject private var countdownTimerWrapper: CountdownTimerWrapper
+    @EnvironmentObject private var intervalMenuButtonNames: IntervalMenuButtonNames
     
-    static let intervalMenuButtonWidth: CGFloat = 110.0
+    static fileprivate let intervalMenuButtonWidth: CGFloat = 110.0
     
-    func getTimeRemaining() -> CountdownTimerWrapper.Time
+    private func getTimeRemaining() -> CountdownTimerWrapper.Time
     {
         return countdownTimerWrapper.getTimeRemaining()
     }

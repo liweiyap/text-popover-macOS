@@ -9,7 +9,7 @@
 import SwiftUI
 import Combine
 
-struct DatabaseListText: View
+fileprivate struct DatabaseListText: View
 {
     let databaseName: String
     let onTapActivity: () -> Void
@@ -29,9 +29,9 @@ struct DatabaseListText: View
 /*
  * https://www.notion.so/SwiftUI-on-macOS-Selection-in-List-c3c5505255db40488d55a16b08bad832
  */
-struct DatabaseList: View
+fileprivate struct DatabaseList: View
 {
-    @EnvironmentObject var databaseManager: DatabaseManager
+    @EnvironmentObject private var databaseManager: DatabaseManager
     @Binding var lastSelectedDatabase: String?
     
     var body: some View
@@ -91,7 +91,7 @@ struct DatabaseList: View
     }
 }
 
-struct DatabaseListToolbarButton: View
+fileprivate struct DatabaseListToolbarButton: View
 {
     static let DatabaseListToolbarButtonDimensions: CGFloat = 20.0
     let imageName: String
@@ -114,9 +114,9 @@ struct DatabaseListToolbarButton: View
     }
 }
 
-struct DatabaseListToolbar: View
+fileprivate struct DatabaseListToolbar: View
 {
-    @EnvironmentObject var databaseManager: DatabaseManager
+    @EnvironmentObject private var databaseManager: DatabaseManager
     @Binding var lastSelectedDatabase: String?
     
     var body: some View
@@ -143,7 +143,7 @@ struct DatabaseListToolbar: View
     }
 }
 
-struct DatabaseSelector: View
+fileprivate struct DatabaseSelector: View
 {
     @Binding var lastSelectedDatabase: String?
     
@@ -158,15 +158,15 @@ struct DatabaseSelector: View
     }
 }
 
-struct DatabaseEntryAdderAndRemover: View
+fileprivate struct DatabaseEntryAdderAndRemover: View
 {
-    @EnvironmentObject var databaseManager: DatabaseManager
+    @EnvironmentObject private var databaseManager: DatabaseManager
     
     @Binding var lastSelectedDatabase: String?
-    @State var newDatabaseEntryExpression: String = ""
-    @State var newDatabaseEntryExplanation: String = ""
-    @State var newDatabaseEntryElaboration: String = ""
-    @State var oldDatabaseEntryExpression: String = ""
+    @State private var newDatabaseEntryExpression: String = ""
+    @State private var newDatabaseEntryExplanation: String = ""
+    @State private var newDatabaseEntryElaboration: String = ""
+    @State private var oldDatabaseEntryExpression: String = ""
     
     var body: some View
     {
@@ -230,10 +230,10 @@ struct DatabaseEntryAdderAndRemover: View
     }
 }
 
-struct DatabaseAdderAndRemover: View
+fileprivate struct DatabaseAdderAndRemover: View
 {
-    @EnvironmentObject var databaseManager: DatabaseManager
-    @State var newDatabaseName: String = ""
+    @EnvironmentObject private var databaseManager: DatabaseManager
+    @State private var newDatabaseName: String = ""
     
     @Binding var lastSelectedDatabase: String?
     
@@ -377,11 +377,11 @@ struct DatabaseAdderAndRemover: View
 
 struct DatabaseSelectionView: View
 {
-    @State var lastSelectedDatabase: String? = "Redewendungen"
+    @State private var lastSelectedDatabase: String? = "Redewendungen"
     
-    static let DatabaseSelectionViewCenterSpacing: CGFloat = 20
-    static let DatabaseSelectorWidth = (CGFloat(SettingsButton.SettingsWindowWidth) - DatabaseSelectionView.DatabaseSelectionViewCenterSpacing) * 3.0/10.0
-    static let DatabaseAdderAndRemoverWidth = (CGFloat(SettingsButton.SettingsWindowWidth) - DatabaseSelectionView.DatabaseSelectionViewCenterSpacing) * 7.0/10.0
+    static fileprivate let DatabaseSelectionViewCenterSpacing: CGFloat = 20
+    static fileprivate let DatabaseSelectorWidth = (CGFloat(SettingsButton.SettingsWindowWidth) - DatabaseSelectionView.DatabaseSelectionViewCenterSpacing) * 3.0/10.0
+    static fileprivate let DatabaseAdderAndRemoverWidth = (CGFloat(SettingsButton.SettingsWindowWidth) - DatabaseSelectionView.DatabaseSelectionViewCenterSpacing) * 7.0/10.0
     
     var body: some View
     {

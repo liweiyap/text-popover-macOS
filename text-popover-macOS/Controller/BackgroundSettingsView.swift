@@ -24,7 +24,7 @@ final class BackgroundOptions: ObservableObject
     /*
      * Changes the NSPopover arrow colour too
      */
-    func toggleBackgroundColour() -> Void
+    private func toggleBackgroundColour() -> Void
     {
         AppDelegate.selfInstance?.popover.appearance = NSAppearance(named: darkMode ? .darkAqua : .aqua)
     }
@@ -32,7 +32,7 @@ final class BackgroundOptions: ObservableObject
 
 struct BackgroundSettingsView: View
 {
-    @EnvironmentObject var backgroundOptions: BackgroundOptions
+    @EnvironmentObject private var backgroundOptions: BackgroundOptions
     
     var body: some View
     {
