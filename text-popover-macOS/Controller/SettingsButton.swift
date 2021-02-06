@@ -98,7 +98,8 @@ struct AllSettingsView: View
         TabView(selection: $defaultViewIdx)
         {
             AuthorView()
-            .tabItem{
+            .tabItem
+            {
                 Text("Author")
             }
             .tag(0)

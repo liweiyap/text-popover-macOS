@@ -17,11 +17,10 @@ struct DatabaseListText: View
     var body: some View
     {
         Text(databaseName)
-        /*
-         * .contentShape(Rectangle()) does not work, for some reason
-         * thus, we can't make the whole rectangular area outside the text tappable
-         */
-        .onTapGesture {
+        .frame(width: DatabaseSelectionView.DatabaseSelectorWidth, alignment: .leading)
+        .contentShape(Rectangle())
+        .onTapGesture
+        {
             onTapActivity()
         }
     }
@@ -392,17 +391,19 @@ struct DatabaseSelectionView: View
 {
     @State var lastSelectedDatabase: String? = "Redewendungen"
     
-    let centerSpacing: CGFloat = 20
+    static let DatabaseSelectionViewCenterSpacing: CGFloat = 20
+    static let DatabaseSelectorWidth = (CGFloat(SettingsButton.SettingsWindowWidth) - DatabaseSelectionView.DatabaseSelectionViewCenterSpacing) * 3.0/10.0
+    static let DatabaseAdderAndRemoverWidth = (CGFloat(SettingsButton.SettingsWindowWidth) - DatabaseSelectionView.DatabaseSelectionViewCenterSpacing) * 7.0/10.0
     
     var body: some View
     {
-        HStack(spacing: centerSpacing)
+        HStack(spacing: DatabaseSelectionView.DatabaseSelectionViewCenterSpacing)
         {
             DatabaseSelector(lastSelectedDatabase: $lastSelectedDatabase)
-            .frame(width: (CGFloat(SettingsButton.SettingsWindowWidth) - centerSpacing) * 3.0/10.0)
+            .frame(width: DatabaseSelectionView.DatabaseSelectorWidth)
             
             DatabaseAdderAndRemover(lastSelectedDatabase: $lastSelectedDatabase)
-            .frame(width: (CGFloat(SettingsButton.SettingsWindowWidth) - centerSpacing) * 7.0/10.0)
+            .frame(width: DatabaseSelectionView.DatabaseAdderAndRemoverWidth)
         }
         .padding()
     }
