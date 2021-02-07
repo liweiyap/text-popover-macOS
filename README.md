@@ -13,7 +13,7 @@ Text-Popover is a MacOS menu bar app that pops up at user-specified intervals. T
 <img src="text-popover-macOS/Assets.xcassets/screenshot-demo-front.png" width="500"/>
 
 1. This button closes the app.
-2. This button takes the user to the [next page](#next-page-of-popover) of the popover, which shows any additional text that you might want to display.
+2. This button takes you to the [next page](#next-page-of-popover) of the popover, which shows any additional text that you might want to display.
 3. This is the amount of time remaining before the text changes to the next available one in the current database.
 4. This button opens the [settings window](#adjusting-the-settings).
 5. This is the user-defined main text for display. In the image above, the main text (_Expression_) is a German idiom.
@@ -23,7 +23,7 @@ Text-Popover is a MacOS menu bar app that pops up at user-specified intervals. T
 
 <img src="text-popover-macOS/Assets.xcassets/screenshot-demo-back.png" width="500"/>
 
-1. This button takes the user back to the [main page](#main-page-of-popover) of the popover.
+1. This button takes you back to the [main page](#main-page-of-popover) of the popover.
 2. This is a user-defined sub-text (_Elaboration_) for display. It can be blank. In the image, the sub-text is the history behind the German idiom.
 
 ### Adjusting the settings
@@ -31,19 +31,33 @@ Text-Popover is a MacOS menu bar app that pops up at user-specified intervals. T
 <img src="text-popover-macOS/Assets.xcassets/screenshot-settings-general.png" width="500"/>
 
 1. This segment sets the interval between changes in the text displayed in the popover. When the interval is up, the text is updated to the next available one in the current database, and the time is reset. The default interval is 24 hours.
-2. This segment sets the sound played when the text in the popover is updated. By default, no sound is played. Drag on the slider to adjust the volume of the sound. By default, the sound is played at a maximal volume. In addition, by default, the popover appears automatically on the screen when the text gets updated. However, the user has the option to turn off this pop-up behaviour, such that when the current interval is up, the text in the popover will still get updated but the popover will not appear on the screen.
-3. This segment allows the user to decide whether or not to display the sub-texts (_Explanation_ and _Elaboration_). After all, they could sometimes be blank. By default, the _Explanation_ is displayed but the _Elaboration_ (together with the blue button in the popover) is not.
-4. This segment allows the user to set the appearance of the popover to either light or dark mode. The default appearance is dark mode.
+2. This segment sets the sound played when the text in the popover is updated. By default, no sound is played. Drag on the slider to adjust the volume of the sound. By default, the sound is played at a maximal volume. In addition, by default, the popover appears automatically on the screen when the text gets updated. However, you have the option to turn off this pop-up behaviour, such that when the current interval is up, the text in the popover will still get updated but the popover will not appear on the screen.
+3. This segment allows you to decide whether or not to display the sub-texts (_Explanation_ and _Elaboration_). After all, they could sometimes be blank. By default, the _Explanation_ is displayed but the _Elaboration_ (together with the blue button in the popover) is not.
+4. This segment allows you to set the appearance of the popover to either light or dark mode. The default appearance is dark mode.
 
 ### Default database _"Redewendungen"_
 
-The default database contains German idioms (_Redewendungen_). Every time the app is restarted, the default database is automatically built from scratch. This is done by using the Python library [Beautiful Soup](https://pypi.org/project/beautifulsoup4/) to scrape the idioms, as well as their meaning and history, from [Wikipedia](https://de.wikipedia.org/wiki/Liste_deutscher_Redewendungen). Python is not required for any further databases that the user may wish to add.
+The default database contains German idioms (_Redewendungen_). Every time the app is restarted, the default database is automatically built from scratch. This is done by using the Python library [Beautiful Soup](https://pypi.org/project/beautifulsoup4/) to scrape the idioms, as well as their meaning and history, from [Wikipedia](https://de.wikipedia.org/wiki/Liste_deutscher_Redewendungen). Python is not required for any further databases that you may wish to add.
 
 ### Adding a new database
 
 <img src="text-popover-macOS/Assets.xcassets/screenshot-settings-databases-1.png" width="500"/>
 
 1. Click this button if you wish to add a new database.
+
+<img src="text-popover-macOS/Assets.xcassets/screenshot-settings-databases-2.png" width="500"/>
+
+2. Input the name of your new database and click 'Create'.
+
+<img src="text-popover-macOS/Assets.xcassets/screenshot-settings-databases-3.png" width="500"/>
+
+3. The list of databases on the left will automatically be updated. Click on the name of your new database.
+4. Input as many entries as you like. The _Explanation_ and _Elaboration_ are optional but the _Expression_ cannot be left blank.
+5. If you no longer want an entry, you can remove it from your database.
+
+### Note on databases
+
+All databases are added to the [`text-popover-macOSDatabaseFiles/`](https://github.com/liweiyap/text-popover-macOS/tree/develop/text-popover-macOSDatabaseFiles) directory. From within the app, you cannot delete the default database _"Redewendungen"_. Neither can you add any new entries to the default database nor remove any entries from it. For more information, please refer to the [README](https://github.com/liweiyap/text-popover-macOS/blob/develop/text-popover-macOSDatabaseFiles/README.md) of that directory.
 
 ## Installation
 
