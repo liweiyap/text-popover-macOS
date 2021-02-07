@@ -10,6 +10,8 @@ Text-Popover is a MacOS app that produces pop-ups from the status bar at the top
 
 ### Adjusting the settings
 
+test
+
 ## Installation
 
 ### Requirements
