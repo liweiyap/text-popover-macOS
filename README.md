@@ -35,6 +35,10 @@ Text-Popover is a MacOS menu bar app that pops up at user-specified intervals. T
 3. This segment allows the user to decide whether or not to display the sub-texts (_Explanation_ and _Elaboration_). After all, they could sometimes be blank. By default, the _Explanation_ is displayed but the _Elaboration_ (together with the blue button in the popover) is not.
 4. This segment allows the user to set the appearance of the popover to either light or dark mode. The default appearance is dark mode.
 
+### Default database _"Redewendungen"_
+
+The default database contains German idioms (_Redewendungen_). Every time the app is restarted, the default database is automatically built from scratch. This is done by using the Python library [Beautiful Soup](https://pypi.org/project/beautifulsoup4/) to scrape the idioms, as well as their meaning and history, from [Wikipedia](https://de.wikipedia.org/wiki/Liste_deutscher_Redewendungen). Python is not required for any further databases that the user may wish to add.
+
 ## Installation
 
 ### Requirements
