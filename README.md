@@ -1,6 +1,6 @@
 <img src="text-popover-macOS/Assets.xcassets/popover-appicon-with-text.imageset/popover-appicon-with-text.png">
 
-Text-Popover is a MacOS app that produces pop-ups from the status bar at the top of the screen at user-specified intervals. These pop-ups contain user-specified texts, such as quotes or idioms, which are stored in databases in the `text-popover-macOSDatabaseFiles/` directory. Language learners could find this app especially useful, as they could use these pop-ups as virtual placards.
+Text-Popover is a MacOS app that produces pop-ups from the status bar at the top of the screen at user-specified intervals. These pop-ups contain user-specified texts, such as quotes or idioms, which are stored in databases in the [`text-popover-macOSDatabaseFiles/`](https://github.com/liweiyap/text-popover-macOS/tree/develop/text-popover-macOSDatabaseFiles) directory. Language learners could find this app especially useful, as they could use these pop-ups as virtual placards.
 
 | Light mode             |  Dark mode               |
 :-----------------------:|:-------------------------:
