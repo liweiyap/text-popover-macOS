@@ -33,7 +33,7 @@ Text-Popover is a MacOS menu bar app that produces pop-ups at user-specified int
 1. This segment sets the interval between changes in the text displayed in the popover. When the interval is up, the text is updated to the next available one in the current database, and the time is reset. The default interval is 24 hours.
 2. This segment sets the sound played when the text in the popover is updated. By default, no sound is played. Drag on the slider to adjust the volume of the sound. By default, the sound is played at a maximal volume. In addition, by default, the popover appears automatically on the screen when the text gets updated. However, the user has the option to turn off this pop-up behaviour, such that when the current interval is up, the text in the popover will still get updated but the popover will not appear on the screen.
 3. This segment allows the user to decide whether or not to display the sub-texts (_Explanation_ and _Elaboration_). After all, they could sometimes be blank. By default, the _Explanation_ is displayed but the _Elaboration_ (together with the blue button in the popover) is not.
-4. This segment allows the user to set the appearance of the popover to either light or dark mode.
+4. This segment allows the user to set the appearance of the popover to either light or dark mode. The default appearance is dark mode.
 
 ## Installation
 
