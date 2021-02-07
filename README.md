@@ -1,12 +1,25 @@
 <img src="text-popover-macOS/Assets.xcassets/popover-appicon-with-text.imageset/popover-appicon-with-text.png">
 
-Text-Popover is a MacOS app that produces pop-ups from the status bar at the top of the screen at user-specified intervals. These pop-ups contain user-specified texts, such as quotes or idioms. Language learners could find this app especially useful, as they could use these pop-ups as virtual placards.
+Text-Popover is a MacOS app that produces pop-ups from the status bar at the top of the screen at user-specified intervals. These pop-ups contain user-specified texts, such as quotes or idioms, which are stored in databases in the `text-popover-macOSDatabaseFiles/` directory. Language learners could find this app especially useful, as they could use these pop-ups as virtual placards.
 
 | Light mode             |  Dark mode               |
 :-----------------------:|:-------------------------:
 ![](text-popover-macOS/Assets.xcassets/screenshot-screen-lightmode.png) | ![](text-popover-macOS/Assets.xcassets/screenshot-screen-darkmode.png)
 
 ## Usage
+
+### Main page of popover
+
+<img src="text-popover-macOS/Assets.xcassets/screenshot-demo-front.png" width="500"/>
+
+1. This button closes the app.
+2. This button takes the user to the [next page](#next-page-of-popover) of the popover, which shows any additional text that you might want to display.
+3. This is the amount of time remaining before the text changes to the next available one in the current database.
+4. This button opens the settings window.
+5. This is the user-defined main text for display. In the image above, the main text is a German idiom.
+6. This is a user-defined sub-text for display. It can be blank. In the image, the sub-text is the meaning of the German idiom.
+
+### Next page of popover
 
 ### Adjusting the settings
 
