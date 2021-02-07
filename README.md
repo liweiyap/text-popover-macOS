@@ -10,8 +10,6 @@ Text-Popover is a MacOS app that produces pop-ups from the status bar at the top
 
 ### Adjusting the settings
 
-test
-
 ## Installation
 
 ### Requirements
@@ -39,7 +37,7 @@ test
      carthage build --platform macOS
      ```
    * Now, open the main file 'text-popover-macOS.xcodeproj' in Xcode.
-   * In the 'General' settings tab of the 'text-popover-macOS' target, scroll down to the section 'Frameworks, Libraries, and Embedded Content'. Drag and drop the entire 'Carthage/Build/Mac/SQLite.framework' folder into this section.##
+   * In the 'General' settings tab of the 'text-popover-macOS' target, scroll down to the section 'Frameworks, Libraries, and Embedded Content'. Drag and drop the entire 'Carthage/Build/Mac/SQLite.framework' folder into this section.
 3. Build and run the app in Xcode by clicking on the triangular icon at the top left corner of the screen.
    * If the following message box appears, click OK.
      
