@@ -55,6 +55,10 @@ The default database contains German idioms (_Redewendungen_). Every time the ap
 4. Input as many entries as you like. The _Explanation_ and _Elaboration_ are optional but the _Expression_ cannot be left blank.
 5. If you no longer want an entry, you can remove it from your database.
 
+<img src="text-popover-macOS/Assets.xcassets/screenshot-sample-1.png" width="500"/>
+
+The popover will display entries from the new database as long as it is selected in the settings window.
+
 ### Note on databases
 
 All databases are added to the [`text-popover-macOSDatabaseFiles/`](https://github.com/liweiyap/text-popover-macOS/tree/develop/text-popover-macOSDatabaseFiles) directory. From within the app, you cannot delete the default database _"Redewendungen"_. Neither can you add any new entries to the default database nor remove any entries from it. For more information, please refer to the [README](https://github.com/liweiyap/text-popover-macOS/blob/develop/text-popover-macOSDatabaseFiles/README.md) of that directory.
