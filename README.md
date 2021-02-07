@@ -11,6 +11,8 @@ Text-Popover is a MacOS app that produces pop-ups from the status bar at the top
 ### Requirements
 
 * [Xcode](https://apps.apple.com/gb/app/xcode/id497799835?mt=12) _(we used version 12.3)_
+* [Carthage](https://github.com/Carthage/Carthage) _(can be downloaded using [Homebrew](https://brew.sh/))_
+* [SQLite.swift](https://github.com/stephencelis/SQLite.swift) _(can be downloaded using Carthage. For further instructions, see below.)
 * Python 3
 * [Beautiful Soup](https://pypi.org/project/beautifulsoup4/) _(we used version 4.9.1)_
 
