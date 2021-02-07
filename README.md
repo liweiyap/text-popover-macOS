@@ -1,6 +1,6 @@
-<img src="text-popover-macOS/Assets.xcassets/popover-appicon-with-text.imageset/popover-appicon-with-text.png">
+![](text-popover-macOS/Assets.xcassets/popover-appicon-with-text.imageset/popover-appicon-with-text.png)
 
-Text-Popover is a MacOS app that produces pop-ups from the menu bar at the top of the screen at user-specified intervals. These pop-ups contain user-specified texts, such as quotes or idioms, which are stored in databases in the [`text-popover-macOSDatabaseFiles/`](https://github.com/liweiyap/text-popover-macOS/tree/develop/text-popover-macOSDatabaseFiles) directory. Language learners could find this app especially useful, as they could use these pop-ups as virtual placards.
+Text-Popover is a MacOS menu bar app that produces pop-ups at user-specified intervals. These pop-ups contain user-specified texts, such as quotes or idioms, which are stored in databases in the [`text-popover-macOSDatabaseFiles/`](https://github.com/liweiyap/text-popover-macOS/tree/develop/text-popover-macOSDatabaseFiles) directory. Language learners could find this app especially useful, as they could use these pop-ups as virtual placards.
 
 | Light mode             |  Dark mode               |
 :-----------------------:|:-------------------------:
@@ -59,7 +59,7 @@ Text-Popover is a MacOS app that produces pop-ups from the menu bar at the top o
 3. Build and run the app in Xcode by clicking on the triangular icon at the top left corner of the screen.
    * If the following message box appears, click OK.
      
-     <img src="text-popover-macOS/Assets.xcassets/screenshot-accessibility-popupmsg.png" width="250"/>
+     
    * You might also need to open 'System Preferences > Security & Privacy > Privacy > Accessibility' and tick the check-box next to the 'Text-Popover' program.
 
 Note: To build the default database with German idioms (_Redewendungen_), we need Python 3 with its library 'Beautiful Soup'. Python 3 is not required for any further databases that the user may wish to add.
