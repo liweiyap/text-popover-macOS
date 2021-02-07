@@ -2,6 +2,10 @@
 
 Text-Popover is a MacOS app that produces pop-ups from the status bar at the top of the screen at user-specified intervals. These pop-ups contain user-specified texts, such as quotes or idioms. Language learners could find this app especially useful, as they could use these pop-ups as virtual placards.
 
+| Light mode             |  Dark mode               |
+:-----------------------:|:-------------------------:
+![](text-popover-macOS/Assets.xcassets/screenshot-screen-lightmode.png) | ![](text-popover-macOS/Assets.xcassets/screenshot-screen-darkmode.png)
+
 ```
 brew update
 brew install carthage
