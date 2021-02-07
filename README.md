@@ -12,17 +12,28 @@ Text-Popover is a MacOS app that produces pop-ups from the status bar at the top
 
 * [Xcode](https://apps.apple.com/gb/app/xcode/id497799835?mt=12) _(we used version 12.3)_
 * [Carthage](https://github.com/Carthage/Carthage) _(can be downloaded using [Homebrew](https://brew.sh/))_
-* [SQLite.swift](https://github.com/stephencelis/SQLite.swift) _(can be downloaded using Carthage. For further instructions, see below.)
-* Python 3
-* [Beautiful Soup](https://pypi.org/project/beautifulsoup4/) _(we used version 4.9.1)_
+* Python 3 with [Beautiful Soup](https://pypi.org/project/beautifulsoup4/) _(we used version 4.9.1)_ installed
 
-```
-brew update
-brew install carthage
-# cd into path of .xcodeproj
-touch Cartfile
-open Cartfile -a Xcode
-carthage update --platform macOS
-[On your application targets’ General settings tab, in the Embedded Binaries section, drag and drop each framework you want to use from the Carthage/Build folder on disk.](https://github.com/Carthage/Carthage#installing-carthage)
-https://stackoverflow.com/questions/40743713/command-line-tool-error-xcrun-error-unable-to-find-utility-xcodebuild-n
-```
+### Instructions for installation
+
+1. Download the source code by clicking on the green 'Code' button on this website. Alternatively, clone the repository by first navigating to the path where you want to store the local copy and then running the following command in the Terminal:
+   ```
+   git clone https://github.com/liweiyap/text-popover-macOS.git
+   ```
+2. Install the [SQLite.swift](https://github.com/stephencelis/SQLite.swift) dependency using Carthage.
+   * Navigate to the root directory of the repository and run the following command in the Terminal:
+     ```
+     carthage update --platform macOS
+     ```
+     This will produce a 'Carthage' folder in the root directory of the repository.
+   * Navigate to 'Carthage > Checkouts > SQLite.swift' and open the file 'SQLite.xcodeproj' in Xcode.
+   * [Set `Build Libraries for Distribution` to `Yes`](https://stackoverflow.com/questions/60162207/module-was-not-compiled-with-library-evolution-support-using-it-means-binary-co) and close the file 'SQLite.xcodeproj'.
+   * Return to the root directory of the repository and run the following command in the Terminal:
+     ```
+     carthage build --platform macOS
+     ```
+   * Now, open the main file 'text-popover-macOS.xcodeproj' in Xcode.
+   * In the 'General' settings tab of the 'text-popover-macOS' target, scroll down to the section 'Frameworks, Libraries, and Embedded Content'. Drag and drop the entire 'Carthage/Build/Mac/SQLite.framework' folder into this section.
+3. Build and run the app in Xcode by clicking on the triangular icon at the top left corner of the screen.
+
+Note: To build the default database with German idioms (_Redewendungen_), we need Python 3 with its library 'Beautiful Soup'. Python 3 is not required for any other databases that the user may wish to add.
