@@ -1,6 +1,6 @@
 ![](text-popover-macOS/Assets.xcassets/popover-appicon-with-text.imageset/popover-appicon-with-text.png)
 
-Text-Popover is a MacOS menu bar app that pops up at user-specified intervals. These pop-ups contain user-specified texts, such as quotes or idioms, which are stored in databases in the [`text-popover-macOSDatabaseFiles/`](https://github.com/liweiyap/text-popover-macOS/tree/develop/text-popover-macOSDatabaseFiles) directory. Language learners could find this app especially useful, as they could use these pop-ups as virtual placards. The app is written in the [SwiftUI](https://developer.apple.com/documentation/swiftui/) framework.
+Text-Popover is a MacOS menu bar app that pops up at user-specified intervals. These pop-ups contain user-specified texts, such as inspirational quotes or idioms, which are stored in databases in the [`text-popover-macOSDatabaseFiles/`](https://github.com/liweiyap/text-popover-macOS/tree/develop/text-popover-macOSDatabaseFiles) directory. Language learners could find this app especially useful, as they could use these pop-ups as virtual placards. The app is written in the [SwiftUI](https://developer.apple.com/documentation/swiftui/) framework.
 
 | Light mode             |  Dark mode               |
 :-----------------------:|:-------------------------:
@@ -21,6 +21,7 @@ Text-Popover is a MacOS menu bar app that pops up at user-specified intervals. T
 * [Installation](#installation)
   * [Requirements](#requirements)
   * [Instructions](#instructions)
+* [Licence](#licence)
 
 ## Usage
 
@@ -146,5 +147,11 @@ All databases are added to the [`text-popover-macOSDatabaseFiles/`](https://gith
      
      <img src="text-popover-macOS/Assets.xcassets/screenshot-accessibility-popupmsg.png" width="250"/>
    * You might also need to open 'System Preferences > Security & Privacy > Privacy > Accessibility' and tick the check-box next to the 'Text-Popover' program.
+
+[_Back to top_](#contents)
+
+## Licence
+
+[MIT](https://github.com/liweiyap/text-popover-macOS/blob/master/LICENSE) © 2021 Li-Wei Yap
 
 [_Back to top_](#contents)
