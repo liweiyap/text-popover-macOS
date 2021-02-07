@@ -15,7 +15,7 @@ Text-Popover is a MacOS menu bar app that produces pop-ups at user-specified int
 1. This button closes the app.
 2. This button takes the user to the [next page](#next-page-of-popover) of the popover, which shows any additional text that you might want to display.
 3. This is the amount of time remaining before the text changes to the next available one in the current database.
-4. This button opens the settings window.
+4. This button opens the [settings window](#adjusting-the-settings).
 5. This is the user-defined main text for display. In the image above, the main text is a German idiom.
 6. This is a user-defined sub-text for display. It can be blank. In the image, the sub-text is the meaning of the German idiom.
 
@@ -27,6 +27,8 @@ Text-Popover is a MacOS menu bar app that produces pop-ups at user-specified int
 2. This is a user-defined sub-text for display. It can be blank. In the image, the sub-text is the history behind the German idiom.
 
 ### Adjusting the settings
+
+<img src="text-popover-macOS/Assets.xcassets/screenshot-settings-general.png" width="500"/>
 
 ## Installation
 
@@ -59,7 +61,7 @@ Text-Popover is a MacOS menu bar app that produces pop-ups at user-specified int
 3. Build and run the app in Xcode by clicking on the triangular icon at the top left corner of the screen.
    * If the following message box appears, click OK.
      
-     
+     <img src="text-popover-macOS/Assets.xcassets/screenshot-accessibility-popupmsg.png" width="250"/>
    * You might also need to open 'System Preferences > Security & Privacy > Privacy > Accessibility' and tick the check-box next to the 'Text-Popover' program.
 
 Note: To build the default database with German idioms (_Redewendungen_), we need Python 3 with its library 'Beautiful Soup'. Python 3 is not required for any further databases that the user may wish to add.
