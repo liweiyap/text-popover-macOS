@@ -80,6 +80,10 @@ The default database contains German idioms (_Redewendungen_). Every time the ap
 
 The popover will display entries from the new database as long as it is selected in the settings window.
 
+<img src="text-popover-macOS/Assets.xcassets/screenshot-settings-databases-4.png" width="500"/>
+
+6. Click on this button if you no longer want a database, and then click 'Yes' to confirm deletion.
+
 [_Back to top_](#contents)
 
 ### Note on databases
