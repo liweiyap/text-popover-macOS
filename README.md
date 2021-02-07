@@ -21,6 +21,11 @@ Text-Popover is a MacOS app that produces pop-ups from the status bar at the top
 
 ### Next page of popover
 
+<img src="text-popover-macOS/Assets.xcassets/screenshot-demo-back.png" width="500"/>
+
+1. This button takes the user back to the [main page](#main-page-of-popover) of the popover.
+2. This is a user-defined sub-text for display. It can be blank. In the image, the sub-text is the history behind the German idiom.
+
 ### Adjusting the settings
 
 ## Installation
