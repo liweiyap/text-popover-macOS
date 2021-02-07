@@ -15,6 +15,9 @@ Text-Popover is a MacOS menu bar app that pops up at user-specified intervals. T
   * [Default database _"Redewendungen"_](#default-database-redewendungen)
   * [Adding a new database](#adding-a-new-database)
   * [Note on databases](#note-on-databases)
+* [More samples](#more-samples)
+  * [Languages that do not use the Latin alphabet](#languages-that-do-not-use-the-latin-alphabet)
+  * [Inspirational quotes](#inspirational-quotes)
 * [Installation](#installation)
   * [Requirements](#requirements)
   * [Instructions](#instructions)
@@ -89,6 +92,22 @@ The popover will display entries from the new database as long as it is selected
 ### Note on databases
 
 All databases are added to the [`text-popover-macOSDatabaseFiles/`](https://github.com/liweiyap/text-popover-macOS/tree/develop/text-popover-macOSDatabaseFiles) directory. From within the app, you cannot delete the default database _"Redewendungen"_. Neither can you add any new entries to the default database nor remove any entries from it. For more information, please refer to the [README](https://github.com/liweiyap/text-popover-macOS/blob/develop/text-popover-macOSDatabaseFiles/README.md) of that directory.
+
+[_Back to top_](#contents)
+
+## More samples
+
+### Languages that do not use the Latin alphabet
+
+<img src="text-popover-macOS/Assets.xcassets/screenshot-sample-2-front.png" width="500"/>
+
+<img src="text-popover-macOS/Assets.xcassets/screenshot-sample-2-back.png" width="500"/>
+
+[_Back to top_](#contents)
+
+### Inspirational quotes
+
+<img src="text-popover-macOS/Assets.xcassets/screenshot-sample-3.png" width="500"/>
 
 [_Back to top_](#contents)
 
