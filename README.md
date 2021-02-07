@@ -39,5 +39,9 @@ Text-Popover is a MacOS app that produces pop-ups from the status bar at the top
    * Now, open the main file 'text-popover-macOS.xcodeproj' in Xcode.
    * In the 'General' settings tab of the 'text-popover-macOS' target, scroll down to the section 'Frameworks, Libraries, and Embedded Content'. Drag and drop the entire 'Carthage/Build/Mac/SQLite.framework' folder into this section.##
 3. Build and run the app in Xcode by clicking on the triangular icon at the top left corner of the screen.
+   * If you see the following message, click OK.
+     
+     <img src="text-popover-macOS/Assets.xcassets/screenshot-accessibility-popupmsg.png" width="250"/>
+   * You might also need to open System Preferences > Security & Privacy > Privacy > Accessibility and tick the check-box next to the 'Text-Popover' program.
 
 Note: To build the default database with German idioms (_Redewendungen_), we need Python 3 with its library 'Beautiful Soup'. Python 3 is not required for any further databases that the user may wish to add.
