@@ -126,5 +126,13 @@ struct ContentView: View
             
             update()
         }
+        .onReceive(countdownTimerWrapper.intervalExceededDuringSleep)
+        {
+            _ in
+            
+            update()
+            togglePopover()
+            playSound()
+        }
     }  // body
 }

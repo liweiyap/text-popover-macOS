@@ -141,3 +141,11 @@ extension View
         }
     }
 }
+
+extension Date
+{
+    static func - (newDate: Date, oldDate: Date) -> TimeInterval
+    {
+        return newDate.timeIntervalSinceReferenceDate - oldDate.timeIntervalSinceReferenceDate
+    }
+}

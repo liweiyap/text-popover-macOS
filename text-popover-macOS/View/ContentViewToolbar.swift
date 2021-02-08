@@ -116,9 +116,9 @@ struct ContentViewToolbar: View
     
     @Binding var elaborationIsViewed: Bool
     
-    private func getTimeRemaining() -> CountdownTimerWrapper.Time
+    private func formatTimeRemaining() -> CountdownTimerWrapper.Time
     {
-        return countdownTimerWrapper.getTimeRemaining()
+        return countdownTimerWrapper.formatTimeRemaining()
     }
     
     var body: some View
@@ -141,8 +141,8 @@ struct ContentViewToolbar: View
             
             Spacer()
             
-            Text("\(String(format:"%02d", getTimeRemaining().hours)):" +
-                 "\(String(format:"%02d", getTimeRemaining().minutes))")
+            Text("\(String(format:"%02d", formatTimeRemaining().hours)):" +
+                 "\(String(format:"%02d", formatTimeRemaining().minutes))")
 
             SettingsButton()
         }
