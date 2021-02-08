@@ -60,7 +60,7 @@ Text-Popover is a MacOS menu bar app that pops up at user-specified intervals. T
 
 ### Default database _"Redewendungen"_
 
-The default database contains German idioms (_Redewendungen_). Every time the app is restarted, the default database is automatically built from scratch. This is done by using the Python library [Beautiful Soup](https://pypi.org/project/beautifulsoup4/) to scrape the idioms, as well as their meaning and history, from [Wikipedia](https://de.wikipedia.org/wiki/Liste_deutscher_Redewendungen). Python is not required for any further databases that you may wish to add.
+The default database contains German idioms (_Redewendungen_). Every time the app is restarted, the default database is automatically rebuilt from scratch. This is done by using the Python library [Beautiful Soup](https://pypi.org/project/beautifulsoup4/) to scrape the idioms, as well as their meaning and history, from [Wikipedia](https://de.wikipedia.org/wiki/Liste_deutscher_Redewendungen). Python is not required for any further databases that you may wish to add.
 
 [_Back to top_](#contents)
 

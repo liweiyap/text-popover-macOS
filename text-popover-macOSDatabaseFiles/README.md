@@ -15,5 +15,5 @@ Note: the default database `german-idioms.db` is always generated anew every tim
 
 This script is called from within the app to create the default database `german-idioms.db`. Do __not__ remove!!
 
-Make sure that you already have the library [`Beautiful Soup`](https://pypi.org/project/beautifulsoup4/) installed.
+Make sure that you already have the library [Beautiful Soup](https://pypi.org/project/beautifulsoup4/) installed.
 To check the path to your Python executable, run `which python3` on the Terminal (i.e. from outside Xcode).
