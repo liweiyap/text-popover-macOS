@@ -33,7 +33,7 @@ struct ContentView: View
     private func update() -> Void
     {
         var randomDatabaseEntry = databaseManager.getRandomDatabaseEntry()
-        while (Expression == randomDatabaseEntry.Expression)
+        while ( (Expression != "") && (Expression == randomDatabaseEntry.Expression) )
         {
             randomDatabaseEntry = databaseManager.getRandomDatabaseEntry()
         }

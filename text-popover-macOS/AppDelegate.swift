@@ -35,6 +35,12 @@ class AppDelegate: NSObject, NSApplicationDelegate
 
     func applicationDidFinishLaunching(_ aNotification: Notification)
     {
+        if ( (!InternetReachability.isConnected()) &&
+             (!databaseManager.checkIfDefaultDatabaseAlreadyExists()) )
+        {
+            print("WARNING: Internet access is required to build the default database. The default database cannot be displayed because an old version is not already available.")
+        }
+        
         /*
          * Allows keyDown events to be detected
          * https://stackoverflow.com/questions/49716420/adding-a-global-monitor-with-nseventmaskkeydown-mask-does-not-trigger

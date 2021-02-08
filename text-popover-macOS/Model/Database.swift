@@ -231,8 +231,13 @@ final class DatabaseGermanIdiomsImpl: Database
         {
             createDBFile(database_path)
         }
-        connectDBFile(database_path)
-        readDBFile()
+        
+        let fileManager = FileManager.default
+        if fileManager.fileExists(atPath: database_path)
+        {
+            connectDBFile(database_path)
+            readDBFile()
+        }
     }
     
     func createDBFile(_ database_path: String) -> Void

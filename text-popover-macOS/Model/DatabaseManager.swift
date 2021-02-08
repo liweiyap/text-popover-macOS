@@ -14,7 +14,8 @@ final class DatabaseManager: ObservableObject
 {
     @Published var database: Database = DatabaseGermanIdiomsImpl(
         URL(fileURLWithPath: #file).deletingLastPathComponent().path +
-        "/../../text-popover-macOSDatabaseFiles/german-idioms.db", true)
+        "/../../text-popover-macOSDatabaseFiles/german-idioms.db",
+        InternetReachability.isConnected())
     
     @Published var toAddNewDatabase: Bool = false
     @Published var toRemoveOldDatabase: Bool = false
@@ -87,5 +88,18 @@ final class DatabaseManager: ObservableObject
         }
         
         return databases
+    }
+    
+    func checkIfDefaultDatabaseAlreadyExists() -> Bool
+    {
+        let fileManager = FileManager.default
+        if fileManager.fileExists(
+            atPath: URL(fileURLWithPath: #file).deletingLastPathComponent().path +
+            "/../../text-popover-macOSDatabaseFiles/german-idioms.db")
+        {
+            return true
+        }
+        
+        return false
     }
 }
