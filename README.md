@@ -31,7 +31,7 @@ Text-Popover is a MacOS menu bar app that pops up at user-specified intervals. T
 
 1. This button closes the app.
 2. This button takes you to the [next page](#next-page-of-popover) of the popover, which shows any additional text that you might want to display.
-3. This is the amount of time remaining in hours and minutes before the text changes to the next available one in the current database. If the Mac goes to sleep whilst the app is still running, the time will be updated accordingly when the Mac awakes.
+3. This is the amount of time remaining in hours and minutes before the text changes to the next available one in the current database. If the Mac goes to sleep whilst the app is still running, the time will be updated accordingly when the Mac wakes up.
 4. This button opens the [settings window](#adjusting-the-settings).
 5. This is the user-defined main text for display. In the image above, the main text (_Expression_) is a German idiom.
 6. This is a user-defined sub-text for display. It can be blank. In the image, the sub-text (_Explanation_) is the meaning of the German idiom.
