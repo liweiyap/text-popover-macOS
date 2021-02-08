@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Combine
 
 final class CountdownTimerWrapper: ObservableObject
 {
@@ -22,6 +23,40 @@ final class CountdownTimerWrapper: ObservableObject
     
     @Published var timeRemaining = 24 * Int.minutesPerHour
     
+    let intervalExceededDuringSleep = PassthroughSubject<Void, Never>()
+    
+    func notifyIntervalExceededDuringSleep() -> Void
+    {
+        intervalExceededDuringSleep.send()
+    }
+    
+    func checkIfIntervalExceededDuringSleep(timeSleptInMinutes: Int) -> Void
+    {
+        assert(timeSleptInMinutes >= 0, "Time slept cannot be negative")
+        
+        if timeRemaining - timeSleptInMinutes <= 0
+        {
+            let timeSleptModuloInterval = timeSleptInMinutes % interval
+            if timeRemaining - timeSleptModuloInterval <= 0
+            {
+                timeRemaining = interval + (timeRemaining - timeSleptModuloInterval)
+                
+                assert((timeRemaining >= 0) && (timeRemaining <= interval),
+                       "Error in calculations: time remaining is now greater than maximum interval.")
+            }
+            else
+            {
+                timeRemaining -= timeSleptModuloInterval
+            }
+            
+            notifyIntervalExceededDuringSleep()
+        }
+        else
+        {
+            timeRemaining -= timeSleptInMinutes
+        }
+    }
+    
     struct Time
     {
         var hours: Int
@@ -34,7 +69,7 @@ final class CountdownTimerWrapper: ObservableObject
         }
     }
     
-    func getTimeRemaining() -> Time
+    func formatTimeRemaining() -> Time
     {
         let hoursRemaining: Int = timeRemaining / Int.minutesPerHour
         let minutesRemaining: Int = timeRemaining % Int.minutesPerHour

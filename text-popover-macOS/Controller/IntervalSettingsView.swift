@@ -146,17 +146,17 @@ struct IntervalSettingsView: View
     
     static fileprivate let intervalMenuButtonWidth: CGFloat = 110.0
     
-    private func getTimeRemaining() -> CountdownTimerWrapper.Time
+    private func formatTimeRemaining() -> CountdownTimerWrapper.Time
     {
-        return countdownTimerWrapper.getTimeRemaining()
+        return countdownTimerWrapper.formatTimeRemaining()
     }
     
     var body: some View
     {
         VStack(alignment: .leading)
         {
-            Text("\(String(format:"%02d", getTimeRemaining().hours)):" +
-                 "\(String(format:"%02d", getTimeRemaining().minutes)) until next Expression")
+            Text("\(String(format:"%02d", formatTimeRemaining().hours)):" +
+                 "\(String(format:"%02d", formatTimeRemaining().minutes)) until next Expression")
             
             MenuButton(intervalMenuButtonNames.minutesMenuButtonName)
             {

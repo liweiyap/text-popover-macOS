@@ -25,6 +25,8 @@ class AppDelegate: NSObject, NSApplicationDelegate
     
     static var selfInstance: AppDelegate?
     
+    private var sleepTime = Date()
+    
     override init()
     {
         super.init()
@@ -81,10 +83,23 @@ class AppDelegate: NSObject, NSApplicationDelegate
         }
         eventMonitor?.start()
         
-        DistributedNotificationCenter.default.addObserver(self,
-                                                          selector: #selector(systemInterfaceModeChanged(sender:)),
-                                                          name: NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification"),
-                                                          object: nil)
+        DistributedNotificationCenter.default.addObserver(
+            self,
+            selector: #selector(systemInterfaceModeChanged(sender:)),
+            name: NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification"),
+            object: nil)
+        
+        NSWorkspace.shared.notificationCenter.addObserver(
+            self,
+            selector: #selector(onSleepNotification(sender:)),
+            name: NSWorkspace.willSleepNotification,
+            object: nil)
+        
+        NSWorkspace.shared.notificationCenter.addObserver(
+            self,
+            selector: #selector(onWakeNotification(sender:)),
+            name: NSWorkspace.didWakeNotification,
+            object: nil)
     }
 
     func applicationWillTerminate(_ aNotification: Notification)
@@ -112,5 +127,24 @@ class AppDelegate: NSObject, NSApplicationDelegate
     @objc private func systemInterfaceModeChanged(sender: NSNotification)
     {
         backgroundOptions.darkMode = !backgroundOptions.darkMode
+    }
+    
+    @objc private func onSleepNotification(sender: NSNotification)
+    {
+        sleepTime = Date()
+        countdownTimerWrapper.timer.upstream.connect().cancel()
+    }
+    
+    @objc private func onWakeNotification(sender: NSNotification)
+    {
+        let wakeTime = Date()
+        let timeSleptInSeconds = Int((wakeTime - sleepTime).rounded())
+        let timeSleptInMinutes = timeSleptInSeconds / Int.secondsPerMinute
+        
+        countdownTimerWrapper.checkIfIntervalExceededDuringSleep(timeSleptInMinutes: timeSleptInMinutes)
+        
+        countdownTimerWrapper.timer = Timer.publish(every: TimeInterval(Int.secondsPerMinute),
+                                                    tolerance: TimeInterval(Int.secondsPerMinute / 10),
+                                                    on: .main, in: .common).autoconnect()
     }
 }
