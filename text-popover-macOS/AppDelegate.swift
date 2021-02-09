@@ -38,7 +38,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
         if ( (!InternetReachability.isConnected()) &&
              (!databaseManager.checkIfDefaultDatabaseAlreadyExists()) )
         {
-            print("WARNING: Internet access is required to build the default database. The default database cannot be displayed because an old version is not already available.")
+            print("WARNING: Internet access is required to build the default database. The default database cannot be displayed because an old version is not already available. Restart the app as soon as Internet is back up and running.")
         }
         
         /*

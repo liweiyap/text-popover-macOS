@@ -25,10 +25,10 @@
 		E276B68F24E1FF0D00FF0BAA /* AdditionalToggableTextSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E276B68E24E1FF0C00FF0BAA /* AdditionalToggableTextSettingsView.swift */; };
 		E283C56424EDD4B600E4E1CE /* CountdownTimerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E283C56324EDD4B600E4E1CE /* CountdownTimerWrapper.swift */; };
 		E283C56624F0456F00E4E1CE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E283C56524F0456F00E4E1CE /* Extensions.swift */; };
-		E2A6CE6E25BF567100F28A8E /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E26056F324BF5C2200B24D05 /* SQLite.framework */; };
-		E2A6CE6F25BF567100F28A8E /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E26056F324BF5C2200B24D05 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E2AD86C725CA090A00B0A975 /* DatabaseSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AD86C625CA090A00B0A975 /* DatabaseSelectionView.swift */; };
 		E2E2C3E025D1F9330087D623 /* InternetReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E2C3DF25D1F9330087D623 /* InternetReachability.swift */; };
+		E2E2C3F525D31D370087D623 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E26056F324BF5C2200B24D05 /* SQLite.framework */; };
+		E2E2C3F625D31D370087D623 /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E26056F324BF5C2200B24D05 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,13 +58,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E2A6CE7025BF567100F28A8E /* Embed Frameworks */ = {
+		E2E2C3F725D31D370087D623 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E2A6CE6F25BF567100F28A8E /* SQLite.framework in Embed Frameworks */,
+				E2E2C3F625D31D370087D623 /* SQLite.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -107,7 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2A6CE6E25BF567100F28A8E /* SQLite.framework in Frameworks */,
+				E2E2C3F525D31D370087D623 /* SQLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,7 +254,7 @@
 				E26056B024BCD49900B24D05 /* Resources */,
 				E26056F724BF5C6700B24D05 /* ShellScript */,
 				E275118825694FA700410BF2 /* CopyFiles */,
-				E2A6CE7025BF567100F28A8E /* Embed Frameworks */,
+				E2E2C3F725D31D370087D623 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
