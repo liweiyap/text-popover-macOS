@@ -18,6 +18,7 @@ Text-Popover is a MacOS menu bar app that pops up at user-specified intervals. T
 * [More samples](#more-samples)
   * [Languages that do not use the Latin alphabet](#languages-that-do-not-use-the-latin-alphabet)
   * [Inspirational quotes](#inspirational-quotes)
+  * [Demotivational pop-ups (just for fun)](#demotivational-pop-ups-just-for-fun)
 * [Installation](#installation)
   * [Requirements](#requirements)
   * [Instructions](#instructions)
@@ -110,6 +111,12 @@ All databases are added to the [`text-popover-macOSDatabaseFiles/`](https://gith
 ### Inspirational quotes
 
 <img src="text-popover-macOS/Assets.xcassets/screenshot-sample-3.png" width="500"/>
+
+[_Back to top_](#contents)
+
+### Demotivational pop-ups (just for fun)
+
+<img src="text-popover-macOS/Assets.xcassets/screenshot-sample-4.png" width="500"/>
 
 [_Back to top_](#contents)
 
