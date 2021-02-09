@@ -21,6 +21,7 @@ Text-Popover is a MacOS menu bar app that pops up at user-specified intervals. T
 * [Installation](#installation)
   * [Requirements](#requirements)
   * [Instructions](#instructions)
+* [TODO](#todo)
 * [Licence](#licence)
 
 ## Usage
@@ -147,6 +148,12 @@ All databases are added to the [`text-popover-macOSDatabaseFiles/`](https://gith
      
      <img src="text-popover-macOS/Assets.xcassets/screenshot-accessibility-popupmsg.png" width="250"/>
    * You might also need to open 'System Preferences > Security & Privacy > Privacy > Accessibility' and tick the check-box next to the 'Text-Popover' program.
+
+[_Back to top_](#contents)
+
+## TODO
+
+- [ ] Check if we really need the [SQLite.swift](https://github.com/stephencelis/SQLite.swift) dependency. After all, it is just a wrapper. Follow [this tutorial](https://www.raywenderlich.com/6620276-sqlite-with-swift-tutorial-getting-started).
 
 [_Back to top_](#contents)
 
