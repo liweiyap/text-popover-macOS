@@ -1,7 +1,7 @@
 ![](text-popover-macOS/Assets.xcassets/popover-appicon-with-text.imageset/popover-appicon-with-text.png)
 
 <p align="center">
- <img src="https://img.shields.io/badge/swift-v5.3-orange"> <img src="https://img.shields.io/badge/macOS-v11.1-lightgrey">
+ <img src="https://img.shields.io/badge/swift-v5.3-orange"> <img src="https://img.shields.io/badge/macOS-v11.2.1-lightgrey">
 </p>
 
 Text-Popover is a MacOS menu bar app that pops up at user-specified intervals. These pop-ups contain user-specified texts, such as inspirational quotes or idioms, which are stored in [SQLite](https://www.sqlite.org/index.html) databases in the [`text-popover-macOSDatabaseFiles/`](https://github.com/liweiyap/text-popover-macOS/tree/develop/text-popover-macOSDatabaseFiles) directory. Language learners could use these pop-ups as virtual placards. The app is written in the [SwiftUI](https://developer.apple.com/documentation/swiftui/) framework.
@@ -128,7 +128,7 @@ All databases are added to the [`text-popover-macOSDatabaseFiles/`](https://gith
 
 ### Requirements
 
-* [Xcode](https://apps.apple.com/gb/app/xcode/id497799835?mt=12) _(we used version 12.3)_
+* [Xcode](https://apps.apple.com/gb/app/xcode/id497799835?mt=12) _(we used version 12.4)_
 * [Carthage](https://github.com/Carthage/Carthage) _(can be downloaded using [Homebrew](https://brew.sh/))_
 * Python 3 with [Beautiful Soup](https://pypi.org/project/beautifulsoup4/) _(we used version 4.9.1)_ installed
 
