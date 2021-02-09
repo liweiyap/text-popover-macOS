@@ -11,7 +11,7 @@ If the .db files are edited whilst the app is still running, it might cause the 
 
 Note: the default database `german-idioms.db` is always generated anew every time the app is started. The title of its table is "Redewendungen". Do __not__ change it.
 
-## [`create_database_german_idioms_impl.py`](https://github.com/liweiyap/text-popover-macOS/tree/master/text-popover-macOSDatabaseFiles)
+## [`create_database_german_idioms_impl.py`](https://github.com/liweiyap/text-popover-macOS/tree/master/text-popover-macOSDatabaseFiles/create_database_german_idioms_impl.py)
 
 This script is called from within the app to create the default database `german-idioms.db`. Do __not__ remove!!
 
