@@ -153,7 +153,7 @@ All databases are added to the [`text-popover-macOSDatabaseFiles/`](https://gith
 
 ## TODO
 
-- [ ] Check if we really need the [SQLite.swift](https://github.com/stephencelis/SQLite.swift) dependency. After all, it is just a wrapper. Follow [this tutorial](https://www.raywenderlich.com/6620276-sqlite-with-swift-tutorial-getting-started).
+- [ ] Check if we really need the [SQLite.swift](https://github.com/stephencelis/SQLite.swift) dependency. After all, it is just a wrapper. Follow [this tutorial](https://www.raywenderlich.com/6620276-sqlite-with-swift-tutorial-getting-started). This might help us to resolve [this issue](https://github.com/liweiyap/text-popover-macOS/issues/4).
 
 [_Back to top_](#contents)
 
