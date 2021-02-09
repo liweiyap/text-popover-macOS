@@ -40,6 +40,25 @@ func addRowToDatabase(_ database: Database, _ databaseName: String, _ entry: Dat
     assert(databaseName != "Redewendungen",
            "DatabaseGermanIdiomsImpl designed to be non-editable by user.")
     
+    do
+    {
+        let databaseTable = Table(databaseName)
+        let expression = Expression<String>("Expression")
+        
+        _ = try database.getDBFileConnection().prepare(databaseTable)
+        let databaseEntries = databaseTable.filter(expression == entry.Expression)
+        
+        if try database.getDBFileConnection().scalar(databaseEntries.count) >= 1
+        {
+            print("Entry with this expression already found in database \(databaseName). Please delete the old entry first.")
+            return
+        }
+    }
+    catch
+    {
+        print("addRowToDatabase(): during filtering:\n", error)
+    }
+    
     let databaseTable = Table(databaseName)
     let expression = Expression<String>("Expression")
     let explanation = Expression<String>("Explanation")
@@ -58,7 +77,7 @@ func addRowToDatabase(_ database: Database, _ databaseName: String, _ entry: Dat
     }
     catch
     {
-        print("addRowToDatabase():\n", error)
+        print("addRowToDatabase(): during insertion:\n", error)
     }
 }
 
