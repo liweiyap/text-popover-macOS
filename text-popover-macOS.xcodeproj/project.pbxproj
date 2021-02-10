@@ -236,8 +236,8 @@
 			isa = PBXGroup;
 			children = (
 				E26056EC24BF2F2A00B24D05 /* EventMonitor.swift */,
-				E283C56524F0456F00E4E1CE /* Extensions.swift */,
 				E2E2C3DF25D1F9330087D623 /* InternetReachability.swift */,
+				E283C56524F0456F00E4E1CE /* Extensions.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
