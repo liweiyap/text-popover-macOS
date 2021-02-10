@@ -1,4 +1,4 @@
-![](text-popover-macOS/Assets.xcassets/popover-appicon-with-text.imageset/popover-appicon-with-text.png)
+![](text-popover-macOS/Assets.xcassets/popover-appicon-with-grey-text.imageset/popover-appicon-with-grey-text.png)
 
 <p align="center">
  <img src="https://img.shields.io/badge/swift-v5.3-orange"> <img src="https://img.shields.io/badge/macOS-v11.2.1-lightgrey">
@@ -165,6 +165,7 @@ All databases are added to the [`text-popover-macOSDatabaseFiles/`](https://gith
 ## TODO
 
 - [ ] Check if we really need the [SQLite.swift](https://github.com/stephencelis/SQLite.swift) dependency. After all, it is just a wrapper, and it has not really been properly maintained since at least July 2020. Follow [this tutorial](https://www.raywenderlich.com/6620276-sqlite-with-swift-tutorial-getting-started). This might help us to resolve [this issue](https://github.com/liweiyap/text-popover-macOS/issues/4).
+- [ ] Consider replacing `print` statements and exceptions with [`Alert`s](https://developer.apple.com/documentation/swiftui/alert).
 
 [_Back to top_](#contents)
 
