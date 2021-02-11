@@ -71,13 +71,13 @@ fileprivate struct AuthorView: View
         {
             if backgroundOptions.darkMode
             {
-                Image("logo-grey-background-black")
+                Image("logoPaths-noCircle-7point5grey-background-white")
                 .resizable()
                 .scaledToFit()
             }
             else
             {
-                Image("logo-black-background-grey")
+                Image("logoPaths-noCircle-80grey-background-white")
                 .resizable()
                 .scaledToFit()
             }
