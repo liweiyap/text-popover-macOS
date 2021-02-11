@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "StatusBarButtonImage.png",
+      "filename" : "StatusBarButtonImage.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
