@@ -1,4 +1,4 @@
-![](text-popover-macOS/Assets.xcassets/popover-appicon-with-text-grey.imageset/popover-appicon-with-text-grey.svg)
+![](text-popover-macOS/Assets.xcassets/appicon-with-text-grey.imageset/appicon-with-text-grey.svg)
 
 <p align="center">
  <img src="https://img.shields.io/badge/swift-v5.3-orange"> <img src="https://img.shields.io/badge/macOS-v11.2.1-lightgrey">
