@@ -163,6 +163,7 @@ fileprivate struct DatabaseEntryAdderAndRemover: View
     @EnvironmentObject private var databaseManager: DatabaseManager
     
     @Binding var lastSelectedDatabase: String?
+    @Binding var currentExpression: String
     @State private var newDatabaseEntryExpression: String = ""
     @State private var newDatabaseEntryExplanation: String = ""
     @State private var newDatabaseEntryElaboration: String = ""
@@ -212,12 +213,12 @@ fileprivate struct DatabaseEntryAdderAndRemover: View
                                                            lastSelectedDatabase!,
                                                            oldDatabaseEntryExpression)
                     
-                    oldDatabaseEntryExpression = ""
-                    
-                    if errNo == 0
+                    if ( (errNo == 0) && (currentExpression == oldDatabaseEntryExpression) )
                     {
                         databaseManager.notifyDatabasesChanged()
                     }
+                    
+                    oldDatabaseEntryExpression = ""
                     
                     /*
                      * Just a precaution
@@ -236,6 +237,7 @@ fileprivate struct DatabaseAdderAndRemover: View
     @State private var newDatabaseName: String = ""
     
     @Binding var lastSelectedDatabase: String?
+    @Binding var currentExpression: String
     
     var body: some View
     {
@@ -355,7 +357,9 @@ fileprivate struct DatabaseAdderAndRemover: View
                         }
                         else if lastSelectedDatabase != nil
                         {
-                            DatabaseEntryAdderAndRemover(lastSelectedDatabase: $lastSelectedDatabase)
+                            DatabaseEntryAdderAndRemover(
+                                lastSelectedDatabase: $lastSelectedDatabase,
+                                currentExpression: $currentExpression)
                             .font(.body)
                         }
                     }
@@ -378,6 +382,7 @@ fileprivate struct DatabaseAdderAndRemover: View
 struct DatabaseSelectionView: View
 {
     @State private var lastSelectedDatabase: String? = "Redewendungen"
+    @Binding var currentExpression: String
     
     static fileprivate let DatabaseSelectionViewCenterSpacing: CGFloat = 20
     static fileprivate let DatabaseSelectorWidth = (CGFloat(SettingsButton.SettingsWindowWidth) - DatabaseSelectionView.DatabaseSelectionViewCenterSpacing) * 3.0/10.0
@@ -390,7 +395,9 @@ struct DatabaseSelectionView: View
             DatabaseSelector(lastSelectedDatabase: $lastSelectedDatabase)
             .frame(width: DatabaseSelectionView.DatabaseSelectorWidth)
             
-            DatabaseAdderAndRemover(lastSelectedDatabase: $lastSelectedDatabase)
+            DatabaseAdderAndRemover(
+                lastSelectedDatabase: $lastSelectedDatabase,
+                currentExpression: $currentExpression)
             .frame(width: DatabaseSelectionView.DatabaseAdderAndRemoverWidth)
         }
         .padding()

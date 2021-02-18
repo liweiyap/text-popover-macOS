@@ -115,6 +115,7 @@ struct ContentViewToolbar: View
     @EnvironmentObject private var additionalToggableTextOptions: AdditionalToggableTextOptions
     
     @Binding var elaborationIsViewed: Bool
+    @Binding var currentExpression: String
     
     private func formatTimeRemaining() -> CountdownTimerWrapper.Time
     {
@@ -144,7 +145,7 @@ struct ContentViewToolbar: View
             Text("\(String(format:"%02d", formatTimeRemaining().hours)):" +
                  "\(String(format:"%02d", formatTimeRemaining().minutes))")
 
-            SettingsButton()
+            SettingsButton(currentExpression: $currentExpression)
         }
     }
 }

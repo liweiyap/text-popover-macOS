@@ -74,7 +74,7 @@ struct ContentView: View
             
             VStack
             {
-                ContentViewToolbar(elaborationIsViewed: $elaborationIsViewed)
+                ContentViewToolbar(elaborationIsViewed: $elaborationIsViewed, currentExpression: $Expression)
                 .font(.custom(displayTextFontStyle, size: 15))
                 
                 Spacer()
@@ -127,6 +127,9 @@ struct ContentView: View
             _ in
             
             update()
+            togglePopover()
+            playSound()
+            countdownTimerWrapper.timeRemaining = countdownTimerWrapper.interval
         }
         .onReceive(countdownTimerWrapper.intervalExceededDuringSleep)
         {

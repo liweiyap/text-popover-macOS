@@ -92,6 +92,7 @@ fileprivate struct AuthorView: View
 fileprivate struct AllSettingsView: View
 {
     @State private var defaultViewIdx = 1
+    @Binding var currentExpression: String
     
     var body: some View
     {
@@ -111,7 +112,7 @@ fileprivate struct AllSettingsView: View
             }
             .tag(1)
             
-            DatabaseSelectionView()
+            DatabaseSelectionView(currentExpression: $currentExpression)
             .tabItem
             {
                 Text("Databases")
@@ -131,6 +132,7 @@ struct SettingsButton: View
     @EnvironmentObject private var intervalMenuButtonNames: IntervalMenuButtonNames
     
     @State private var window: NSWindow?
+    @Binding var currentExpression: String
     
     static let SettingsButtonDimensions: Int = 20
     static let SettingsWindowWidth: Int = 480
@@ -139,7 +141,7 @@ struct SettingsButton: View
     var body: some View
     {
         Button(action: {
-            let allSettingsView = AllSettingsView()
+            let allSettingsView = AllSettingsView(currentExpression: $currentExpression)
                 .environmentObject(databaseManager)
                 .environmentObject(countdownTimerWrapper)
                 .environmentObject(additionalToggableTextOptions)
