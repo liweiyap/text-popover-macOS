@@ -166,6 +166,8 @@ All databases are added to the [`text-popover-macOSDatabaseFiles/`](https://gith
 
 - [ ] Check if we really need the [SQLite.swift](https://github.com/stephencelis/SQLite.swift) dependency. After all, it is just a wrapper, and it has not really been properly maintained since at least July 2020. Follow [this tutorial](https://www.raywenderlich.com/6620276-sqlite-with-swift-tutorial-getting-started). This might help us to resolve [this issue](https://github.com/liweiyap/text-popover-macOS/issues/4).
 - [ ] Consider replacing `print` statements and exceptions with [`Alert`s](https://developer.apple.com/documentation/swiftui/alert).
+- [ ] When database is selected in `DatabaseList`, perhaps we should show a list of available `Expression`s first, instead of `DatabaseAdderAndRemover`.
+- [ ] [Make certain texts selectable.](https://stackoverflow.com/questions/58005434/how-do-i-allow-text-selection-on-a-text-label-in-swiftui)
 
 [_Back to top_](#contents)
 
